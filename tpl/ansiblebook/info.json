@@ -1,0 +1,7 @@
+{
+ "Author": "Bas Meijer",
+ "Website": "https://roboxes.org/",
+ "Artifacts": "https://vagrantcloud.com/ansiblebook/",
+ "Repository": "https://github.com/playingfield/robox/",
+ "Description": "Virtual machine images for Ansible book examples, built on AlmaLinux 9, AlmaLinux 10 and Debian 13 (Trixie)."
+}

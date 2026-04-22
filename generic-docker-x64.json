@@ -1,2552 +1,1824 @@
 {
-  "variables": {
-    "box_version": "{{env `VERSION`}}",
-    "quay-user": "{{env `QUAY_USER`}}",
-    "docker-user": "{{env `DOCKER_USER`}}",
-    "quay-password": "{{env `QUAY_PASSWORD`}}",
-    "docker-password": "{{env `DOCKER_PASSWORD`}}"
-  },
-  "provisioners": [
-    {
-      "type": "shell",
-      "timeout": "120m",
-      "scripts": [
-        "scripts/centos6/yum.sh",
-        "scripts/centos6/base.sh",
-        "scripts/centos6/network.sh",
-        "scripts/centos6/vga.sh"
-      ],
-      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
-      "start_retry_timeout": "15m",
-      "expect_disconnect": "true",
-      "only": [
-        "generic-centos6-docker-x64"
-      ]
+    "variables": {
+        "box_version": "{{env `VERSION`}}",
+        "quay-user": "{{env `QUAY_USER`}}",
+        "docker-user": "{{env `DOCKER_USER`}}",
+        "quay-password": "{{env `QUAY_PASSWORD`}}",
+        "docker-password": "{{env `DOCKER_PASSWORD`}}"
     },
-    {
-      "type": "shell",
-      "timeout": "120m",
-      "scripts": [
-        "scripts/centos6/updatedb.sh",
-        "scripts/centos6/cleanup.sh",
-        "scripts/centos6/dockerize.sh"
-      ],
-      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
-      "pause_before": "120s",
-      "start_retry_timeout": "15m",
-      "expect_disconnect": "true",
-      "only": [
-        "generic-centos6-docker-x64"
-      ]
-    },
-    {
-      "type": "shell",
-      "timeout": "120m",
-      "scripts": [
-        "scripts/centos7/network.sh",
-        "scripts/centos7/yum.sh",
-        "scripts/centos7/base.sh",
-        "scripts/centos7/reboot.sh"
-      ],
-      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
-      "start_retry_timeout": "15m",
-      "expect_disconnect": "true",
-      "only": [
-        "generic-centos7-docker-x64"
-      ]
-    },
-    {
-      "type": "shell",
-      "timeout": "120m",
-      "scripts": [
-        "scripts/centos7/floppy.sh",
-        "scripts/centos7/cleanup.sh",
-        "scripts/centos7/unyum.sh",
-        "scripts/centos7/dockerize.sh"
-      ],
-      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
-      "pause_before": "120s",
-      "start_retry_timeout": "15m",
-      "expect_disconnect": "true",
-      "only": [
-        "generic-centos7-docker-x64"
-      ]
-    },
-    {
-      "type": "shell",
-      "timeout": "120m",
-      "scripts": [
-        "scripts/centos8/network.sh",
-        "scripts/centos8/dnf.sh",
-        "scripts/centos8/base.sh",
-        "scripts/centos8/reboot.sh"
-      ],
-      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
-      "start_retry_timeout": "15m",
-      "expect_disconnect": "true",
-      "only": [
-        "generic-centos8-docker-x64"
-      ]
-    },
-    {
-      "type": "shell",
-      "timeout": "120m",
-      "scripts": [
-        "scripts/centos8/floppy.sh",
-        "scripts/centos8/cleanup.sh",
-        "scripts/centos8/dockerize.sh"
-      ],
-      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
-      "pause_before": "120s",
-      "start_retry_timeout": "15m",
-      "expect_disconnect": "true",
-      "only": [
-        "generic-centos8-docker-x64"
-      ]
-    },
-    {
-      "type": "shell",
-      "timeout": "120m",
-      "scripts": [
-        "scripts/rhel6/network.sh",
-        "scripts/rhel6/yum.sh",
-        "scripts/rhel6/base.sh",
-        "scripts/rhel6/reboot.sh"
-      ],
-      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
-      "start_retry_timeout": "15m",
-      "expect_disconnect": "true",
-      "only": [
-        "generic-rhel6-docker-x64"
-      ]
-    },
-    {
-      "type": "shell",
-      "timeout": "120m",
-      "scripts": [
-        "scripts/rhel6/vga.sh",
-        "scripts/rhel6/updatedb.sh",
-        "scripts/rhel6/cleanup.sh",
-        "scripts/rhel6/unyum.sh",
-        "scripts/rhel6/dockerize.sh"
-      ],
-      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
-      "pause_before": "120s",
-      "start_retry_timeout": "15m",
-      "expect_disconnect": "true",
-      "only": [
-        "generic-rhel6-docker-x64"
-      ]
-    },
-    {
-      "type": "shell",
-      "timeout": "120m",
-      "scripts": [
-        "scripts/rhel7/network.sh",
-        "scripts/rhel7/yum.sh",
-        "scripts/rhel7/base.sh",
-        "scripts/rhel7/reboot.sh"
-      ],
-      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
-      "start_retry_timeout": "15m",
-      "expect_disconnect": "true",
-      "only": [
-        "generic-rhel7-docker-x64"
-      ]
-    },
-    {
-      "type": "shell",
-      "timeout": "120m",
-      "scripts": [
-        "scripts/rhel7/floppy.sh",
-        "scripts/rhel7/updatedb.sh",
-        "scripts/rhel7/cleanup.sh",
-        "scripts/rhel7/unyum.sh",
-        "scripts/rhel7/dockerize.sh"
-      ],
-      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
-      "pause_before": "120s",
-      "start_retry_timeout": "15m",
-      "expect_disconnect": "true",
-      "only": [
-        "generic-rhel7-docker-x64"
-      ]
-    },
-    {
-      "type": "shell",
-      "timeout": "120m",
-      "scripts": [
-        "scripts/rhel8/network.sh",
-        "scripts/rhel8/dnf.sh",
-        "scripts/rhel8/base.sh",
-        "scripts/rhel8/reboot.sh"
-      ],
-      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
-      "start_retry_timeout": "15m",
-      "expect_disconnect": "true",
-      "only": [
-        "generic-rhel8-docker-x64"
-      ]
-    },
-    {
-      "type": "shell",
-      "timeout": "120m",
-      "scripts": [
-        "scripts/rhel8/floppy.sh",
-        "scripts/rhel8/updatedb.sh",
-        "scripts/rhel8/cleanup.sh",
-        "scripts/rhel8/undnf.sh",
-        "scripts/rhel8/dockerize.sh"
-      ],
-      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
-      "pause_before": "120s",
-      "start_retry_timeout": "15m",
-      "expect_disconnect": "true",
-      "only": [
-        "generic-rhel8-docker-x64"
-      ]
-    },
-    {
-      "type": "shell",
-      "timeout": "120m",
-      "scripts": [
-        "scripts/rhel9/network.sh",
-        "scripts/rhel9/dnf.sh",
-        "scripts/rhel9/base.sh",
-        "scripts/rhel9/reboot.sh"
-      ],
-      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
-      "start_retry_timeout": "15m",
-      "expect_disconnect": "true",
-      "only": [
-        "generic-rhel9-docker-x64"
-      ]
-    },
-    {
-      "type": "shell",
-      "timeout": "120m",
-      "scripts": [
-        "scripts/rhel9/floppy.sh",
-        "scripts/rhel9/updatedb.sh",
-        "scripts/rhel9/cleanup.sh",
-        "scripts/rhel9/undnf.sh",
-        "scripts/rhel9/dockerize.sh"
-      ],
-      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
-      "pause_before": "120s",
-      "start_retry_timeout": "15m",
-      "expect_disconnect": "true",
-      "only": [
-        "generic-rhel9-docker-x64"
-      ]
-    },
-    {
-      "type": "shell",
-      "timeout": "120m",
-      "scripts": [
-        "scripts/oracle7/network.sh",
-        "scripts/oracle7/yum.sh"
-      ],
-      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
-      "start_retry_timeout": "15m",
-      "expect_disconnect": "true",
-      "only": [
-        "generic-oracle7-docker-x64"
-      ]
-    },
-    {
-      "type": "shell",
-      "timeout": "120m",
-      "scripts": [
-        "scripts/oracle7/floppy.sh",
-        "scripts/oracle7/cleanup.sh",
-        "scripts/oracle7/dockerize.sh"
-      ],
-      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
-      "pause_before": "120s",
-      "start_retry_timeout": "15m",
-      "expect_disconnect": "true",
-      "only": [
-        "generic-oracle7-docker-x64"
-      ]
-    },
-    {
-      "type": "shell",
-      "timeout": "120m",
-      "scripts": [
-        "scripts/oracle8/network.sh",
-        "scripts/oracle8/dnf.sh"
-      ],
-      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
-      "start_retry_timeout": "15m",
-      "expect_disconnect": "true",
-      "only": [
-        "generic-oracle8-docker-x64"
-      ]
-    },
-    {
-      "type": "shell",
-      "timeout": "120m",
-      "scripts": [
-        "scripts/oracle8/floppy.sh",
-        "scripts/oracle8/cleanup.sh",
-        "scripts/oracle8/dockerize.sh"
-      ],
-      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
-      "pause_before": "120s",
-      "start_retry_timeout": "15m",
-      "expect_disconnect": "true",
-      "only": [
-        "generic-oracle8-docker-x64"
-      ]
-    },
-    {
-      "type": "shell",
-      "timeout": "120m",
-      "scripts": [
-        "scripts/oracle9/network.sh",
-        "scripts/oracle9/dnf.sh"
-      ],
-      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
-      "start_retry_timeout": "15m",
-      "expect_disconnect": "true",
-      "only": [
-        "generic-oracle9-docker-x64"
-      ]
-    },
-    {
-      "type": "shell",
-      "timeout": "120m",
-      "scripts": [
-        "scripts/oracle9/floppy.sh",
-        "scripts/oracle9/cleanup.sh",
-        "scripts/oracle9/dockerize.sh"
-      ],
-      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
-      "pause_before": "120s",
-      "start_retry_timeout": "15m",
-      "expect_disconnect": "true",
-      "only": [
-        "generic-oracle9-docker-x64"
-      ]
-    },
-    {
-      "type": "shell",
-      "timeout": "120m",
-      "scripts": [
-        "scripts/alma8/network.sh",
-        "scripts/alma8/dnf.sh",
-        "scripts/alma8/base.sh",
-        "scripts/alma8/reboot.sh"
-      ],
-      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
-      "start_retry_timeout": "15m",
-      "expect_disconnect": "true",
-      "only": [
-        "generic-alma8-docker-x64"
-      ]
-    },
-    {
-      "type": "shell",
-      "timeout": "120m",
-      "scripts": [
-        "scripts/alma8/floppy.sh",
-        "scripts/alma8/updatedb.sh",
-        "scripts/alma8/cleanup.sh",
-        "scripts/alma8/undnf.sh",
-        "scripts/alma8/dockerize.sh"
-      ],
-      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
-      "pause_before": "120s",
-      "start_retry_timeout": "15m",
-      "expect_disconnect": "true",
-      "only": [
-        "generic-alma8-docker-x64"
-      ]
-    },
-    {
-      "type": "shell",
-      "timeout": "120m",
-      "scripts": [
-        "scripts/alma9/network.sh",
-        "scripts/alma9/dnf.sh",
-        "scripts/alma9/base.sh",
-        "scripts/alma9/reboot.sh"
-      ],
-      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
-      "start_retry_timeout": "15m",
-      "expect_disconnect": "true",
-      "only": [
-        "generic-alma9-docker-x64"
-      ]
-    },
-    {
-      "type": "shell",
-      "timeout": "120m",
-      "scripts": [
-        "scripts/alma9/floppy.sh",
-        "scripts/alma9/updatedb.sh",
-        "scripts/alma9/cleanup.sh",
-        "scripts/alma9/undnf.sh",
-        "scripts/alma9/dockerize.sh"
-      ],
-      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
-      "pause_before": "120s",
-      "start_retry_timeout": "15m",
-      "expect_disconnect": "true",
-      "only": [
-        "generic-alma9-docker-x64"
-      ]
-    },
-    {
-      "type": "shell",
-      "timeout": "120m",
-      "scripts": [
-        "scripts/fedora38/fixdns.sh",
-        "scripts/fedora38/hostname.sh",
-        "scripts/fedora38/dnf.sh"
-      ],
-      "start_retry_timeout": "15m",
-      "expect_disconnect": "true",
-      "only": [
-        "generic-fedora38-docker-x64"
-      ]
-    },
-    {
-      "type": "shell",
-      "timeout": "120m",
-      "scripts": [
-        "scripts/fedora38/fixtmp.sh",
-        "scripts/fedora38/base.sh"
-      ],
-      "pause_before": "120s",
-      "start_retry_timeout": "15m",
-      "expect_disconnect": "true",
-      "only": [
-        "generic-fedora38-docker-x64"
-      ]
-    },
-    {
-      "type": "shell",
-      "timeout": "120m",
-      "scripts": [
-        "scripts/fedora38/kernel.sh",
-        "scripts/fedora38/updatedb.sh",
-        "scripts/fedora38/vga.sh",
-        "scripts/fedora38/cleanup.sh",
-        "scripts/fedora38/dockerize.sh"
-      ],
-      "pause_before": "120s",
-      "start_retry_timeout": "15m",
-      "expect_disconnect": "true",
-      "only": [
-        "generic-fedora38-docker-x64"
-      ]
-    },
-    {
-      "scripts": [
-        "scripts/debian12/apt.sh",
-        "scripts/debian12/network.sh"
-      ],
-      "type": "shell",
-      "timeout": "120m",
-      "start_retry_timeout": "15m",
-      "expect_disconnect": "true",
-      "only": [
-        "generic-debian12-docker-x64"
-      ]
-    },
-    {
-      "scripts": [
-        "scripts/debian12/floppy.sh",
-        "scripts/debian12/profile.sh",
-        "scripts/debian12/motd.sh",
-        "scripts/debian12/fixtty.sh",
-        "scripts/debian12/cleanup.sh",
-        "scripts/debian12/dockerize.sh"
-      ],
-      "type": "shell",
-      "timeout": "120m",
-      "pause_before": "120s",
-      "start_retry_timeout": "15m",
-      "expect_disconnect": "true",
-      "only": [
-        "generic-debian12-docker-x64"
-      ]
-    },
-    {
-      "type": "shell",
-      "timeout": "120m",
-      "scripts": [
-        "scripts/alpine318/network.sh",
-        "scripts/alpine318/apk.sh"
-      ],
-      "execute_command": "/bin/sh '{{.Path}}'",
-      "start_retry_timeout": "15m",
-      "expect_disconnect": "true",
-      "only": [
-        "generic-alpine318-docker-x64"
-      ]
-    },
-    {
-      "type": "shell",
-      "timeout": "120m",
-      "scripts": [
-        "scripts/alpine318/hostname.sh",
-        "scripts/alpine318/lsb.sh",
-        "scripts/alpine318/floppy.sh",
-        "scripts/alpine318/sshd.sh",
-        "scripts/alpine318/cache.sh",
-        "scripts/alpine318/dockerize.sh"
-      ],
-      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
-      "pause_before": "120s",
-      "start_retry_timeout": "15m",
-      "expect_disconnect": "true",
-      "only": [
-        "generic-alpine318-docker-x64"
-      ]
-    },
-    {
-      "scripts": [
-        "scripts/devuan5/apt.sh",
-        "scripts/devuan5/network.sh"
-      ],
-      "type": "shell",
-      "timeout": "120m",
-      "start_retry_timeout": "15m",
-      "expect_disconnect": "true",
-      "only": [
-        "generic-devuan5-docker-x64"
-      ]
-    },
-    {
-      "scripts": [
-        "scripts/devuan5/floppy.sh",
-        "scripts/devuan5/motd.sh",
-        "scripts/devuan5/cleanup.sh",
-        "scripts/devuan5/dockerize.sh"
-      ],
-      "type": "shell",
-      "timeout": "120m",
-      "pause_before": "120s",
-      "start_retry_timeout": "15m",
-      "expect_disconnect": "true",
-      "only": [
-        "generic-devuan5-docker-x64"
-      ]
-    },
-    {
-      "type": "shell",
-      "timeout": "120m",
-      "scripts": [
-        "scripts/rocky8/network.sh",
-        "scripts/rocky8/dnf.sh",
-        "scripts/rocky8/base.sh",
-        "scripts/rocky8/reboot.sh"
-      ],
-      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
-      "start_retry_timeout": "15m",
-      "expect_disconnect": "true",
-      "only": [
-        "generic-rocky8-docker-x64"
-      ]
-    },
-    {
-      "type": "shell",
-      "timeout": "120m",
-      "scripts": [
-        "scripts/rocky8/floppy.sh",
-        "scripts/rocky8/updatedb.sh",
-        "scripts/rocky8/cleanup.sh",
-        "scripts/rocky8/undnf.sh",
-        "scripts/rocky8/dockerize.sh"
-      ],
-      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
-      "pause_before": "120s",
-      "start_retry_timeout": "15m",
-      "expect_disconnect": "true",
-      "only": [
-        "generic-rocky8-docker-x64"
-      ]
-    },
-    {
-      "type": "shell",
-      "timeout": "120m",
-      "scripts": [
-        "scripts/rocky9/network.sh",
-        "scripts/rocky9/dnf.sh",
-        "scripts/rocky9/base.sh",
-        "scripts/rocky9/reboot.sh"
-      ],
-      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
-      "start_retry_timeout": "15m",
-      "expect_disconnect": "true",
-      "only": [
-        "generic-rocky9-docker-x64"
-      ]
-    },
-    {
-      "type": "shell",
-      "timeout": "120m",
-      "scripts": [
-        "scripts/rocky9/floppy.sh",
-        "scripts/rocky9/updatedb.sh",
-        "scripts/rocky9/cleanup.sh",
-        "scripts/rocky9/undnf.sh",
-        "scripts/rocky9/dockerize.sh"
-      ],
-      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
-      "pause_before": "120s",
-      "start_retry_timeout": "15m",
-      "expect_disconnect": "true",
-      "only": [
-        "generic-rocky9-docker-x64"
-      ]
-    },
-    {
-      "scripts": [
-        "scripts/gentoo/network.sh",
-        "scripts/gentoo/emerge.sh"
-      ],
-      "type": "shell",
-      "timeout": "720m",
-      "start_retry_timeout": "15m",
-      "expect_disconnect": "true",
-      "only": [
-        "generic-gentoo-docker-x64"
-      ]
-    },
-    {
-      "scripts": [
-        "scripts/gentoo/dockerize.sh"
-      ],
-      "type": "shell",
-      "timeout": "720m",
-      "pause_before": "120s",
-      "start_retry_timeout": "15m",
-      "expect_disconnect": "true",
-      "only": [
-        "generic-gentoo-docker-x64"
-      ]
-    },
-    {
-      "scripts": [
-        "scripts/arch/pacman.sh"
-      ],
-      "type": "shell",
-      "timeout": "120m",
-      "start_retry_timeout": "15m",
-      "expect_disconnect": "true",
-      "only": [
-        "generic-arch-docker-x64"
-      ]
-    },
-    {
-      "scripts": [
-        "scripts/arch/cleanup.sh",
-        "scripts/arch/dockerize.sh"
-      ],
-      "type": "shell",
-      "timeout": "120m",
-      "pause_before": "120s",
-      "start_retry_timeout": "15m",
-      "expect_disconnect": "true",
-      "only": [
-        "generic-arch-docker-x64"
-      ]
-    },
-    {
-      "type": "shell",
-      "timeout": "120m",
-      "scripts": [
-        "scripts/fedora39/fixdns.sh",
-        "scripts/fedora39/hostname.sh",
-        "scripts/fedora39/dnf.sh"
-      ],
-      "start_retry_timeout": "15m",
-      "expect_disconnect": "true",
-      "only": [
-        "generic-fedora39-docker-x64"
-      ]
-    },
-    {
-      "type": "shell",
-      "timeout": "120m",
-      "scripts": [
-        "scripts/fedora39/fixtmp.sh",
-        "scripts/fedora39/base.sh"
-      ],
-      "pause_before": "120s",
-      "start_retry_timeout": "15m",
-      "expect_disconnect": "true",
-      "only": [
-        "generic-fedora39-docker-x64"
-      ]
-    },
-    {
-      "type": "shell",
-      "timeout": "120m",
-      "scripts": [
-        "scripts/fedora39/kernel.sh",
-        "scripts/fedora39/updatedb.sh",
-        "scripts/fedora39/vga.sh",
-        "scripts/fedora39/cleanup.sh",
-        "scripts/fedora39/dockerize.sh"
-      ],
-      "pause_before": "120s",
-      "start_retry_timeout": "15m",
-      "expect_disconnect": "true",
-      "only": [
-        "generic-fedora39-docker-x64"
-      ]
-    },
-    {
-      "type": "shell",
-      "timeout": "120m",
-      "scripts": [
-        "scripts/alpine319/network.sh",
-        "scripts/alpine319/apk.sh"
-      ],
-      "execute_command": "/bin/sh '{{.Path}}'",
-      "start_retry_timeout": "15m",
-      "expect_disconnect": "true",
-      "only": [
-        "generic-alpine319-docker-x64"
-      ]
-    },
-    {
-      "type": "shell",
-      "timeout": "120m",
-      "scripts": [
-        "scripts/alpine319/hostname.sh",
-        "scripts/alpine319/lsb.sh",
-        "scripts/alpine319/floppy.sh",
-        "scripts/alpine319/sshd.sh",
-        "scripts/alpine319/cache.sh",
-        "scripts/alpine319/dockerize.sh"
-      ],
-      "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
-      "pause_before": "120s",
-      "start_retry_timeout": "15m",
-      "expect_disconnect": "true",
-      "only": [
-        "generic-alpine319-docker-x64"
-      ]
-    },
-    {
-      "type": "shell",
-      "timeout": "120m",
-      "scripts": [
-        "scripts/rawhide/fixdns.sh",
-        "scripts/rawhide/hostname.sh",
-        "scripts/rawhide/dnf.sh"
-      ],
-      "start_retry_timeout": "15m",
-      "expect_disconnect": "true",
-      "only": [
-        "generic-fedora-rawhide-docker-x64"
-      ]
-    },
-    {
-      "type": "shell",
-      "timeout": "120m",
-      "scripts": [
-        "scripts/rawhide/fixtmp.sh",
-        "scripts/rawhide/base.sh"
-      ],
-      "pause_before": "120s",
-      "start_retry_timeout": "15m",
-      "expect_disconnect": "true",
-      "only": [
-        "generic-fedora-rawhide-docker-x64"
-      ]
-    },
-    {
-      "type": "shell",
-      "timeout": "120m",
-      "scripts": [
-        "scripts/rawhide/kernel.sh",
-        "scripts/rawhide/updatedb.sh",
-        "scripts/rawhide/vga.sh",
-        "scripts/rawhide/cleanup.sh",
-        "scripts/rawhide/dockerize.sh"
-      ],
-      "pause_before": "120s",
-      "start_retry_timeout": "15m",
-      "expect_disconnect": "true",
-      "only": [
-        "generic-fedora-rawhide-docker-x64"
-      ]
-    },
-    {
-      "type": "file",
-      "direction": "download",
-      "source": "/tmp/{{build_name}}.tar",
-      "destination": "output/{{build_name}}-{{user `box_version`}}.tar"
-    }
-  ],
-  "builders": [
-    {
-      "type": "qemu",
-      "name": "generic-arch-docker-x64",
-      "vm_name": "generic-arch-docker-x64",
-      "output_directory": "output/generic-arch-docker-x64",
-      "qemu_binary": "qemu-system-x86_64",
-      "boot_wait": "1s",
-      "boot_keygroup_interval": "1s",
-      "boot_command": [
-        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
-        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
-        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
-        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
-        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
-        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
-        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
-        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
-        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
-        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
-        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
-        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
-        "<spacebar>net.ifnames=0 biosdevname=0 systemd.mask=sshd.service<enter>",
-        "<wait10><wait10><wait10><wait10><wait10><wait10>",
-        "<wait10><wait10><wait10><wait10><wait10><wait10>",
-        "<wait10><wait10><wait10><wait10><wait10><wait10>",
-        "sed -i 's/[#]\\?DNSSEC=.*/DNSSEC=false/g' /etc/systemd/resolved.conf<enter><wait>",
-        "systemctl restart systemd-resolved<enter><wait>",
-        "systemctl restart dhcpcd<enter><wait>",
-        "curl -O 'http://{{.HTTPIP}}:{{.HTTPPort}}/generic.arch.docker{,.chroot}.sh'<enter><wait>",
-        "bash generic.arch.docker.sh < generic.arch.docker.chroot.sh && systemctl reboot<enter>"
-      ],
-      "qemuargs": [
+    "provisioners": [
+        {
+            "type": "shell",
+            "timeout": "120m",
+            "scripts": [
+                "scripts/rhel8/network.sh",
+                "scripts/rhel8/dnf.sh",
+                "scripts/rhel8/base.sh",
+                "scripts/rhel8/reboot.sh"
+            ],
+            "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-rhel8-docker-x64"
+            ]
+        },
+        {
+            "type": "shell",
+            "timeout": "120m",
+            "scripts": [
+                "scripts/rhel8/floppy.sh",
+                "scripts/rhel8/updatedb.sh",
+                "scripts/rhel8/cleanup.sh",
+                "scripts/rhel8/undnf.sh",
+                "scripts/rhel8/dockerize.sh"
+            ],
+            "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+            "pause_before": "120s",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-rhel8-docker-x64"
+            ]
+        },
+        {
+            "type": "shell",
+            "timeout": "120m",
+            "scripts": [
+                "scripts/rhel9/network.sh",
+                "scripts/rhel9/dnf.sh",
+                "scripts/rhel9/base.sh",
+                "scripts/rhel9/reboot.sh"
+            ],
+            "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-rhel9-docker-x64"
+            ]
+        },
+        {
+            "type": "shell",
+            "timeout": "120m",
+            "scripts": [
+                "scripts/rhel9/floppy.sh",
+                "scripts/rhel9/updatedb.sh",
+                "scripts/rhel9/cleanup.sh",
+                "scripts/rhel9/undnf.sh",
+                "scripts/rhel9/dockerize.sh"
+            ],
+            "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+            "pause_before": "120s",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-rhel9-docker-x64"
+            ]
+        },
+        {
+            "type": "shell",
+            "timeout": "120m",
+            "scripts": [
+                "scripts/oracle8/network.sh",
+                "scripts/oracle8/dnf.sh"
+            ],
+            "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-oracle8-docker-x64"
+            ]
+        },
+        {
+            "type": "shell",
+            "timeout": "120m",
+            "scripts": [
+                "scripts/oracle8/floppy.sh",
+                "scripts/oracle8/cleanup.sh",
+                "scripts/oracle8/dockerize.sh"
+            ],
+            "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+            "pause_before": "120s",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-oracle8-docker-x64"
+            ]
+        },
+        {
+            "type": "shell",
+            "timeout": "120m",
+            "scripts": [
+                "scripts/oracle9/network.sh",
+                "scripts/oracle9/dnf.sh"
+            ],
+            "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-oracle9-docker-x64"
+            ]
+        },
+        {
+            "type": "shell",
+            "timeout": "120m",
+            "scripts": [
+                "scripts/oracle9/floppy.sh",
+                "scripts/oracle9/cleanup.sh",
+                "scripts/oracle9/dockerize.sh"
+            ],
+            "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+            "pause_before": "120s",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-oracle9-docker-x64"
+            ]
+        },
+        {
+            "type": "shell",
+            "timeout": "120m",
+            "scripts": [
+                "scripts/alma9/network.sh",
+                "scripts/alma9/dnf.sh",
+                "scripts/alma9/base.sh",
+                "scripts/alma9/reboot.sh"
+            ],
+            "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-alma9-docker-x64"
+            ]
+        },
+        {
+            "type": "shell",
+            "timeout": "120m",
+            "scripts": [
+                "scripts/alma9/floppy.sh",
+                "scripts/alma9/updatedb.sh",
+                "scripts/alma9/cleanup.sh",
+                "scripts/alma9/undnf.sh",
+                "scripts/alma9/dockerize.sh"
+            ],
+            "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+            "pause_before": "120s",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-alma9-docker-x64"
+            ]
+        },
+        {
+            "scripts": [
+                "scripts/debian12/apt.sh",
+                "scripts/debian12/network.sh"
+            ],
+            "type": "shell",
+            "timeout": "120m",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-debian12-docker-x64"
+            ]
+        },
+        {
+            "scripts": [
+                "scripts/debian12/floppy.sh",
+                "scripts/debian12/profile.sh",
+                "scripts/debian12/motd.sh",
+                "scripts/debian12/fixtty.sh",
+                "scripts/debian12/cleanup.sh",
+                "scripts/debian12/dockerize.sh"
+            ],
+            "type": "shell",
+            "timeout": "120m",
+            "pause_before": "120s",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-debian12-docker-x64"
+            ]
+        },
+        {
+            "type": "shell",
+            "timeout": "120m",
+            "scripts": [
+                "scripts/alpine318/network.sh",
+                "scripts/alpine318/apk.sh"
+            ],
+            "execute_command": "/bin/sh '{{.Path}}'",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-alpine318-docker-x64"
+            ]
+        },
+        {
+            "type": "shell",
+            "timeout": "120m",
+            "scripts": [
+                "scripts/alpine318/hostname.sh",
+                "scripts/alpine318/lsb.sh",
+                "scripts/alpine318/floppy.sh",
+                "scripts/alpine318/sshd.sh",
+                "scripts/alpine318/cache.sh",
+                "scripts/alpine318/dockerize.sh"
+            ],
+            "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+            "pause_before": "120s",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-alpine318-docker-x64"
+            ]
+        },
+        {
+            "scripts": [
+                "scripts/devuan5/apt.sh",
+                "scripts/devuan5/network.sh"
+            ],
+            "type": "shell",
+            "timeout": "120m",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-devuan5-docker-x64"
+            ]
+        },
+        {
+            "scripts": [
+                "scripts/devuan5/floppy.sh",
+                "scripts/devuan5/motd.sh",
+                "scripts/devuan5/cleanup.sh",
+                "scripts/devuan5/dockerize.sh"
+            ],
+            "type": "shell",
+            "timeout": "120m",
+            "pause_before": "120s",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-devuan5-docker-x64"
+            ]
+        },
+        {
+            "type": "shell",
+            "timeout": "120m",
+            "scripts": [
+                "scripts/rocky9/network.sh",
+                "scripts/rocky9/dnf.sh",
+                "scripts/rocky9/base.sh",
+                "scripts/rocky9/reboot.sh"
+            ],
+            "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-rocky9-docker-x64"
+            ]
+        },
+        {
+            "type": "shell",
+            "timeout": "120m",
+            "scripts": [
+                "scripts/rocky9/floppy.sh",
+                "scripts/rocky9/updatedb.sh",
+                "scripts/rocky9/cleanup.sh",
+                "scripts/rocky9/undnf.sh",
+                "scripts/rocky9/dockerize.sh"
+            ],
+            "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+            "pause_before": "120s",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-rocky9-docker-x64"
+            ]
+        },
+        {
+            "scripts": [
+                "scripts/gentoo/network.sh",
+                "scripts/gentoo/emerge.sh"
+            ],
+            "type": "shell",
+            "timeout": "720m",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-gentoo-docker-x64"
+            ]
+        },
+        {
+            "scripts": [
+                "scripts/gentoo/dockerize.sh"
+            ],
+            "type": "shell",
+            "timeout": "720m",
+            "pause_before": "120s",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-gentoo-docker-x64"
+            ]
+        },
+        {
+            "scripts": [
+                "scripts/arch/pacman.sh"
+            ],
+            "type": "shell",
+            "timeout": "120m",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-arch-docker-x64"
+            ]
+        },
+        {
+            "scripts": [
+                "scripts/arch/cleanup.sh",
+                "scripts/arch/dockerize.sh"
+            ],
+            "type": "shell",
+            "timeout": "120m",
+            "pause_before": "120s",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-arch-docker-x64"
+            ]
+        },
+        {
+            "type": "shell",
+            "timeout": "120m",
+            "scripts": [
+                "scripts/alpine319/network.sh",
+                "scripts/alpine319/apk.sh"
+            ],
+            "execute_command": "/bin/sh '{{.Path}}'",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-alpine319-docker-x64"
+            ]
+        },
+        {
+            "type": "shell",
+            "timeout": "120m",
+            "scripts": [
+                "scripts/alpine319/hostname.sh",
+                "scripts/alpine319/lsb.sh",
+                "scripts/alpine319/floppy.sh",
+                "scripts/alpine319/sshd.sh",
+                "scripts/alpine319/cache.sh",
+                "scripts/alpine319/dockerize.sh"
+            ],
+            "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+            "pause_before": "120s",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-alpine319-docker-x64"
+            ]
+        },
+        {
+            "type": "shell",
+            "timeout": "120m",
+            "scripts": [
+                "scripts/rawhide/fixdns.sh",
+                "scripts/rawhide/hostname.sh",
+                "scripts/rawhide/dnf.sh"
+            ],
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-fedora-rawhide-docker-x64"
+            ]
+        },
+        {
+            "type": "shell",
+            "timeout": "120m",
+            "scripts": [
+                "scripts/rawhide/fixtmp.sh",
+                "scripts/rawhide/base.sh"
+            ],
+            "pause_before": "120s",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-fedora-rawhide-docker-x64"
+            ]
+        },
+        {
+            "type": "shell",
+            "timeout": "120m",
+            "scripts": [
+                "scripts/rawhide/kernel.sh",
+                "scripts/rawhide/updatedb.sh",
+                "scripts/rawhide/vga.sh",
+                "scripts/rawhide/cleanup.sh",
+                "scripts/rawhide/dockerize.sh"
+            ],
+            "pause_before": "120s",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-fedora-rawhide-docker-x64"
+            ]
+        },
+        {
+            "type": "file",
+            "direction": "download",
+            "source": "/tmp/{{build_name}}.tar",
+            "destination": "output/{{build_name}}-{{user `box_version`}}.tar"
+        }
+    ],
+    "builders": [
+        {
+            "type": "qemu",
+            "name": "generic-arch-docker-x64",
+            "vm_name": "generic-arch-docker-x64",
+            "output_directory": "output/generic-arch-docker-x64",
+            "qemu_binary": "qemu-system-x86_64",
+            "boot_wait": "1s",
+            "boot_keygroup_interval": "1s",
+            "boot_command": [
+                "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+                "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+                "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+                "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+                "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+                "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+                "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+                "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+                "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+                "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+                "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+                "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+                "<spacebar>net.ifnames=0 biosdevname=0 systemd.mask=sshd.service<enter>",
+                "<wait10><wait10><wait10><wait10><wait10><wait10>",
+                "<wait10><wait10><wait10><wait10><wait10><wait10>",
+                "<wait10><wait10><wait10><wait10><wait10><wait10>",
+                "sed -i 's/[#]\\?DNSSEC=.*/DNSSEC=false/g' /etc/systemd/resolved.conf<enter><wait>",
+                "systemctl restart systemd-resolved<enter><wait>",
+                "systemctl restart dhcpcd<enter><wait>",
+                "curl -O 'http://{{.HTTPIP}}:{{.HTTPPort}}/generic.arch.docker{,.chroot}.sh'<enter><wait>",
+                "bash generic.arch.docker.sh < generic.arch.docker.chroot.sh && systemctl reboot<enter>"
+            ],
+            "qemuargs": [
+                [
+                    "-device",
+                    "virtio-serial"
+                ],
+                [
+                    "-device",
+                    "virtserialport,id=channel0,name=org.qemu.guest_agent.0"
+                ]
+            ],
+            "format": "qcow2",
+            "disk_size": "32768",
+            "disk_discard": "unmap",
+            "disk_detect_zeroes": "off",
+            "disk_cache": "unsafe",
+            "disk_image": false,
+            "disk_compression": false,
+            "disk_interface": "virtio",
+            "net_device": "virtio-net",
+            "cpus": 2,
+            "memory": 2048,
+            "http_directory": "http",
+            "headless": true,
+            "iso_url": "https://mirrors.kernel.org/archlinux/iso/latest/archlinux-2025.02.01-x86_64.iso",
+            "iso_checksum": "sha256:45f097416d604ac20e982d2137534ffbe00990ba36dcb9bd259c05a4515f20cd",
+            "ssh_username": "root",
+            "ssh_password": "locked",
+            "ssh_port": 22,
+            "ssh_handshake_attempts": 1000,
+            "ssh_timeout": "3600s",
+            "shutdown_command": "echo 'locked' | sudo -S shutdown -P -h now"
+        },
+        {
+            "type": "qemu",
+            "name": "generic-gentoo-docker-x64",
+            "vm_name": "generic-gentoo-docker-x64",
+            "output_directory": "output/generic-gentoo-docker-x64",
+            "qemu_binary": "qemu-system-x86_64",
+            "boot_wait": "180s",
+            "boot_keygroup_interval": "1s",
+            "boot_command": [
+                "passwd root<enter><wait><wait><wait>",
+                "locked<enter><wait>",
+                "locked<enter><wait>",
+                "curl -O 'http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.gentoo.docker{,.chroot}.x64.sh'<enter><wait>",
+                "bash generic.gentoo.docker.x64.sh<enter>"
+            ],
+            "format": "qcow2",
+            "disk_size": "32768",
+            "disk_discard": "unmap",
+            "disk_detect_zeroes": "off",
+            "disk_cache": "unsafe",
+            "disk_image": false,
+            "disk_compression": false,
+            "disk_interface": "virtio-scsi",
+            "net_device": "virtio-net",
+            "cpus": 8,
+            "memory": 8192,
+            "http_directory": "http",
+            "headless": true,
+            "iso_url": "https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/install-amd64-minimal-20250216T164837Z.iso",
+            "iso_checksum": "sha256:c7da771b38b7d564caadf6a3bc4334a19b2b9a3c95c46d3b7ab15fcac18e6e7f",
+            "ssh_username": "root",
+            "ssh_password": "locked",
+            "ssh_port": 22,
+            "ssh_handshake_attempts": 1000,
+            "ssh_timeout": "3600s",
+            "shutdown_command": "echo 'locked' | sudo -S shutdown -P -h now"
+        },
+        {
+            "type": "qemu",
+            "name": "generic-alma9-docker-x64",
+            "vm_name": "generic-alma9-docker-x64",
+            "output_directory": "output/generic-alma9-docker-x64",
+            "accelerator": "kvm",
+            "qemu_binary": "/usr/libexec/qemu-kvm",
+            "boot_wait": "20s",
+            "boot_keygroup_interval": "1s",
+            "boot_command": [
+                "<tab> net.ifnames=0 inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alma9.docker.ks vga=792 <enter><wait>"
+            ],
+            "qemuargs": [
+                [
+                    "-cpu",
+                    "max"
+                ]
+            ],
+            "format": "qcow2",
+            "disk_size": "32768",
+            "disk_discard": "unmap",
+            "disk_detect_zeroes": "off",
+            "disk_cache": "unsafe",
+            "disk_image": false,
+            "disk_compression": false,
+            "disk_interface": "virtio-scsi",
+            "net_device": "virtio-net",
+            "cpus": 2,
+            "memory": 2048,
+            "http_directory": "http",
+            "headless": true,
+            "iso_url": "https://dfw.mirror.rackspace.com/almalinux/9.3/isos/x86_64/AlmaLinux-9.3-x86_64-boot.iso",
+            "iso_checksum": "sha256:af5377a1d16bbe599ea91a8761ad645f2f54687075802bdc0c0703ee610182e9",
+            "ssh_username": "root",
+            "ssh_password": "locked",
+            "ssh_port": 22,
+            "ssh_handshake_attempts": 1000,
+            "ssh_timeout": "3600s",
+            "shutdown_command": "echo 'locked' | sudo -S shutdown -P now"
+        },
+        {
+            "type": "qemu",
+            "name": "generic-alpine318-docker-x64",
+            "vm_name": "generic-alpine318-docker-x64",
+            "output_directory": "output/generic-alpine318-docker-x64",
+            "qemu_binary": "qemu-system-x86_64",
+            "boot_wait": "60s",
+            "boot_keygroup_interval": "1s",
+            "boot_command": [
+                "<enter><wait10>",
+                "root<enter><wait>",
+                "ifconfig eth0 up && udhcpc -i eth0<enter><wait>",
+                "wget http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alpine318.docker.cfg<enter><wait>",
+                "sed -i -e \"/rc-service/d\" /sbin/setup-sshd<enter><wait>",
+                "source generic.alpine318.vagrant.cfg<enter><wait>",
+                "printf \"locked\\nlocked\\n\" | sh /sbin/setup-alpine -f /root/generic.alpine318.docker.cfg && ",
+                "mount /dev/sda2 /mnt && ",
+                "sed -E -i '/#? ?PasswordAuthentication/d' /mnt/etc/ssh/sshd_config && ",
+                "sed -E -i '/#? ?PermitRootLogin/d' /mnt/etc/ssh/sshd_config && ",
+                "echo 'PasswordAuthentication yes' >> /mnt/etc/ssh/sshd_config && ",
+                "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
+                "chroot /mnt apk add openntpd && chroot /mnt rc-update add openntpd default && reboot<enter>"
+            ],
+            "format": "qcow2",
+            "disk_size": "32768",
+            "disk_discard": "unmap",
+            "disk_detect_zeroes": "off",
+            "disk_cache": "unsafe",
+            "disk_image": false,
+            "disk_compression": false,
+            "disk_interface": "virtio-scsi",
+            "net_device": "virtio-net",
+            "cpus": 2,
+            "memory": 2048,
+            "http_directory": "http",
+            "headless": true,
+            "iso_url": "https://mirrors.edge.kernel.org/alpine/v3.18/releases/x86_64/alpine-virt-3.18.12-x86_64.iso",
+            "iso_checksum": "sha256:aed9e323fb0ee8d7b75553948dcef7a02e51da23e8bea4341131c52352d5cfd7",
+            "ssh_username": "root",
+            "ssh_password": "locked",
+            "ssh_port": 22,
+            "ssh_handshake_attempts": 1000,
+            "ssh_timeout": "3600s",
+            "shutdown_command": "echo 'locked' | sudo -S /sbin/poweroff"
+        },
+        {
+            "type": "qemu",
+            "name": "generic-debian12-docker-x64",
+            "vm_name": "generic-debian12-docker-x64",
+            "output_directory": "output/generic-debian12-docker-x64",
+            "qemu_binary": "qemu-system-x86_64",
+            "boot_wait": "10s",
+            "boot_keygroup_interval": "1s",
+            "boot_command": [
+                "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+                "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+                "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+                "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+                "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+                "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+                "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+                "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+                "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+                "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+                "/install.amd/vmlinuz auto=true priority=critical vga=788 initrd=/install.amd/gtk/initrd.gz --- quiet ",
+                "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.debian12.docker.cfg ",
+                "<enter>"
+            ],
+            "format": "qcow2",
+            "disk_size": "32768",
+            "disk_discard": "unmap",
+            "disk_detect_zeroes": "off",
+            "disk_cache": "unsafe",
+            "disk_image": false,
+            "disk_compression": false,
+            "disk_interface": "virtio-scsi",
+            "net_device": "virtio-net",
+            "cpus": 2,
+            "memory": 2048,
+            "http_directory": "http",
+            "headless": true,
+            "iso_url": "https://cdimage.debian.org/cdimage/release/12.4.0/amd64/iso-cd/debian-12.4.0-amd64-netinst.iso",
+            "iso_checksum": "sha256:64d727dd5785ae5fcfd3ae8ffbede5f40cca96f1580aaa2820e8b99dae989d94",
+            "ssh_username": "root",
+            "ssh_password": "locked",
+            "ssh_port": 22,
+            "ssh_handshake_attempts": 1000,
+            "ssh_timeout": "3600s",
+            "shutdown_command": "echo 'locked' | sudo -S shutdown -P -h now"
+        },
+        {
+            "type": "qemu",
+            "name": "generic-devuan5-docker-x64",
+            "vm_name": "generic-devuan5-docker-x64",
+            "output_directory": "output/generic-devuan5-docker-x64",
+            "qemu_binary": "qemu-system-x86_64",
+            "boot_wait": "10s",
+            "boot_keygroup_interval": "1s",
+            "boot_command": [
+                "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+                "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+                "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+                "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+                "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+                "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+                "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+                "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+                "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+                "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+                "4<wait3><tab>",
+                " ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.devuan5.docker.cfg ",
+                "<enter>"
+            ],
+            "format": "qcow2",
+            "disk_size": "32768",
+            "disk_discard": "unmap",
+            "disk_detect_zeroes": "off",
+            "disk_cache": "unsafe",
+            "disk_image": false,
+            "disk_compression": false,
+            "disk_interface": "virtio-scsi",
+            "net_device": "virtio-net",
+            "cpus": 2,
+            "memory": 2048,
+            "http_directory": "http",
+            "headless": true,
+            "iso_url": "https://mirror.leaseweb.com/devuan/devuan_daedalus/installer-iso/devuan_daedalus_5.0.1_amd64_netinstall.iso",
+            "iso_checksum": "sha256:722af7905595d9a1417f48f783d43dd40fe7da7a2e1d7998a8ea47df2d26941b",
+            "ssh_username": "root",
+            "ssh_password": "locked",
+            "ssh_port": 22,
+            "ssh_handshake_attempts": 1000,
+            "ssh_timeout": "3600s",
+            "shutdown_command": "echo 'locked' | sudo -S shutdown -P -h now"
+        },
+        {
+            "type": "qemu",
+            "name": "generic-oracle8-docker-x64",
+            "vm_name": "generic-oracle8-docker-x64",
+            "output_directory": "output/generic-oracle8-docker-x64",
+            "accelerator": "kvm",
+            "qemu_binary": "/usr/libexec/qemu-kvm",
+            "boot_wait": "20s",
+            "boot_keygroup_interval": "1s",
+            "boot_command": [
+                "<tab> text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.oracle8.docker.ks<enter><wait>"
+            ],
+            "format": "qcow2",
+            "disk_size": "32768",
+            "disk_discard": "unmap",
+            "disk_detect_zeroes": "off",
+            "disk_cache": "unsafe",
+            "disk_image": false,
+            "disk_compression": false,
+            "disk_interface": "virtio-scsi",
+            "net_device": "virtio-net",
+            "cpus": 2,
+            "memory": 2048,
+            "http_directory": "http",
+            "headless": true,
+            "iso_url": "https://yum.oracle.com/ISOS/OracleLinux/OL8/u9/x86_64/x86_64-boot-uek.iso",
+            "iso_checksum": "sha256:67929eda55820fa8f379234de2b4488d054edd94efe2d5110b0e7cc7b6137700",
+            "ssh_username": "root",
+            "ssh_password": "locked",
+            "ssh_port": 22,
+            "ssh_handshake_attempts": 1000,
+            "ssh_timeout": "3600s",
+            "shutdown_command": "echo 'locked' | sudo -S shutdown -P now"
+        },
+        {
+            "type": "qemu",
+            "name": "generic-oracle9-docker-x64",
+            "vm_name": "generic-oracle9-docker-x64",
+            "output_directory": "output/generic-oracle9-docker-x64",
+            "accelerator": "kvm",
+            "qemu_binary": "/usr/libexec/qemu-kvm",
+            "boot_wait": "20s",
+            "boot_keygroup_interval": "1s",
+            "boot_command": [
+                "<tab> net.ifnames=0 inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.oracle9.docker.ks vga=792 <enter><wait>"
+            ],
+            "qemuargs": [
+                [
+                    "-cpu",
+                    "max"
+                ]
+            ],
+            "format": "qcow2",
+            "disk_size": "32768",
+            "disk_discard": "unmap",
+            "disk_detect_zeroes": "off",
+            "disk_cache": "unsafe",
+            "disk_image": false,
+            "disk_compression": false,
+            "disk_interface": "virtio-scsi",
+            "net_device": "virtio-net",
+            "cpus": 2,
+            "memory": 2048,
+            "http_directory": "http",
+            "headless": true,
+            "iso_url": "https://yum.oracle.com/ISOS/OracleLinux/OL9/u3/x86_64/OracleLinux-R9-U3-x86_64-boot.iso",
+            "iso_checksum": "sha256:22c68f84230b375aeb8fa035fab6f5f4ef6505c036ee068cd8fab5f0675b2c78",
+            "ssh_username": "root",
+            "ssh_password": "locked",
+            "ssh_port": 22,
+            "ssh_handshake_attempts": 1000,
+            "ssh_timeout": "3600s",
+            "shutdown_command": "echo 'locked' | sudo -S shutdown -P now"
+        },
+        {
+            "type": "qemu",
+            "name": "generic-rhel8-docker-x64",
+            "vm_name": "generic-rhel8-docker-x64",
+            "output_directory": "output/generic-rhel8-docker-x64",
+            "accelerator": "kvm",
+            "qemu_binary": "/usr/libexec/qemu-kvm",
+            "boot_wait": "20s",
+            "boot_keygroup_interval": "1s",
+            "boot_command": [
+                "<tab> text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel8.docker.ks<enter><wait>"
+            ],
+            "format": "qcow2",
+            "disk_size": "32768",
+            "disk_discard": "unmap",
+            "disk_detect_zeroes": "off",
+            "disk_cache": "unsafe",
+            "disk_image": false,
+            "disk_compression": false,
+            "disk_interface": "virtio-scsi",
+            "net_device": "virtio-net",
+            "cpus": 2,
+            "memory": 2048,
+            "http_directory": "http",
+            "headless": true,
+            "iso_url": "https://archive.org/download/rhel-8.9/rhel-8.9-x86_64-dvd.iso",
+            "iso_checksum": "sha256:c4fd0632ce15a7d56e1d174176456943bd48306f9d35bcecbcb0a1dc49088e23",
+            "ssh_username": "root",
+            "ssh_password": "locked",
+            "ssh_port": 22,
+            "ssh_handshake_attempts": 1000,
+            "ssh_timeout": "3600s",
+            "shutdown_command": "echo 'locked' | sudo -S shutdown -P now"
+        },
+        {
+            "type": "qemu",
+            "name": "generic-rhel9-docker-x64",
+            "vm_name": "generic-rhel9-docker-x64",
+            "output_directory": "output/generic-rhel9-docker-x64",
+            "accelerator": "kvm",
+            "qemu_binary": "/usr/libexec/qemu-kvm",
+            "boot_wait": "20s",
+            "boot_keygroup_interval": "1s",
+            "boot_command": [
+                "<tab> net.ifnames=0 inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel9.docker.ks vga=792 <enter><wait>"
+            ],
+            "qemuargs": [
+                [
+                    "-cpu",
+                    "max"
+                ]
+            ],
+            "format": "qcow2",
+            "disk_size": "32768",
+            "disk_discard": "unmap",
+            "disk_detect_zeroes": "off",
+            "disk_cache": "unsafe",
+            "disk_image": false,
+            "disk_compression": false,
+            "disk_interface": "virtio-scsi",
+            "net_device": "virtio-net",
+            "cpus": 2,
+            "memory": 2048,
+            "http_directory": "http",
+            "headless": true,
+            "iso_url": "https://archive.org/download/rhel-9.3/rhel-9.3-x86_64-dvd.iso",
+            "iso_checksum": "sha256:5c802147aa58429b21e223ee60e347e850d6b0d8680930c4ffb27340ffb687a8",
+            "ssh_username": "root",
+            "ssh_password": "locked",
+            "ssh_port": 22,
+            "ssh_handshake_attempts": 1000,
+            "ssh_timeout": "3600s",
+            "shutdown_command": "echo 'locked' | sudo -S shutdown -P now"
+        },
+        {
+            "type": "qemu",
+            "name": "generic-rocky9-docker-x64",
+            "vm_name": "generic-rocky9-docker-x64",
+            "output_directory": "output/generic-rocky9-docker-x64",
+            "accelerator": "kvm",
+            "qemu_binary": "/usr/libexec/qemu-kvm",
+            "boot_wait": "20s",
+            "boot_keygroup_interval": "1s",
+            "boot_command": [
+                "<tab> net.ifnames=0 inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rocky9.docker.ks vga=792 <enter><wait>"
+            ],
+            "qemuargs": [
+                [
+                    "-cpu",
+                    "max"
+                ]
+            ],
+            "format": "qcow2",
+            "disk_size": "32768",
+            "disk_discard": "unmap",
+            "disk_detect_zeroes": "off",
+            "disk_cache": "unsafe",
+            "disk_image": false,
+            "disk_compression": false,
+            "disk_interface": "virtio-scsi",
+            "net_device": "virtio-net",
+            "cpus": 2,
+            "memory": 2048,
+            "http_directory": "http",
+            "headless": true,
+            "iso_url": "https://ftp5.gwdg.de/pub/linux/rocky/9.3/isos/x86_64/Rocky-9.3-x86_64-boot.iso",
+            "iso_checksum": "sha256:eb096f0518e310f722d5ebd4c69f0322df4fc152c6189f93c5c797dc25f3d2e1",
+            "ssh_username": "root",
+            "ssh_password": "locked",
+            "ssh_port": 22,
+            "ssh_handshake_attempts": 1000,
+            "ssh_timeout": "3600s",
+            "shutdown_command": "echo 'locked' | sudo -S shutdown -P now"
+        },
+        {
+            "type": "qemu",
+            "name": "generic-alpine319-docker-x64",
+            "vm_name": "generic-alpine319-docker-x64",
+            "output_directory": "output/generic-alpine319-docker-x64",
+            "qemu_binary": "qemu-system-x86_64",
+            "boot_wait": "60s",
+            "boot_keygroup_interval": "1s",
+            "boot_command": [
+                "<enter><wait10>",
+                "root<enter><wait>",
+                "ifconfig eth0 up && udhcpc -i eth0<enter><wait>",
+                "wget http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alpine319.docker.cfg<enter><wait>",
+                "sed -i -e \"/rc-service/d\" /sbin/setup-sshd<enter><wait>",
+                "source generic.alpine319.vagrant.cfg<enter><wait>",
+                "printf \"locked\\nlocked\\n\" | sh /sbin/setup-alpine -f /root/generic.alpine319.docker.cfg && ",
+                "mount /dev/sda2 /mnt && ",
+                "sed -E -i '/#? ?PasswordAuthentication/d' /mnt/etc/ssh/sshd_config && ",
+                "sed -E -i '/#? ?PermitRootLogin/d' /mnt/etc/ssh/sshd_config && ",
+                "echo 'PasswordAuthentication yes' >> /mnt/etc/ssh/sshd_config && ",
+                "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
+                "chroot /mnt apk add openntpd && chroot /mnt rc-update add openntpd default && reboot<enter>"
+            ],
+            "format": "qcow2",
+            "disk_size": "32768",
+            "disk_discard": "unmap",
+            "disk_detect_zeroes": "off",
+            "disk_cache": "unsafe",
+            "disk_image": false,
+            "disk_compression": false,
+            "disk_interface": "virtio-scsi",
+            "net_device": "virtio-net",
+            "cpus": 2,
+            "memory": 2048,
+            "http_directory": "http",
+            "headless": true,
+            "iso_url": "https://mirrors.edge.kernel.org/alpine/v3.19/releases/x86_64/alpine-virt-3.19.7-x86_64.iso",
+            "iso_checksum": "sha256:ccaaac43fca667ed0347c7894cc5f993f528c61288bcdefd89cda127f9f7f914",
+            "ssh_username": "root",
+            "ssh_password": "locked",
+            "ssh_port": 22,
+            "ssh_handshake_attempts": 1000,
+            "ssh_timeout": "3600s",
+            "shutdown_command": "echo 'locked' | sudo -S /sbin/poweroff"
+        },
+        {
+            "type": "qemu",
+            "name": "generic-fedora-rawhide-docker-x64",
+            "vm_name": "generic-fedora-rawhide-docker-x64",
+            "output_directory": "output/generic-fedora-rawhide-docker-x64",
+            "qemu_binary": "qemu-system-x86_64",
+            "boot_wait": "20s",
+            "boot_keygroup_interval": "1s",
+            "boot_command": [
+                "c<wait>",
+                "insmod all_video<enter><wait>",
+                "set gfxpayload=keep<enter><wait>",
+                "insmod increment<enter><wait>",
+                "insmod xfs<enter><wait>",
+                "insmod diskfilter<enter><wait>",
+                "insmod mdraid1x<enter><wait>",
+                "insmod fat<enter><wait>",
+                "insmod blscfg<enter><wait>",
+                "insmod gzio<enter><wait>",
+                "insmod part_gpt<enter><wait>",
+                "insmod ext2<enter><wait>",
+                "insmod chain<enter><wait>",
+                "search --no-floppy --set=root -l 'Fedora-S-dvd-x86_64-rawh'<enter><wait>",
+                "linux /images/pxeboot/vmlinuz inst.stage2=hd:LABEL=Fedora-S-dvd-x86_64-rawh rd.live.check ",
+                "net.ifnames=0 inst.text inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.rawhide.docker.ks<enter><wait>",
+                "initrd /images/pxeboot/initrd.img<enter><wait10>",
+                "boot<enter><wait>"
+            ],
+            "format": "qcow2",
+            "disk_size": "32768",
+            "disk_discard": "unmap",
+            "disk_detect_zeroes": "off",
+            "disk_cache": "unsafe",
+            "disk_image": false,
+            "disk_compression": false,
+            "disk_interface": "virtio-scsi",
+            "net_device": "virtio-net",
+            "cpus": 2,
+            "memory": 2048,
+            "http_directory": "http",
+            "headless": true,
+            "iso_url": "https://mirrors.kernel.org/fedora/development/rawhide/Server/x86_64/iso/Fedora-Server-netinst-x86_64-Rawhide-20250226.n.0.iso",
+            "iso_checksum": "sha256:e87965f9326657e4345716c2ab1a5010eb21c2c2f15cc7e19f893380b91bc719",
+            "ssh_username": "root",
+            "ssh_password": "locked",
+            "ssh_port": 22,
+            "ssh_handshake_attempts": 1000,
+            "ssh_timeout": "3600s",
+            "shutdown_command": "echo 'locked' | sudo -S shutdown -P -h now"
+        }
+    ],
+    "post-processors": [
         [
-          "-device",
-          "virtio-serial"
+            {
+                "type": "shell-local",
+                "environment_vars": [
+                    "NAME={{build_name}}",
+                    "BOX={{split build_name \"-\" 1}}"
+                ],
+                "inline": [
+                    "[ `docker images quay.io/generic/$BOX -q | wc -l` != 0 ] && docker rmi --force `docker images --quiet quay.io/generic/$BOX`",
+                    "[ `docker images quay.io/roboxes/$BOX -q | wc -l` != 0 ] && docker rmi --force `docker images --quiet quay.io/roboxes/$BOX`",
+                    "[ `docker images docker.io/roboxes/$BOX -q | wc -l` != 0 ] && docker rmi --force `docker images --quiet docker.io/roboxes/$BOX`",
+                    "rm --recursive --force output/$NAME",
+                    "exit 0"
+                ],
+                "except": [
+                    "generic-fedora-rawhide-docker-x64"
+                ]
+            }
         ],
         [
-          "-device",
-          "virtserialport,id=channel0,name=org.qemu.guest_agent.0"
-        ]
-      ],
-      "format": "qcow2",
-      "disk_size": "32768",
-      "disk_discard": "unmap",
-      "disk_detect_zeroes": "off",
-      "disk_cache": "unsafe",
-      "disk_image": false,
-      "disk_compression": false,
-      "disk_interface": "virtio",
-      "net_device": "virtio-net",
-      "cpus": 2,
-      "memory": 2048,
-      "http_directory": "http",
-      "headless": true,
-      "iso_url": "https://mirrors.kernel.org/archlinux/iso/latest/archlinux-2025.02.01-x86_64.iso",
-      "iso_checksum": "sha256:45f097416d604ac20e982d2137534ffbe00990ba36dcb9bd259c05a4515f20cd",
-      "ssh_username": "root",
-      "ssh_password": "locked",
-      "ssh_port": 22,
-      "ssh_handshake_attempts": 1000,
-      "ssh_timeout": "3600s",
-      "shutdown_command": "echo 'locked' | sudo -S shutdown -P -h now"
-    },
-    {
-      "type": "qemu",
-      "name": "generic-gentoo-docker-x64",
-      "vm_name": "generic-gentoo-docker-x64",
-      "output_directory": "output/generic-gentoo-docker-x64",
-      "qemu_binary": "qemu-system-x86_64",
-      "boot_wait": "180s",
-      "boot_keygroup_interval": "1s",
-      "boot_command": [
-        "passwd root<enter><wait><wait><wait>",
-        "locked<enter><wait>",
-        "locked<enter><wait>",
-        "curl -O 'http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.gentoo.docker{,.chroot}.x64.sh'<enter><wait>",
-        "bash generic.gentoo.docker.x64.sh<enter>"
-      ],
-      "format": "qcow2",
-      "disk_size": "32768",
-      "disk_discard": "unmap",
-      "disk_detect_zeroes": "off",
-      "disk_cache": "unsafe",
-      "disk_image": false,
-      "disk_compression": false,
-      "disk_interface": "virtio-scsi",
-      "net_device": "virtio-net",
-      "cpus": 8,
-      "memory": 8192,
-      "http_directory": "http",
-      "headless": true,
-      "iso_url": "https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/install-amd64-minimal-20250216T164837Z.iso",
-      "iso_checksum": "sha256:c7da771b38b7d564caadf6a3bc4334a19b2b9a3c95c46d3b7ab15fcac18e6e7f",
-      "ssh_username": "root",
-      "ssh_password": "locked",
-      "ssh_port": 22,
-      "ssh_handshake_attempts": 1000,
-      "ssh_timeout": "3600s",
-      "shutdown_command": "echo 'locked' | sudo -S shutdown -P -h now"
-    },
-    {
-      "type": "qemu",
-      "name": "generic-alma8-docker-x64",
-      "vm_name": "generic-alma8-docker-x64",
-      "output_directory": "output/generic-alma8-docker-x64",
-      "accelerator": "kvm",
-      "qemu_binary": "/usr/libexec/qemu-kvm",
-      "boot_wait": "20s",
-      "boot_keygroup_interval": "1s",
-      "boot_command": [
-        "<tab> net.ifnames=0 inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alma8.docker.ks vga=792 <enter><wait>"
-      ],
-      "format": "qcow2",
-      "disk_size": "32768",
-      "disk_discard": "unmap",
-      "disk_detect_zeroes": "off",
-      "disk_cache": "unsafe",
-      "disk_image": false,
-      "disk_compression": false,
-      "disk_interface": "virtio-scsi",
-      "net_device": "virtio-net",
-      "cpus": 2,
-      "memory": 2048,
-      "http_directory": "http",
-      "headless": true,
-      "iso_url": "https://dfw.mirror.rackspace.com/almalinux/8.9/isos/x86_64/AlmaLinux-8.9-x86_64-boot.iso",
-      "iso_checksum": "sha256:ab861d80c8b68634f3c16d414a4141759a082548ad7b251d8924675fa09decab",
-      "ssh_username": "root",
-      "ssh_password": "locked",
-      "ssh_port": 22,
-      "ssh_handshake_attempts": 1000,
-      "ssh_timeout": "3600s",
-      "shutdown_command": "echo 'locked' | sudo -S shutdown -P now"
-    },
-    {
-      "type": "qemu",
-      "name": "generic-alma9-docker-x64",
-      "vm_name": "generic-alma9-docker-x64",
-      "output_directory": "output/generic-alma9-docker-x64",
-      "accelerator": "kvm",
-      "qemu_binary": "/usr/libexec/qemu-kvm",
-      "boot_wait": "20s",
-      "boot_keygroup_interval": "1s",
-      "boot_command": [
-        "<tab> net.ifnames=0 inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alma9.docker.ks vga=792 <enter><wait>"
-      ],
-      "qemuargs": [
+            {
+                "type": "artifice",
+                "keep_input_artifact": false,
+                "files": [
+                    "output/{{build_name}}-{{user `box_version`}}.tar"
+                ],
+                "except": [
+                    "generic-fedora-rawhide-docker-x64"
+                ]
+            },
+            {
+                "format": "gz",
+                "type": "compress",
+                "compression_level": 9,
+                "keep_input_artifact": true,
+                "output": "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.tar.gz",
+                "except": [
+                    "generic-fedora-rawhide-docker-x64"
+                ]
+            },
+            {
+                "type": "checksum",
+                "checksum_types": [
+                    "sha256"
+                ],
+                "output": "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.tar.gz.sha256",
+                "keep_input_artifact": true,
+                "except": [
+                    "generic-fedora-rawhide-docker-x64"
+                ]
+            }
+        ],
         [
-          "-cpu",
-          "max"
-        ]
-      ],
-      "format": "qcow2",
-      "disk_size": "32768",
-      "disk_discard": "unmap",
-      "disk_detect_zeroes": "off",
-      "disk_cache": "unsafe",
-      "disk_image": false,
-      "disk_compression": false,
-      "disk_interface": "virtio-scsi",
-      "net_device": "virtio-net",
-      "cpus": 2,
-      "memory": 2048,
-      "http_directory": "http",
-      "headless": true,
-      "iso_url": "https://dfw.mirror.rackspace.com/almalinux/9.3/isos/x86_64/AlmaLinux-9.3-x86_64-boot.iso",
-      "iso_checksum": "sha256:af5377a1d16bbe599ea91a8761ad645f2f54687075802bdc0c0703ee610182e9",
-      "ssh_username": "root",
-      "ssh_password": "locked",
-      "ssh_port": 22,
-      "ssh_handshake_attempts": 1000,
-      "ssh_timeout": "3600s",
-      "shutdown_command": "echo 'locked' | sudo -S shutdown -P now"
-    },
-    {
-      "type": "qemu",
-      "name": "generic-alpine318-docker-x64",
-      "vm_name": "generic-alpine318-docker-x64",
-      "output_directory": "output/generic-alpine318-docker-x64",
-      "qemu_binary": "qemu-system-x86_64",
-      "boot_wait": "60s",
-      "boot_keygroup_interval": "1s",
-      "boot_command": [
-        "<enter><wait10>",
-        "root<enter><wait>",
-        "ifconfig eth0 up && udhcpc -i eth0<enter><wait>",
-        "wget http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alpine318.docker.cfg<enter><wait>",
-        "sed -i -e \"/rc-service/d\" /sbin/setup-sshd<enter><wait>",
-        "source generic.alpine318.vagrant.cfg<enter><wait>",
-        "printf \"locked\\nlocked\\n\" | sh /sbin/setup-alpine -f /root/generic.alpine318.docker.cfg && ",
-        "mount /dev/sda2 /mnt && ",
-        "sed -E -i '/#? ?PasswordAuthentication/d' /mnt/etc/ssh/sshd_config && ",
-        "sed -E -i '/#? ?PermitRootLogin/d' /mnt/etc/ssh/sshd_config && ",
-        "echo 'PasswordAuthentication yes' >> /mnt/etc/ssh/sshd_config && ",
-        "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
-        "chroot /mnt apk add openntpd && chroot /mnt rc-update add openntpd default && reboot<enter>"
-      ],
-      "format": "qcow2",
-      "disk_size": "32768",
-      "disk_discard": "unmap",
-      "disk_detect_zeroes": "off",
-      "disk_cache": "unsafe",
-      "disk_image": false,
-      "disk_compression": false,
-      "disk_interface": "virtio-scsi",
-      "net_device": "virtio-net",
-      "cpus": 2,
-      "memory": 2048,
-      "http_directory": "http",
-      "headless": true,
-      "iso_url": "https://mirrors.edge.kernel.org/alpine/v3.18/releases/x86_64/alpine-virt-3.18.12-x86_64.iso",
-      "iso_checksum": "sha256:aed9e323fb0ee8d7b75553948dcef7a02e51da23e8bea4341131c52352d5cfd7",
-      "ssh_username": "root",
-      "ssh_password": "locked",
-      "ssh_port": 22,
-      "ssh_handshake_attempts": 1000,
-      "ssh_timeout": "3600s",
-      "shutdown_command": "echo 'locked' | sudo -S /sbin/poweroff"
-    },
-    {
-      "type": "qemu",
-      "name": "generic-centos6-docker-x64",
-      "vm_name": "generic-centos6-docker-x64",
-      "output_directory": "output/generic-centos6-docker-x64",
-      "qemu_binary": "qemu-system-x86_64",
-      "boot_wait": "20s",
-      "boot_keygroup_interval": "1s",
-      "boot_command": [
-        "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos6.docker.ks<enter><wait>"
-      ],
-      "format": "qcow2",
-      "disk_size": "32770",
-      "disk_interface": "virtio-scsi",
-      "disk_image": false,
-      "disk_compression": false,
-      "disk_discard": "unmap",
-      "disk_detect_zeroes": "off",
-      "disk_cache": "unsafe",
-      "net_device": "virtio-net",
-      "cpus": 2,
-      "memory": 2048,
-      "http_directory": "http",
-      "headless": true,
-      "skip_resize_disk": false,
-      "skip_compaction": false,
-      "iso_url": "https://vault.centos.org/6.10/isos/x86_64/CentOS-6.10-x86_64-minimal.iso",
-      "iso_checksum": "sha256:7c0dee2a0494dabd84809b72ddb4b761f9ef92b78a506aef709b531c54d30770",
-      "ssh_username": "root",
-      "ssh_password": "locked",
-      "ssh_port": 22,
-      "ssh_handshake_attempts": 1000,
-      "ssh_timeout": "3600s",
-      "shutdown_command": "shutdown -h now"
-    },
-    {
-      "type": "qemu",
-      "name": "generic-centos7-docker-x64",
-      "vm_name": "generic-centos7-docker-x64",
-      "output_directory": "output/generic-centos7-docker-x64",
-      "qemu_binary": "qemu-system-x86_64",
-      "boot_wait": "20s",
-      "boot_keygroup_interval": "1s",
-      "boot_command": [
-        "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos7.docker.ks<enter><wait>"
-      ],
-      "format": "qcow2",
-      "disk_size": "32770",
-      "disk_interface": "virtio-scsi",
-      "disk_image": false,
-      "disk_compression": false,
-      "disk_discard": "unmap",
-      "disk_detect_zeroes": "off",
-      "disk_cache": "unsafe",
-      "net_device": "virtio-net",
-      "cpus": 2,
-      "memory": 2048,
-      "http_directory": "http",
-      "headless": true,
-      "skip_resize_disk": false,
-      "skip_compaction": false,
-      "iso_url": "https://mirrors.edge.kernel.org/centos/7.9.2009/isos/x86_64/CentOS-7-x86_64-Minimal-2009.iso",
-      "iso_checksum": "sha256:07b94e6b1a0b0260b94c83d6bb76b26bf7a310dc78d7a9c7432809fb9bc6194a",
-      "ssh_username": "root",
-      "ssh_password": "locked",
-      "ssh_port": 22,
-      "ssh_handshake_attempts": 1000,
-      "ssh_timeout": "3600s",
-      "shutdown_command": "shutdown -h now"
-    },
-    {
-      "type": "qemu",
-      "name": "generic-centos8-docker-x64",
-      "vm_name": "generic-centos8-docker-x64",
-      "output_directory": "output/generic-centos8-docker-x64",
-      "qemu_binary": "qemu-system-x86_64",
-      "boot_wait": "20s",
-      "boot_keygroup_interval": "1s",
-      "boot_command": [
-        "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos8.docker.ks<enter><wait>"
-      ],
-      "format": "qcow2",
-      "disk_size": "32770",
-      "disk_interface": "virtio-scsi",
-      "disk_image": false,
-      "disk_compression": false,
-      "disk_discard": "unmap",
-      "disk_detect_zeroes": "off",
-      "disk_cache": "unsafe",
-      "net_device": "virtio-net",
-      "cpus": 2,
-      "memory": 2048,
-      "http_directory": "http",
-      "headless": true,
-      "skip_resize_disk": false,
-      "skip_compaction": false,
-      "iso_url": "https://vault.centos.org/8.5.2111/isos/x86_64/CentOS-8.5.2111-x86_64-boot.iso",
-      "iso_checksum": "sha256:9602c69c52d93f51295c0199af395ca0edbe35e36506e32b8e749ce6c8f5b60a",
-      "ssh_username": "root",
-      "ssh_password": "locked",
-      "ssh_port": 22,
-      "ssh_handshake_attempts": 1000,
-      "ssh_timeout": "3600s",
-      "shutdown_command": "shutdown -h now"
-    },
-    {
-      "type": "qemu",
-      "name": "generic-debian12-docker-x64",
-      "vm_name": "generic-debian12-docker-x64",
-      "output_directory": "output/generic-debian12-docker-x64",
-      "qemu_binary": "qemu-system-x86_64",
-      "boot_wait": "10s",
-      "boot_keygroup_interval": "1s",
-      "boot_command": [
-        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
-        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
-        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
-        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
-        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
-        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
-        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
-        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
-        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
-        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
-        "/install.amd/vmlinuz auto=true priority=critical vga=788 initrd=/install.amd/gtk/initrd.gz --- quiet ",
-        "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.debian12.docker.cfg ",
-        "<enter>"
-      ],
-      "format": "qcow2",
-      "disk_size": "32768",
-      "disk_discard": "unmap",
-      "disk_detect_zeroes": "off",
-      "disk_cache": "unsafe",
-      "disk_image": false,
-      "disk_compression": false,
-      "disk_interface": "virtio-scsi",
-      "net_device": "virtio-net",
-      "cpus": 2,
-      "memory": 2048,
-      "http_directory": "http",
-      "headless": true,
-      "iso_url": "https://cdimage.debian.org/cdimage/release/12.4.0/amd64/iso-cd/debian-12.4.0-amd64-netinst.iso",
-      "iso_checksum": "sha256:64d727dd5785ae5fcfd3ae8ffbede5f40cca96f1580aaa2820e8b99dae989d94",
-      "ssh_username": "root",
-      "ssh_password": "locked",
-      "ssh_port": 22,
-      "ssh_handshake_attempts": 1000,
-      "ssh_timeout": "3600s",
-      "shutdown_command": "echo 'locked' | sudo -S shutdown -P -h now"
-    },
-    {
-      "type": "qemu",
-      "name": "generic-devuan5-docker-x64",
-      "vm_name": "generic-devuan5-docker-x64",
-      "output_directory": "output/generic-devuan5-docker-x64",
-      "qemu_binary": "qemu-system-x86_64",
-      "boot_wait": "10s",
-      "boot_keygroup_interval": "1s",
-      "boot_command": [
-        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
-        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
-        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
-        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
-        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
-        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
-        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
-        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
-        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
-        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
-        "4<wait3><tab>",
-        " ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.devuan5.docker.cfg ",
-        "<enter>"
-      ],
-      "format": "qcow2",
-      "disk_size": "32768",
-      "disk_discard": "unmap",
-      "disk_detect_zeroes": "off",
-      "disk_cache": "unsafe",
-      "disk_image": false,
-      "disk_compression": false,
-      "disk_interface": "virtio-scsi",
-      "net_device": "virtio-net",
-      "cpus": 2,
-      "memory": 2048,
-      "http_directory": "http",
-      "headless": true,
-      "iso_url": "https://mirror.leaseweb.com/devuan/devuan_daedalus/installer-iso/devuan_daedalus_5.0.1_amd64_netinstall.iso",
-      "iso_checksum": "sha256:722af7905595d9a1417f48f783d43dd40fe7da7a2e1d7998a8ea47df2d26941b",
-      "ssh_username": "root",
-      "ssh_password": "locked",
-      "ssh_port": 22,
-      "ssh_handshake_attempts": 1000,
-      "ssh_timeout": "3600s",
-      "shutdown_command": "echo 'locked' | sudo -S shutdown -P -h now"
-    },
-    {
-      "type": "qemu",
-      "name": "generic-fedora38-docker-x64",
-      "vm_name": "generic-fedora38-docker-x64",
-      "output_directory": "output/generic-fedora38-docker-x64",
-      "qemu_binary": "qemu-system-x86_64",
-      "boot_wait": "20s",
-      "boot_keygroup_interval": "1s",
-      "boot_command": [
-        "c<wait>",
-        "insmod all_video<enter><wait>",
-        "set gfxpayload=keep<enter><wait>",
-        "insmod increment<enter><wait>",
-        "insmod xfs<enter><wait>",
-        "insmod diskfilter<enter><wait>",
-        "insmod mdraid1x<enter><wait>",
-        "insmod fat<enter><wait>",
-        "insmod blscfg<enter><wait>",
-        "insmod gzio<enter><wait>",
-        "insmod part_gpt<enter><wait>",
-        "insmod ext2<enter><wait>",
-        "insmod chain<enter><wait>",
-        "search --no-floppy --set=root -l 'Fedora-S-dvd-x86_64-38'<enter><wait>",
-        "linux /images/pxeboot/vmlinuz inst.stage2=hd:LABEL=Fedora-S-dvd-x86_64-38 rd.live.check ",
-        "net.ifnames=0 inst.text inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.fedora38.docker.ks<enter><wait>",
-        "initrd /images/pxeboot/initrd.img<enter><wait10>",
-        "boot<enter><wait>"
-      ],
-      "format": "qcow2",
-      "disk_size": "32768",
-      "disk_discard": "unmap",
-      "disk_detect_zeroes": "off",
-      "disk_cache": "unsafe",
-      "disk_image": false,
-      "disk_compression": false,
-      "disk_interface": "virtio-scsi",
-      "net_device": "virtio-net",
-      "cpus": 2,
-      "memory": 2048,
-      "http_directory": "http",
-      "headless": true,
-      "iso_url": "https://dl.fedoraproject.org/pub/fedora/linux/releases/38/Server/x86_64/iso/Fedora-Server-netinst-x86_64-38-1.6.iso",
-      "iso_checksum": "sha256:192af621553aa32154697029e34cbe30152a9e23d72d55f31918b166979bbcf5",
-      "ssh_username": "root",
-      "ssh_password": "locked",
-      "ssh_port": 22,
-      "ssh_handshake_attempts": 1000,
-      "ssh_timeout": "3600s",
-      "shutdown_command": "echo 'locked' | sudo -S shutdown -P -h now"
-    },
-    {
-      "type": "qemu",
-      "name": "generic-oracle7-docker-x64",
-      "vm_name": "generic-oracle7-docker-x64",
-      "output_directory": "output/generic-oracle7-docker-x64",
-      "accelerator": "kvm",
-      "qemu_binary": "/usr/libexec/qemu-kvm",
-      "boot_wait": "20s",
-      "boot_keygroup_interval": "1s",
-      "boot_command": [
-        "<tab> text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.oracle7.docker.ks<enter><wait>"
-      ],
-      "format": "qcow2",
-      "disk_size": "32768",
-      "disk_discard": "unmap",
-      "disk_detect_zeroes": "off",
-      "disk_cache": "unsafe",
-      "disk_image": false,
-      "disk_compression": false,
-      "disk_interface": "virtio-scsi",
-      "net_device": "virtio-net",
-      "cpus": 2,
-      "memory": 2048,
-      "http_directory": "http",
-      "headless": true,
-      "iso_url": "https://yum.oracle.com/ISOS/OracleLinux/OL7/u9/x86_64/x86_64-boot-uek.iso",
-      "iso_checksum": "sha256:6da0323423f3a52d20d1021c2651885052319ca4ace7532859d8d20640829004",
-      "ssh_username": "root",
-      "ssh_password": "locked",
-      "ssh_port": 22,
-      "ssh_handshake_attempts": 1000,
-      "ssh_timeout": "3600s",
-      "shutdown_command": "echo 'locked' | sudo -S shutdown -P now"
-    },
-    {
-      "type": "qemu",
-      "name": "generic-oracle8-docker-x64",
-      "vm_name": "generic-oracle8-docker-x64",
-      "output_directory": "output/generic-oracle8-docker-x64",
-      "accelerator": "kvm",
-      "qemu_binary": "/usr/libexec/qemu-kvm",
-      "boot_wait": "20s",
-      "boot_keygroup_interval": "1s",
-      "boot_command": [
-        "<tab> text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.oracle8.docker.ks<enter><wait>"
-      ],
-      "format": "qcow2",
-      "disk_size": "32768",
-      "disk_discard": "unmap",
-      "disk_detect_zeroes": "off",
-      "disk_cache": "unsafe",
-      "disk_image": false,
-      "disk_compression": false,
-      "disk_interface": "virtio-scsi",
-      "net_device": "virtio-net",
-      "cpus": 2,
-      "memory": 2048,
-      "http_directory": "http",
-      "headless": true,
-      "iso_url": "https://yum.oracle.com/ISOS/OracleLinux/OL8/u9/x86_64/x86_64-boot-uek.iso",
-      "iso_checksum": "sha256:67929eda55820fa8f379234de2b4488d054edd94efe2d5110b0e7cc7b6137700",
-      "ssh_username": "root",
-      "ssh_password": "locked",
-      "ssh_port": 22,
-      "ssh_handshake_attempts": 1000,
-      "ssh_timeout": "3600s",
-      "shutdown_command": "echo 'locked' | sudo -S shutdown -P now"
-    },
-    {
-      "type": "qemu",
-      "name": "generic-oracle9-docker-x64",
-      "vm_name": "generic-oracle9-docker-x64",
-      "output_directory": "output/generic-oracle9-docker-x64",
-      "accelerator": "kvm",
-      "qemu_binary": "/usr/libexec/qemu-kvm",
-      "boot_wait": "20s",
-      "boot_keygroup_interval": "1s",
-      "boot_command": [
-        "<tab> net.ifnames=0 inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.oracle9.docker.ks vga=792 <enter><wait>"
-      ],
-      "qemuargs": [
+            {
+                "type": "artifice",
+                "keep_input_artifact": false,
+                "files": [
+                    "output/{{build_name}}-{{user `box_version`}}.tar"
+                ],
+                "except": [
+                    "generic-fedora-rawhide-docker-x64"
+                ]
+            },
+            {
+                "format": "gz",
+                "type": "compress",
+                "compression_level": 9,
+                "keep_input_artifact": false,
+                "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.tar.gz",
+                "except": [
+                    "generic-fedora-rawhide-docker-x64"
+                ]
+            },
+            {
+                "type": "checksum",
+                "checksum_types": [
+                    "sha256"
+                ],
+                "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.tar.gz.sha256",
+                "keep_input_artifact": true,
+                "except": [
+                    "generic-fedora-rawhide-docker-x64"
+                ]
+            }
+        ],
         [
-          "-cpu",
-          "max"
-        ]
-      ],
-      "format": "qcow2",
-      "disk_size": "32768",
-      "disk_discard": "unmap",
-      "disk_detect_zeroes": "off",
-      "disk_cache": "unsafe",
-      "disk_image": false,
-      "disk_compression": false,
-      "disk_interface": "virtio-scsi",
-      "net_device": "virtio-net",
-      "cpus": 2,
-      "memory": 2048,
-      "http_directory": "http",
-      "headless": true,
-      "iso_url": "https://yum.oracle.com/ISOS/OracleLinux/OL9/u3/x86_64/OracleLinux-R9-U3-x86_64-boot.iso",
-      "iso_checksum": "sha256:22c68f84230b375aeb8fa035fab6f5f4ef6505c036ee068cd8fab5f0675b2c78",
-      "ssh_username": "root",
-      "ssh_password": "locked",
-      "ssh_port": 22,
-      "ssh_handshake_attempts": 1000,
-      "ssh_timeout": "3600s",
-      "shutdown_command": "echo 'locked' | sudo -S shutdown -P now"
-    },
-    {
-      "type": "qemu",
-      "name": "generic-rhel6-docker-x64",
-      "vm_name": "generic-rhel6-docker-x64",
-      "output_directory": "output/generic-rhel6-docker-x64",
-      "accelerator": "kvm",
-      "qemu_binary": "/usr/libexec/qemu-kvm",
-      "boot_wait": "20s",
-      "boot_keygroup_interval": "1s",
-      "boot_command": [
-        "<tab> text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel6.docker.ks<enter><wait>"
-      ],
-      "format": "qcow2",
-      "disk_size": "32768",
-      "disk_discard": "unmap",
-      "disk_detect_zeroes": "off",
-      "disk_cache": "unsafe",
-      "disk_image": false,
-      "disk_compression": false,
-      "disk_interface": "virtio-scsi",
-      "net_device": "virtio-net",
-      "cpus": 2,
-      "memory": 2048,
-      "http_directory": "http",
-      "headless": true,
-      "iso_url": "https://archive.org/download/rhel-server-6.10-x86_64-dvd/rhel-server-6.10-x86_64-dvd.iso",
-      "iso_checksum": "sha256:1e15f9202d2cdd4b2bdf9d6503a8543347f0cb8cc06ba9a0dfd2df4fdef5c727",
-      "ssh_username": "root",
-      "ssh_password": "locked",
-      "ssh_port": 22,
-      "ssh_handshake_attempts": 1000,
-      "ssh_timeout": "3600s",
-      "shutdown_command": "echo 'locked' | sudo -S shutdown -P now"
-    },
-    {
-      "type": "qemu",
-      "name": "generic-rhel7-docker-x64",
-      "vm_name": "generic-rhel7-docker-x64",
-      "output_directory": "output/generic-rhel7-docker-x64",
-      "accelerator": "kvm",
-      "qemu_binary": "/usr/libexec/qemu-kvm",
-      "boot_wait": "20s",
-      "boot_keygroup_interval": "1s",
-      "boot_command": [
-        "<tab> text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel7.docker.ks<enter><wait>"
-      ],
-      "format": "qcow2",
-      "disk_size": "32768",
-      "disk_discard": "unmap",
-      "disk_detect_zeroes": "off",
-      "disk_cache": "unsafe",
-      "disk_image": false,
-      "disk_compression": false,
-      "disk_interface": "virtio-scsi",
-      "net_device": "virtio-net",
-      "cpus": 2,
-      "memory": 2048,
-      "http_directory": "http",
-      "headless": true,
-      "iso_url": "https://archive.org/download/rhel-server-7.9-x86_64-dvd/rhel-server-7.9-x86_64-dvd.iso",
-      "iso_checksum": "sha256:19d653ce2f04f202e79773a0cbeda82070e7527557e814ebbce658773fbe8191",
-      "ssh_username": "root",
-      "ssh_password": "locked",
-      "ssh_port": 22,
-      "ssh_handshake_attempts": 1000,
-      "ssh_timeout": "3600s",
-      "shutdown_command": "echo 'locked' | sudo -S shutdown -P now"
-    },
-    {
-      "type": "qemu",
-      "name": "generic-rhel8-docker-x64",
-      "vm_name": "generic-rhel8-docker-x64",
-      "output_directory": "output/generic-rhel8-docker-x64",
-      "accelerator": "kvm",
-      "qemu_binary": "/usr/libexec/qemu-kvm",
-      "boot_wait": "20s",
-      "boot_keygroup_interval": "1s",
-      "boot_command": [
-        "<tab> text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel8.docker.ks<enter><wait>"
-      ],
-      "format": "qcow2",
-      "disk_size": "32768",
-      "disk_discard": "unmap",
-      "disk_detect_zeroes": "off",
-      "disk_cache": "unsafe",
-      "disk_image": false,
-      "disk_compression": false,
-      "disk_interface": "virtio-scsi",
-      "net_device": "virtio-net",
-      "cpus": 2,
-      "memory": 2048,
-      "http_directory": "http",
-      "headless": true,
-      "iso_url": "https://archive.org/download/rhel-8.9/rhel-8.9-x86_64-dvd.iso",
-      "iso_checksum": "sha256:c4fd0632ce15a7d56e1d174176456943bd48306f9d35bcecbcb0a1dc49088e23",
-      "ssh_username": "root",
-      "ssh_password": "locked",
-      "ssh_port": 22,
-      "ssh_handshake_attempts": 1000,
-      "ssh_timeout": "3600s",
-      "shutdown_command": "echo 'locked' | sudo -S shutdown -P now"
-    },
-    {
-      "type": "qemu",
-      "name": "generic-rhel9-docker-x64",
-      "vm_name": "generic-rhel9-docker-x64",
-      "output_directory": "output/generic-rhel9-docker-x64",
-      "accelerator": "kvm",
-      "qemu_binary": "/usr/libexec/qemu-kvm",
-      "boot_wait": "20s",
-      "boot_keygroup_interval": "1s",
-      "boot_command": [
-        "<tab> net.ifnames=0 inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel9.docker.ks vga=792 <enter><wait>"
-      ],
-      "qemuargs": [
+            {
+                "type": "shell-local",
+                "environment_vars": [
+                    "FILENAME=output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.tar.gz"
+                ],
+                "inline": [
+                    "[ -f $FILENAME ] && touch $FILENAME",
+                    "exit 0"
+                ],
+                "except": [
+                    "generic-fedora-rawhide-docker-x64"
+                ]
+            },
+            {
+                "type": "artifice",
+                "keep_input_artifact": true,
+                "files": [
+                    "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.tar.gz"
+                ],
+                "except": [
+                    "generic-fedora-rawhide-docker-x64"
+                ]
+            },
+            {
+                "type": "docker-import",
+                "keep_input_artifact": true,
+                "tag": "{{user `box_version`}}",
+                "repository": "quay.io/generic/{{split build_name \"-\" 1}}",
+                "changes": [
+                    "CMD [\"/bin/bash\"]",
+                    "ENV PATH \"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+                ],
+                "except": [
+                    "generic-fedora-rawhide-docker-x64"
+                ]
+            },
+            {
+                "type": "docker-push",
+                "login": "false",
+                "login_username": "{{user `quay_username`}}",
+                "login_password": "{{user `quay_password`}}",
+                "except": [
+                    "generic-fedora-rawhide-docker-x64"
+                ]
+            }
+        ],
         [
-          "-cpu",
-          "max"
-        ]
-      ],
-      "format": "qcow2",
-      "disk_size": "32768",
-      "disk_discard": "unmap",
-      "disk_detect_zeroes": "off",
-      "disk_cache": "unsafe",
-      "disk_image": false,
-      "disk_compression": false,
-      "disk_interface": "virtio-scsi",
-      "net_device": "virtio-net",
-      "cpus": 2,
-      "memory": 2048,
-      "http_directory": "http",
-      "headless": true,
-      "iso_url": "https://archive.org/download/rhel-9.3/rhel-9.3-x86_64-dvd.iso",
-      "iso_checksum": "sha256:5c802147aa58429b21e223ee60e347e850d6b0d8680930c4ffb27340ffb687a8",
-      "ssh_username": "root",
-      "ssh_password": "locked",
-      "ssh_port": 22,
-      "ssh_handshake_attempts": 1000,
-      "ssh_timeout": "3600s",
-      "shutdown_command": "echo 'locked' | sudo -S shutdown -P now"
-    },
-    {
-      "type": "qemu",
-      "name": "generic-rocky8-docker-x64",
-      "vm_name": "generic-rocky8-docker-x64",
-      "output_directory": "output/generic-rocky8-docker-x64",
-      "accelerator": "kvm",
-      "qemu_binary": "/usr/libexec/qemu-kvm",
-      "boot_wait": "20s",
-      "boot_keygroup_interval": "1s",
-      "boot_command": [
-        "<tab> net.ifnames=0 inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rocky8.docker.ks vga=792 <enter><wait>"
-      ],
-      "format": "qcow2",
-      "disk_size": "32768",
-      "disk_discard": "unmap",
-      "disk_detect_zeroes": "off",
-      "disk_cache": "unsafe",
-      "disk_image": false,
-      "disk_compression": false,
-      "disk_interface": "virtio-scsi",
-      "net_device": "virtio-net",
-      "cpus": 2,
-      "memory": 2048,
-      "http_directory": "http",
-      "headless": true,
-      "iso_url": "https://ftp5.gwdg.de/pub/linux/rocky/8.9/isos/x86_64/Rocky-8.9-x86_64-boot.iso",
-      "iso_checksum": "sha256:88baefca6f0e78b53613773954e0d7c2d8d28ad863f40623db75c40f505b5105",
-      "ssh_username": "root",
-      "ssh_password": "locked",
-      "ssh_port": 22,
-      "ssh_handshake_attempts": 1000,
-      "ssh_timeout": "3600s",
-      "shutdown_command": "echo 'locked' | sudo -S shutdown -P now"
-    },
-    {
-      "type": "qemu",
-      "name": "generic-rocky9-docker-x64",
-      "vm_name": "generic-rocky9-docker-x64",
-      "output_directory": "output/generic-rocky9-docker-x64",
-      "accelerator": "kvm",
-      "qemu_binary": "/usr/libexec/qemu-kvm",
-      "boot_wait": "20s",
-      "boot_keygroup_interval": "1s",
-      "boot_command": [
-        "<tab> net.ifnames=0 inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rocky9.docker.ks vga=792 <enter><wait>"
-      ],
-      "qemuargs": [
+            {
+                "type": "shell-local",
+                "environment_vars": [
+                    "FILENAME=output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.tar.gz"
+                ],
+                "inline": [
+                    "[ -f $FILENAME ] && touch $FILENAME",
+                    "exit 0"
+                ],
+                "except": [
+                    "generic-fedora-rawhide-docker-x64"
+                ]
+            },
+            {
+                "type": "artifice",
+                "keep_input_artifact": true,
+                "files": [
+                    "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.tar.gz"
+                ],
+                "except": [
+                    "generic-fedora-rawhide-docker-x64"
+                ]
+            },
+            {
+                "type": "docker-import",
+                "keep_input_artifact": true,
+                "tag": "latest",
+                "repository": "quay.io/generic/{{split build_name \"-\" 1}}",
+                "changes": [
+                    "CMD [\"/bin/bash\"]",
+                    "ENV PATH \"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+                ],
+                "except": [
+                    "generic-fedora-rawhide-docker-x64"
+                ]
+            },
+            {
+                "type": "docker-push",
+                "login": "false",
+                "login_username": "{{user `quay_username`}}",
+                "login_password": "{{user `quay_password`}}",
+                "except": [
+                    "generic-fedora-rawhide-docker-x64"
+                ]
+            }
+        ],
         [
-          "-cpu",
-          "max"
+            {
+                "type": "shell-local",
+                "environment_vars": [
+                    "FILENAME=output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.tar.gz"
+                ],
+                "inline": [
+                    "[ -f $FILENAME ] && touch $FILENAME",
+                    "exit 0"
+                ],
+                "except": [
+                    "generic-fedora-rawhide-docker-x64"
+                ]
+            },
+            {
+                "type": "artifice",
+                "keep_input_artifact": true,
+                "files": [
+                    "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.tar.gz"
+                ],
+                "except": [
+                    "generic-fedora-rawhide-docker-x64"
+                ]
+            },
+            {
+                "type": "docker-import",
+                "keep_input_artifact": true,
+                "tag": "{{user `box_version`}}",
+                "repository": "quay.io/roboxes/{{split build_name \"-\" 1}}",
+                "changes": [
+                    "CMD [\"/bin/bash\"]",
+                    "ENV PATH \"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+                ],
+                "except": [
+                    "generic-fedora-rawhide-docker-x64"
+                ]
+            },
+            {
+                "type": "docker-push",
+                "login": "false",
+                "login_username": "{{user `quay_username`}}",
+                "login_password": "{{user `quay_password`}}",
+                "except": [
+                    "generic-fedora-rawhide-docker-x64"
+                ]
+            }
+        ],
+        [
+            {
+                "type": "shell-local",
+                "environment_vars": [
+                    "FILENAME=output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.tar.gz"
+                ],
+                "inline": [
+                    "[ -f $FILENAME ] && touch $FILENAME",
+                    "exit 0"
+                ],
+                "except": [
+                    "generic-fedora-rawhide-docker-x64"
+                ]
+            },
+            {
+                "type": "artifice",
+                "keep_input_artifact": true,
+                "files": [
+                    "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.tar.gz"
+                ],
+                "except": [
+                    "generic-fedora-rawhide-docker-x64"
+                ]
+            },
+            {
+                "type": "docker-import",
+                "keep_input_artifact": true,
+                "tag": "latest",
+                "repository": "quay.io/roboxes/{{split build_name \"-\" 1}}",
+                "changes": [
+                    "CMD [\"/bin/bash\"]",
+                    "ENV PATH \"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+                ],
+                "except": [
+                    "generic-fedora-rawhide-docker-x64"
+                ]
+            },
+            {
+                "type": "docker-push",
+                "login": "false",
+                "login_username": "{{user `quay_username`}}",
+                "login_password": "{{user `quay_password`}}",
+                "except": [
+                    "generic-fedora-rawhide-docker-x64"
+                ]
+            }
+        ],
+        [
+            {
+                "type": "shell-local",
+                "environment_vars": [
+                    "FILENAME=output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.tar.gz"
+                ],
+                "inline": [
+                    "[ -f $FILENAME ] && touch $FILENAME",
+                    "exit 0"
+                ],
+                "except": [
+                    "generic-fedora-rawhide-docker-x64"
+                ]
+            },
+            {
+                "type": "artifice",
+                "keep_input_artifact": true,
+                "files": [
+                    "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.tar.gz"
+                ],
+                "except": [
+                    "generic-fedora-rawhide-docker-x64"
+                ]
+            },
+            {
+                "type": "docker-import",
+                "keep_input_artifact": true,
+                "tag": "{{user `box_version`}}",
+                "repository": "docker.io/roboxes/{{split build_name \"-\" 1}}",
+                "changes": [
+                    "CMD [\"/bin/bash\"]",
+                    "ENV PATH \"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+                ],
+                "except": [
+                    "generic-fedora-rawhide-docker-x64"
+                ]
+            },
+            {
+                "type": "docker-push",
+                "login": "false",
+                "login_username": "{{user `docker_username`}}",
+                "login_password": "{{user `docker_password`}}",
+                "except": [
+                    "generic-fedora-rawhide-docker-x64"
+                ]
+            },
+            {
+                "type": "vagrant",
+                "compression_level": 9,
+                "keep_input_artifact": true,
+                "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.box",
+                "include": [
+                    "tpl/roboxes/info.json"
+                ],
+                "except": [
+                    "generic-fedora-rawhide-docker-x64"
+                ]
+            },
+            {
+                "type": "checksum",
+                "checksum_types": [
+                    "sha256"
+                ],
+                "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.box.sha256",
+                "keep_input_artifact": true,
+                "except": [
+                    "generic-fedora-rawhide-docker-x64"
+                ]
+            }
+        ],
+        [
+            {
+                "type": "shell-local",
+                "environment_vars": [
+                    "FILENAME=output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.tar.gz"
+                ],
+                "inline": [
+                    "[ -f $FILENAME ] && touch $FILENAME",
+                    "exit 0"
+                ],
+                "except": [
+                    "generic-fedora-rawhide-docker-x64"
+                ]
+            },
+            {
+                "type": "artifice",
+                "keep_input_artifact": true,
+                "files": [
+                    "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.tar.gz"
+                ],
+                "except": [
+                    "generic-fedora-rawhide-docker-x64"
+                ]
+            },
+            {
+                "type": "docker-import",
+                "keep_input_artifact": true,
+                "tag": "latest",
+                "repository": "docker.io/roboxes/{{split build_name \"-\" 1}}",
+                "changes": [
+                    "CMD [\"/bin/bash\"]",
+                    "ENV PATH \"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+                ],
+                "except": [
+                    "generic-fedora-rawhide-docker-x64"
+                ]
+            },
+            {
+                "type": "docker-push",
+                "login": "false",
+                "login_username": "{{user `docker_username`}}",
+                "login_password": "{{user `docker_password`}}",
+                "except": [
+                    "generic-fedora-rawhide-docker-x64"
+                ]
+            },
+            {
+                "type": "vagrant",
+                "compression_level": 9,
+                "keep_input_artifact": true,
+                "output": "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.box",
+                "include": [
+                    "tpl/generic/info.json"
+                ],
+                "except": [
+                    "generic-fedora-rawhide-docker-x64"
+                ]
+            },
+            {
+                "type": "checksum",
+                "checksum_types": [
+                    "sha256"
+                ],
+                "output": "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.box.sha256",
+                "keep_input_artifact": true,
+                "except": [
+                    "generic-fedora-rawhide-docker-x64"
+                ]
+            }
+        ],
+        [
+            {
+                "type": "shell-local",
+                "environment_vars": [
+                    "NAME={{build_name}}",
+                    "BOX={{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}"
+                ],
+                "inline": [
+                    "[ `docker images quay.io/generic/$BOX -q | wc -l` != 0 ] && docker rmi --force `docker images --quiet quay.io/generic/$BOX`",
+                    "[ `docker images quay.io/roboxes/$BOX -q | wc -l` != 0 ] && docker rmi --force `docker images --quiet quay.io/roboxes/$BOX`",
+                    "[ `docker images docker.io/roboxes/$BOX -q | wc -l` != 0 ] && docker rmi --force `docker images --quiet docker.io/roboxes/$BOX`",
+                    "rm --recursive --force output/$NAME",
+                    "exit 0"
+                ],
+                "only": [
+                    "generic-fedora-rawhide-docker-x64"
+                ]
+            }
+        ],
+        [
+            {
+                "type": "artifice",
+                "keep_input_artifact": false,
+                "files": [
+                    "output/{{build_name}}-{{user `box_version`}}.tar"
+                ],
+                "only": [
+                    "generic-fedora-rawhide-docker-x64"
+                ]
+            },
+            {
+                "format": "gz",
+                "type": "compress",
+                "compression_level": 9,
+                "keep_input_artifact": true,
+                "output": "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{split build_name \"-\" 4}}-{{user `box_version`}}.tar.gz",
+                "only": [
+                    "generic-fedora-rawhide-docker-x64"
+                ]
+            },
+            {
+                "type": "checksum",
+                "checksum_types": [
+                    "sha256"
+                ],
+                "output": "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{split build_name \"-\" 4}}-{{user `box_version`}}.tar.gz.sha256",
+                "keep_input_artifact": true,
+                "only": [
+                    "generic-fedora-rawhide-docker-x64"
+                ]
+            }
+        ],
+        [
+            {
+                "type": "artifice",
+                "keep_input_artifact": false,
+                "files": [
+                    "output/{{build_name}}-{{user `box_version`}}.tar"
+                ],
+                "only": [
+                    "generic-fedora-rawhide-docker-x64"
+                ]
+            },
+            {
+                "format": "gz",
+                "type": "compress",
+                "compression_level": 9,
+                "keep_input_artifact": false,
+                "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{split build_name \"-\" 4}}-{{user `box_version`}}.tar.gz",
+                "only": [
+                    "generic-fedora-rawhide-docker-x64"
+                ]
+            },
+            {
+                "type": "checksum",
+                "checksum_types": [
+                    "sha256"
+                ],
+                "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{split build_name \"-\" 4}}-{{user `box_version`}}.tar.gz.sha256",
+                "keep_input_artifact": true,
+                "only": [
+                    "generic-fedora-rawhide-docker-x64"
+                ]
+            }
+        ],
+        [
+            {
+                "type": "shell-local",
+                "environment_vars": [
+                    "FILENAME=output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{split build_name \"-\" 4}}-{{user `box_version`}}.tar.gz"
+                ],
+                "inline": [
+                    "[ -f $FILENAME ] && touch $FILENAME",
+                    "exit 0"
+                ],
+                "only": [
+                    "generic-fedora-rawhide-docker-x64"
+                ]
+            },
+            {
+                "type": "artifice",
+                "keep_input_artifact": true,
+                "files": [
+                    "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{split build_name \"-\" 4}}-{{user `box_version`}}.tar.gz"
+                ],
+                "only": [
+                    "generic-fedora-rawhide-docker-x64"
+                ]
+            },
+            {
+                "type": "docker-import",
+                "keep_input_artifact": true,
+                "tag": "{{user `box_version`}}",
+                "repository": "quay.io/generic/{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}",
+                "changes": [
+                    "CMD [\"/bin/bash\"]",
+                    "ENV PATH \"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+                ],
+                "only": [
+                    "generic-fedora-rawhide-docker-x64"
+                ]
+            },
+            {
+                "type": "docker-push",
+                "login": "false",
+                "login_username": "{{user `quay_username`}}",
+                "login_password": "{{user `quay_password`}}",
+                "only": [
+                    "generic-fedora-rawhide-docker-x64"
+                ]
+            }
+        ],
+        [
+            {
+                "type": "shell-local",
+                "environment_vars": [
+                    "FILENAME=output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{split build_name \"-\" 4}}-{{user `box_version`}}.tar.gz"
+                ],
+                "inline": [
+                    "[ -f $FILENAME ] && touch $FILENAME",
+                    "exit 0"
+                ],
+                "only": [
+                    "generic-fedora-rawhide-docker-x64"
+                ]
+            },
+            {
+                "type": "artifice",
+                "keep_input_artifact": true,
+                "files": [
+                    "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{split build_name \"-\" 4}}-{{user `box_version`}}.tar.gz"
+                ],
+                "only": [
+                    "generic-fedora-rawhide-docker-x64"
+                ]
+            },
+            {
+                "type": "docker-import",
+                "keep_input_artifact": true,
+                "tag": "latest",
+                "repository": "quay.io/generic/{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}",
+                "changes": [
+                    "CMD [\"/bin/bash\"]",
+                    "ENV PATH \"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+                ],
+                "only": [
+                    "generic-fedora-rawhide-docker-x64"
+                ]
+            },
+            {
+                "type": "docker-push",
+                "login": "false",
+                "login_username": "{{user `quay_username`}}",
+                "login_password": "{{user `quay_password`}}",
+                "only": [
+                    "generic-fedora-rawhide-docker-x64"
+                ]
+            }
+        ],
+        [
+            {
+                "type": "shell-local",
+                "environment_vars": [
+                    "FILENAME=output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{split build_name \"-\" 4}}-{{user `box_version`}}.tar.gz"
+                ],
+                "inline": [
+                    "[ -f $FILENAME ] && touch $FILENAME",
+                    "exit 0"
+                ],
+                "only": [
+                    "generic-fedora-rawhide-docker-x64"
+                ]
+            },
+            {
+                "type": "artifice",
+                "keep_input_artifact": true,
+                "files": [
+                    "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{split build_name \"-\" 4}}-{{user `box_version`}}.tar.gz"
+                ],
+                "only": [
+                    "generic-fedora-rawhide-docker-x64"
+                ]
+            },
+            {
+                "type": "docker-import",
+                "keep_input_artifact": true,
+                "tag": "{{user `box_version`}}",
+                "repository": "quay.io/roboxes/{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}",
+                "changes": [
+                    "CMD [\"/bin/bash\"]",
+                    "ENV PATH \"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+                ],
+                "only": [
+                    "generic-fedora-rawhide-docker-x64"
+                ]
+            },
+            {
+                "type": "docker-push",
+                "login": "false",
+                "login_username": "{{user `quay_username`}}",
+                "login_password": "{{user `quay_password`}}",
+                "only": [
+                    "generic-fedora-rawhide-docker-x64"
+                ]
+            }
+        ],
+        [
+            {
+                "type": "shell-local",
+                "environment_vars": [
+                    "FILENAME=output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{split build_name \"-\" 4}}-{{user `box_version`}}.tar.gz"
+                ],
+                "inline": [
+                    "[ -f $FILENAME ] && touch $FILENAME",
+                    "exit 0"
+                ],
+                "only": [
+                    "generic-fedora-rawhide-docker-x64"
+                ]
+            },
+            {
+                "type": "artifice",
+                "keep_input_artifact": true,
+                "files": [
+                    "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{split build_name \"-\" 4}}-{{user `box_version`}}.tar.gz"
+                ],
+                "only": [
+                    "generic-fedora-rawhide-docker-x64"
+                ]
+            },
+            {
+                "type": "docker-import",
+                "keep_input_artifact": true,
+                "tag": "latest",
+                "repository": "quay.io/roboxes/{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}",
+                "changes": [
+                    "CMD [\"/bin/bash\"]",
+                    "ENV PATH \"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+                ],
+                "only": [
+                    "generic-fedora-rawhide-docker-x64"
+                ]
+            },
+            {
+                "type": "docker-push",
+                "login": "false",
+                "login_username": "{{user `quay_username`}}",
+                "login_password": "{{user `quay_password`}}",
+                "only": [
+                    "generic-fedora-rawhide-docker-x64"
+                ]
+            }
+        ],
+        [
+            {
+                "type": "shell-local",
+                "environment_vars": [
+                    "FILENAME=output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{split build_name \"-\" 4}}-{{user `box_version`}}.tar.gz"
+                ],
+                "inline": [
+                    "[ -f $FILENAME ] && touch $FILENAME",
+                    "exit 0"
+                ],
+                "only": [
+                    "generic-fedora-rawhide-docker-x64"
+                ]
+            },
+            {
+                "type": "artifice",
+                "keep_input_artifact": true,
+                "files": [
+                    "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{split build_name \"-\" 4}}-{{user `box_version`}}.tar.gz"
+                ],
+                "only": [
+                    "generic-fedora-rawhide-docker-x64"
+                ]
+            },
+            {
+                "type": "docker-import",
+                "keep_input_artifact": true,
+                "tag": "{{user `box_version`}}",
+                "repository": "docker.io/roboxes/{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}",
+                "changes": [
+                    "CMD [\"/bin/bash\"]",
+                    "ENV PATH \"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+                ],
+                "only": [
+                    "generic-fedora-rawhide-docker-x64"
+                ]
+            },
+            {
+                "type": "docker-push",
+                "login": "false",
+                "login_username": "{{user `docker_username`}}",
+                "login_password": "{{user `docker_password`}}",
+                "only": [
+                    "generic-fedora-rawhide-docker-x64"
+                ]
+            },
+            {
+                "type": "vagrant",
+                "compression_level": 9,
+                "keep_input_artifact": true,
+                "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{split build_name \"-\" 4}}-{{user `box_version`}}.box",
+                "include": [
+                    "tpl/roboxes/info.json"
+                ],
+                "only": [
+                    "generic-fedora-rawhide-docker-x64"
+                ]
+            },
+            {
+                "type": "checksum",
+                "checksum_types": [
+                    "sha256"
+                ],
+                "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{split build_name \"-\" 4}}-{{user `box_version`}}.box.sha256",
+                "keep_input_artifact": true,
+                "only": [
+                    "generic-fedora-rawhide-docker-x64"
+                ]
+            }
+        ],
+        [
+            {
+                "type": "shell-local",
+                "environment_vars": [
+                    "FILENAME=output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{split build_name \"-\" 4}}-{{user `box_version`}}.tar.gz"
+                ],
+                "inline": [
+                    "[ -f $FILENAME ] && touch $FILENAME",
+                    "exit 0"
+                ],
+                "only": [
+                    "generic-fedora-rawhide-docker-x64"
+                ]
+            },
+            {
+                "type": "artifice",
+                "keep_input_artifact": true,
+                "files": [
+                    "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{split build_name \"-\" 4}}-{{user `box_version`}}.tar.gz"
+                ],
+                "only": [
+                    "generic-fedora-rawhide-docker-x64"
+                ]
+            },
+            {
+                "type": "docker-import",
+                "keep_input_artifact": true,
+                "tag": "latest",
+                "repository": "docker.io/roboxes/{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}",
+                "changes": [
+                    "CMD [\"/bin/bash\"]",
+                    "ENV PATH \"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+                ],
+                "only": [
+                    "generic-fedora-rawhide-docker-x64"
+                ]
+            },
+            {
+                "type": "docker-push",
+                "login": "false",
+                "login_username": "{{user `docker_username`}}",
+                "login_password": "{{user `docker_password`}}",
+                "only": [
+                    "generic-fedora-rawhide-docker-x64"
+                ]
+            },
+            {
+                "type": "vagrant",
+                "compression_level": 9,
+                "keep_input_artifact": true,
+                "output": "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{split build_name \"-\" 4}}-{{user `box_version`}}.box",
+                "include": [
+                    "tpl/generic/info.json"
+                ],
+                "only": [
+                    "generic-fedora-rawhide-docker-x64"
+                ]
+            },
+            {
+                "type": "checksum",
+                "checksum_types": [
+                    "sha256"
+                ],
+                "output": "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{split build_name \"-\" 4}}-{{user `box_version`}}.box.sha256",
+                "keep_input_artifact": true,
+                "only": [
+                    "generic-fedora-rawhide-docker-x64"
+                ]
+            }
         ]
-      ],
-      "format": "qcow2",
-      "disk_size": "32768",
-      "disk_discard": "unmap",
-      "disk_detect_zeroes": "off",
-      "disk_cache": "unsafe",
-      "disk_image": false,
-      "disk_compression": false,
-      "disk_interface": "virtio-scsi",
-      "net_device": "virtio-net",
-      "cpus": 2,
-      "memory": 2048,
-      "http_directory": "http",
-      "headless": true,
-      "iso_url": "https://ftp5.gwdg.de/pub/linux/rocky/9.3/isos/x86_64/Rocky-9.3-x86_64-boot.iso",
-      "iso_checksum": "sha256:eb096f0518e310f722d5ebd4c69f0322df4fc152c6189f93c5c797dc25f3d2e1",
-      "ssh_username": "root",
-      "ssh_password": "locked",
-      "ssh_port": 22,
-      "ssh_handshake_attempts": 1000,
-      "ssh_timeout": "3600s",
-      "shutdown_command": "echo 'locked' | sudo -S shutdown -P now"
-    },
-    {
-      "type": "qemu",
-      "name": "generic-fedora39-docker-x64",
-      "vm_name": "generic-fedora39-docker-x64",
-      "output_directory": "output/generic-fedora39-docker-x64",
-      "qemu_binary": "qemu-system-x86_64",
-      "boot_wait": "20s",
-      "boot_keygroup_interval": "1s",
-      "boot_command": [
-        "c<wait>",
-        "insmod all_video<enter><wait>",
-        "set gfxpayload=keep<enter><wait>",
-        "insmod increment<enter><wait>",
-        "insmod xfs<enter><wait>",
-        "insmod diskfilter<enter><wait>",
-        "insmod mdraid1x<enter><wait>",
-        "insmod fat<enter><wait>",
-        "insmod blscfg<enter><wait>",
-        "insmod gzio<enter><wait>",
-        "insmod part_gpt<enter><wait>",
-        "insmod ext2<enter><wait>",
-        "insmod chain<enter><wait>",
-        "search --no-floppy --set=root -l 'Fedora-S-dvd-x86_64-39'<enter><wait>",
-        "linux /images/pxeboot/vmlinuz inst.stage2=hd:LABEL=Fedora-S-dvd-x86_64-39 rd.live.check ",
-        "net.ifnames=0 inst.text inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.fedora39.docker.ks<enter><wait>",
-        "initrd /images/pxeboot/initrd.img<enter><wait10>",
-        "boot<enter><wait>"
-      ],
-      "format": "qcow2",
-      "disk_size": "32768",
-      "disk_discard": "unmap",
-      "disk_detect_zeroes": "off",
-      "disk_cache": "unsafe",
-      "disk_image": false,
-      "disk_compression": false,
-      "disk_interface": "virtio-scsi",
-      "net_device": "virtio-net",
-      "cpus": 2,
-      "memory": 2048,
-      "http_directory": "http",
-      "headless": true,
-      "iso_url": "https://dl.fedoraproject.org/pub/fedora/linux/releases/39/Server/x86_64/iso/Fedora-Server-netinst-x86_64-39-1.5.iso",
-      "iso_checksum": "sha256:61576ae7170e35210f03aae3102048f0a9e0df7868ac726908669b4ef9cc22e9",
-      "ssh_username": "root",
-      "ssh_password": "locked",
-      "ssh_port": 22,
-      "ssh_handshake_attempts": 1000,
-      "ssh_timeout": "3600s",
-      "shutdown_command": "echo 'locked' | sudo -S shutdown -P -h now"
-    },
-    {
-      "type": "qemu",
-      "name": "generic-alpine319-docker-x64",
-      "vm_name": "generic-alpine319-docker-x64",
-      "output_directory": "output/generic-alpine319-docker-x64",
-      "qemu_binary": "qemu-system-x86_64",
-      "boot_wait": "60s",
-      "boot_keygroup_interval": "1s",
-      "boot_command": [
-        "<enter><wait10>",
-        "root<enter><wait>",
-        "ifconfig eth0 up && udhcpc -i eth0<enter><wait>",
-        "wget http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alpine319.docker.cfg<enter><wait>",
-        "sed -i -e \"/rc-service/d\" /sbin/setup-sshd<enter><wait>",
-        "source generic.alpine319.vagrant.cfg<enter><wait>",
-        "printf \"locked\\nlocked\\n\" | sh /sbin/setup-alpine -f /root/generic.alpine319.docker.cfg && ",
-        "mount /dev/sda2 /mnt && ",
-        "sed -E -i '/#? ?PasswordAuthentication/d' /mnt/etc/ssh/sshd_config && ",
-        "sed -E -i '/#? ?PermitRootLogin/d' /mnt/etc/ssh/sshd_config && ",
-        "echo 'PasswordAuthentication yes' >> /mnt/etc/ssh/sshd_config && ",
-        "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
-        "chroot /mnt apk add openntpd && chroot /mnt rc-update add openntpd default && reboot<enter>"
-      ],
-      "format": "qcow2",
-      "disk_size": "32768",
-      "disk_discard": "unmap",
-      "disk_detect_zeroes": "off",
-      "disk_cache": "unsafe",
-      "disk_image": false,
-      "disk_compression": false,
-      "disk_interface": "virtio-scsi",
-      "net_device": "virtio-net",
-      "cpus": 2,
-      "memory": 2048,
-      "http_directory": "http",
-      "headless": true,
-      "iso_url": "https://mirrors.edge.kernel.org/alpine/v3.19/releases/x86_64/alpine-virt-3.19.7-x86_64.iso",
-      "iso_checksum": "sha256:ccaaac43fca667ed0347c7894cc5f993f528c61288bcdefd89cda127f9f7f914",
-      "ssh_username": "root",
-      "ssh_password": "locked",
-      "ssh_port": 22,
-      "ssh_handshake_attempts": 1000,
-      "ssh_timeout": "3600s",
-      "shutdown_command": "echo 'locked' | sudo -S /sbin/poweroff"
-    },
-    {
-      "type": "qemu",
-      "name": "generic-fedora-rawhide-docker-x64",
-      "vm_name": "generic-fedora-rawhide-docker-x64",
-      "output_directory": "output/generic-fedora-rawhide-docker-x64",
-      "qemu_binary": "qemu-system-x86_64",
-      "boot_wait": "20s",
-      "boot_keygroup_interval": "1s",
-      "boot_command": [
-        "c<wait>",
-        "insmod all_video<enter><wait>",
-        "set gfxpayload=keep<enter><wait>",
-        "insmod increment<enter><wait>",
-        "insmod xfs<enter><wait>",
-        "insmod diskfilter<enter><wait>",
-        "insmod mdraid1x<enter><wait>",
-        "insmod fat<enter><wait>",
-        "insmod blscfg<enter><wait>",
-        "insmod gzio<enter><wait>",
-        "insmod part_gpt<enter><wait>",
-        "insmod ext2<enter><wait>",
-        "insmod chain<enter><wait>",
-        "search --no-floppy --set=root -l 'Fedora-S-dvd-x86_64-rawh'<enter><wait>",
-        "linux /images/pxeboot/vmlinuz inst.stage2=hd:LABEL=Fedora-S-dvd-x86_64-rawh rd.live.check ",
-        "net.ifnames=0 inst.text inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.rawhide.docker.ks<enter><wait>",
-        "initrd /images/pxeboot/initrd.img<enter><wait10>",
-        "boot<enter><wait>"
-      ],
-      "format": "qcow2",
-      "disk_size": "32768",
-      "disk_discard": "unmap",
-      "disk_detect_zeroes": "off",
-      "disk_cache": "unsafe",
-      "disk_image": false,
-      "disk_compression": false,
-      "disk_interface": "virtio-scsi",
-      "net_device": "virtio-net",
-      "cpus": 2,
-      "memory": 2048,
-      "http_directory": "http",
-      "headless": true,
-      "iso_url": "https://mirrors.kernel.org/fedora/development/rawhide/Server/x86_64/iso/Fedora-Server-netinst-x86_64-Rawhide-20250226.n.0.iso",
-      "iso_checksum": "sha256:e87965f9326657e4345716c2ab1a5010eb21c2c2f15cc7e19f893380b91bc719",
-      "ssh_username": "root",
-      "ssh_password": "locked",
-      "ssh_port": 22,
-      "ssh_handshake_attempts": 1000,
-      "ssh_timeout": "3600s",
-      "shutdown_command": "echo 'locked' | sudo -S shutdown -P -h now"
-    }
-  ],
-  "post-processors": [
-    [
-      {
-        "type": "shell-local",
-        "environment_vars": [
-          "NAME={{build_name}}",
-          "BOX={{split build_name \"-\" 1}}"
-        ],
-        "inline": [
-          "[ `docker images quay.io/generic/$BOX -q | wc -l` != 0 ] && docker rmi --force `docker images --quiet quay.io/generic/$BOX`",
-          "[ `docker images quay.io/roboxes/$BOX -q | wc -l` != 0 ] && docker rmi --force `docker images --quiet quay.io/roboxes/$BOX`",
-          "[ `docker images docker.io/roboxes/$BOX -q | wc -l` != 0 ] && docker rmi --force `docker images --quiet docker.io/roboxes/$BOX`",
-          "rm --recursive --force output/$NAME",
-          "exit 0"
-        ],
-        "except": [
-          "generic-fedora-rawhide-docker-x64"
-        ]
-      }
-    ],
-    [
-      {
-        "type": "artifice",
-        "keep_input_artifact": false,
-        "files": [
-          "output/{{build_name}}-{{user `box_version`}}.tar"
-        ],
-        "except": [
-          "generic-fedora-rawhide-docker-x64"
-        ]
-      },
-      {
-        "format": "gz",
-        "type": "compress",
-        "compression_level": 9,
-        "keep_input_artifact": true,
-        "output": "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.tar.gz",
-        "except": [
-          "generic-fedora-rawhide-docker-x64"
-        ]
-      },
-      {
-        "type": "checksum",
-        "checksum_types": [
-          "sha256"
-        ],
-        "output": "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.tar.gz.sha256",
-        "keep_input_artifact": true,
-        "except": [
-          "generic-fedora-rawhide-docker-x64"
-        ]
-      }
-    ],
-    [
-      {
-        "type": "artifice",
-        "keep_input_artifact": false,
-        "files": [
-          "output/{{build_name}}-{{user `box_version`}}.tar"
-        ],
-        "except": [
-          "generic-fedora-rawhide-docker-x64"
-        ]
-      },
-      {
-        "format": "gz",
-        "type": "compress",
-        "compression_level": 9,
-        "keep_input_artifact": false,
-        "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.tar.gz",
-        "except": [
-          "generic-fedora-rawhide-docker-x64"
-        ]
-      },
-      {
-        "type": "checksum",
-        "checksum_types": [
-          "sha256"
-        ],
-        "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.tar.gz.sha256",
-        "keep_input_artifact": true,
-        "except": [
-          "generic-fedora-rawhide-docker-x64"
-        ]
-      }
-    ],
-    [
-      {
-        "type": "shell-local",
-        "environment_vars": [
-          "FILENAME=output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.tar.gz"
-        ],
-        "inline": [
-          "[ -f $FILENAME ] && touch $FILENAME",
-          "exit 0"
-        ],
-        "except": [
-          "generic-fedora-rawhide-docker-x64"
-        ]
-      },
-      {
-        "type": "artifice",
-        "keep_input_artifact": true,
-        "files": [
-          "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.tar.gz"
-        ],
-        "except": [
-          "generic-fedora-rawhide-docker-x64"
-        ]
-      },
-      {
-        "type": "docker-import",
-        "keep_input_artifact": true,
-        "tag": "{{user `box_version`}}",
-        "repository": "quay.io/generic/{{split build_name \"-\" 1}}",
-        "changes": [
-          "CMD [\"/bin/bash\"]",
-          "ENV PATH \"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
-        ],
-        "except": [
-          "generic-fedora-rawhide-docker-x64"
-        ]
-      },
-      {
-        "type": "docker-push",
-        "login": "false",
-        "login_username": "{{user `quay_username`}}",
-        "login_password": "{{user `quay_password`}}",
-        "except": [
-          "generic-fedora-rawhide-docker-x64"
-        ]
-      }
-    ],
-    [
-      {
-        "type": "shell-local",
-        "environment_vars": [
-          "FILENAME=output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.tar.gz"
-        ],
-        "inline": [
-          "[ -f $FILENAME ] && touch $FILENAME",
-          "exit 0"
-        ],
-        "except": [
-          "generic-fedora-rawhide-docker-x64"
-        ]
-      },
-      {
-        "type": "artifice",
-        "keep_input_artifact": true,
-        "files": [
-          "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.tar.gz"
-        ],
-        "except": [
-          "generic-fedora-rawhide-docker-x64"
-        ]
-      },
-      {
-        "type": "docker-import",
-        "keep_input_artifact": true,
-        "tag": "latest",
-        "repository": "quay.io/generic/{{split build_name \"-\" 1}}",
-        "changes": [
-          "CMD [\"/bin/bash\"]",
-          "ENV PATH \"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
-        ],
-        "except": [
-          "generic-fedora-rawhide-docker-x64"
-        ]
-      },
-      {
-        "type": "docker-push",
-        "login": "false",
-        "login_username": "{{user `quay_username`}}",
-        "login_password": "{{user `quay_password`}}",
-        "except": [
-          "generic-fedora-rawhide-docker-x64"
-        ]
-      }
-    ],
-    [
-      {
-        "type": "shell-local",
-        "environment_vars": [
-          "FILENAME=output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.tar.gz"
-        ],
-        "inline": [
-          "[ -f $FILENAME ] && touch $FILENAME",
-          "exit 0"
-        ],
-        "except": [
-          "generic-fedora-rawhide-docker-x64"
-        ]
-      },
-      {
-        "type": "artifice",
-        "keep_input_artifact": true,
-        "files": [
-          "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.tar.gz"
-        ],
-        "except": [
-          "generic-fedora-rawhide-docker-x64"
-        ]
-      },
-      {
-        "type": "docker-import",
-        "keep_input_artifact": true,
-        "tag": "{{user `box_version`}}",
-        "repository": "quay.io/roboxes/{{split build_name \"-\" 1}}",
-        "changes": [
-          "CMD [\"/bin/bash\"]",
-          "ENV PATH \"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
-        ],
-        "except": [
-          "generic-fedora-rawhide-docker-x64"
-        ]
-      },
-      {
-        "type": "docker-push",
-        "login": "false",
-        "login_username": "{{user `quay_username`}}",
-        "login_password": "{{user `quay_password`}}",
-        "except": [
-          "generic-fedora-rawhide-docker-x64"
-        ]
-      }
-    ],
-    [
-      {
-        "type": "shell-local",
-        "environment_vars": [
-          "FILENAME=output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.tar.gz"
-        ],
-        "inline": [
-          "[ -f $FILENAME ] && touch $FILENAME",
-          "exit 0"
-        ],
-        "except": [
-          "generic-fedora-rawhide-docker-x64"
-        ]
-      },
-      {
-        "type": "artifice",
-        "keep_input_artifact": true,
-        "files": [
-          "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.tar.gz"
-        ],
-        "except": [
-          "generic-fedora-rawhide-docker-x64"
-        ]
-      },
-      {
-        "type": "docker-import",
-        "keep_input_artifact": true,
-        "tag": "latest",
-        "repository": "quay.io/roboxes/{{split build_name \"-\" 1}}",
-        "changes": [
-          "CMD [\"/bin/bash\"]",
-          "ENV PATH \"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
-        ],
-        "except": [
-          "generic-fedora-rawhide-docker-x64"
-        ]
-      },
-      {
-        "type": "docker-push",
-        "login": "false",
-        "login_username": "{{user `quay_username`}}",
-        "login_password": "{{user `quay_password`}}",
-        "except": [
-          "generic-fedora-rawhide-docker-x64"
-        ]
-      }
-    ],
-    [
-      {
-        "type": "shell-local",
-        "environment_vars": [
-          "FILENAME=output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.tar.gz"
-        ],
-        "inline": [
-          "[ -f $FILENAME ] && touch $FILENAME",
-          "exit 0"
-        ],
-        "except": [
-          "generic-fedora-rawhide-docker-x64"
-        ]
-      },
-      {
-        "type": "artifice",
-        "keep_input_artifact": true,
-        "files": [
-          "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.tar.gz"
-        ],
-        "except": [
-          "generic-fedora-rawhide-docker-x64"
-        ]
-      },
-      {
-        "type": "docker-import",
-        "keep_input_artifact": true,
-        "tag": "{{user `box_version`}}",
-        "repository": "docker.io/roboxes/{{split build_name \"-\" 1}}",
-        "changes": [
-          "CMD [\"/bin/bash\"]",
-          "ENV PATH \"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
-        ],
-        "except": [
-          "generic-fedora-rawhide-docker-x64"
-        ]
-      },
-      {
-        "type": "docker-push",
-        "login": "false",
-        "login_username": "{{user `docker_username`}}",
-        "login_password": "{{user `docker_password`}}",
-        "except": [
-          "generic-fedora-rawhide-docker-x64"
-        ]
-      },
-      {
-        "type": "vagrant",
-        "compression_level": 9,
-        "keep_input_artifact": true,
-        "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.box",
-        "include": [
-          "tpl/roboxes/info.json"
-        ],
-        "except": [
-          "generic-fedora-rawhide-docker-x64"
-        ]
-      },
-      {
-        "type": "checksum",
-        "checksum_types": [
-          "sha256"
-        ],
-        "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.box.sha256",
-        "keep_input_artifact": true,
-        "except": [
-          "generic-fedora-rawhide-docker-x64"
-        ]
-      }
-    ],
-    [
-      {
-        "type": "shell-local",
-        "environment_vars": [
-          "FILENAME=output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.tar.gz"
-        ],
-        "inline": [
-          "[ -f $FILENAME ] && touch $FILENAME",
-          "exit 0"
-        ],
-        "except": [
-          "generic-fedora-rawhide-docker-x64"
-        ]
-      },
-      {
-        "type": "artifice",
-        "keep_input_artifact": true,
-        "files": [
-          "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.tar.gz"
-        ],
-        "except": [
-          "generic-fedora-rawhide-docker-x64"
-        ]
-      },
-      {
-        "type": "docker-import",
-        "keep_input_artifact": true,
-        "tag": "latest",
-        "repository": "docker.io/roboxes/{{split build_name \"-\" 1}}",
-        "changes": [
-          "CMD [\"/bin/bash\"]",
-          "ENV PATH \"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
-        ],
-        "except": [
-          "generic-fedora-rawhide-docker-x64"
-        ]
-      },
-      {
-        "type": "docker-push",
-        "login": "false",
-        "login_username": "{{user `docker_username`}}",
-        "login_password": "{{user `docker_password`}}",
-        "except": [
-          "generic-fedora-rawhide-docker-x64"
-        ]
-      },
-      {
-        "type": "vagrant",
-        "compression_level": 9,
-        "keep_input_artifact": true,
-        "output": "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.box",
-        "include": [
-          "tpl/generic/info.json"
-        ],
-        "except": [
-          "generic-fedora-rawhide-docker-x64"
-        ]
-      },
-      {
-        "type": "checksum",
-        "checksum_types": [
-          "sha256"
-        ],
-        "output": "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.box.sha256",
-        "keep_input_artifact": true,
-        "except": [
-          "generic-fedora-rawhide-docker-x64"
-        ]
-      }
-    ],
-    [
-      {
-        "type": "shell-local",
-        "environment_vars": [
-          "NAME={{build_name}}",
-          "BOX={{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}"
-        ],
-        "inline": [
-          "[ `docker images quay.io/generic/$BOX -q | wc -l` != 0 ] && docker rmi --force `docker images --quiet quay.io/generic/$BOX`",
-          "[ `docker images quay.io/roboxes/$BOX -q | wc -l` != 0 ] && docker rmi --force `docker images --quiet quay.io/roboxes/$BOX`",
-          "[ `docker images docker.io/roboxes/$BOX -q | wc -l` != 0 ] && docker rmi --force `docker images --quiet docker.io/roboxes/$BOX`",
-          "rm --recursive --force output/$NAME",
-          "exit 0"
-        ],
-        "only": [
-          "generic-fedora-rawhide-docker-x64"
-        ]
-      }
-    ],
-    [
-      {
-        "type": "artifice",
-        "keep_input_artifact": false,
-        "files": [
-          "output/{{build_name}}-{{user `box_version`}}.tar"
-        ],
-        "only": [
-          "generic-fedora-rawhide-docker-x64"
-        ]
-      },
-      {
-        "format": "gz",
-        "type": "compress",
-        "compression_level": 9,
-        "keep_input_artifact": true,
-        "output": "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{split build_name \"-\" 4}}-{{user `box_version`}}.tar.gz",
-        "only": [
-          "generic-fedora-rawhide-docker-x64"
-        ]
-      },
-      {
-        "type": "checksum",
-        "checksum_types": [
-          "sha256"
-        ],
-        "output": "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{split build_name \"-\" 4}}-{{user `box_version`}}.tar.gz.sha256",
-        "keep_input_artifact": true,
-        "only": [
-          "generic-fedora-rawhide-docker-x64"
-        ]
-      }
-    ],
-    [
-      {
-        "type": "artifice",
-        "keep_input_artifact": false,
-        "files": [
-          "output/{{build_name}}-{{user `box_version`}}.tar"
-        ],
-        "only": [
-          "generic-fedora-rawhide-docker-x64"
-        ]
-      },
-      {
-        "format": "gz",
-        "type": "compress",
-        "compression_level": 9,
-        "keep_input_artifact": false,
-        "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{split build_name \"-\" 4}}-{{user `box_version`}}.tar.gz",
-        "only": [
-          "generic-fedora-rawhide-docker-x64"
-        ]
-      },
-      {
-        "type": "checksum",
-        "checksum_types": [
-          "sha256"
-        ],
-        "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{split build_name \"-\" 4}}-{{user `box_version`}}.tar.gz.sha256",
-        "keep_input_artifact": true,
-        "only": [
-          "generic-fedora-rawhide-docker-x64"
-        ]
-      }
-    ],
-    [
-      {
-        "type": "shell-local",
-        "environment_vars": [
-          "FILENAME=output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{split build_name \"-\" 4}}-{{user `box_version`}}.tar.gz"
-        ],
-        "inline": [
-          "[ -f $FILENAME ] && touch $FILENAME",
-          "exit 0"
-        ],
-        "only": [
-          "generic-fedora-rawhide-docker-x64"
-        ]
-      },
-      {
-        "type": "artifice",
-        "keep_input_artifact": true,
-        "files": [
-          "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{split build_name \"-\" 4}}-{{user `box_version`}}.tar.gz"
-        ],
-        "only": [
-          "generic-fedora-rawhide-docker-x64"
-        ]
-      },
-      {
-        "type": "docker-import",
-        "keep_input_artifact": true,
-        "tag": "{{user `box_version`}}",
-        "repository": "quay.io/generic/{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}",
-        "changes": [
-          "CMD [\"/bin/bash\"]",
-          "ENV PATH \"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
-        ],
-        "only": [
-          "generic-fedora-rawhide-docker-x64"
-        ]
-      },
-      {
-        "type": "docker-push",
-        "login": "false",
-        "login_username": "{{user `quay_username`}}",
-        "login_password": "{{user `quay_password`}}",
-        "only": [
-          "generic-fedora-rawhide-docker-x64"
-        ]
-      }
-    ],
-    [
-      {
-        "type": "shell-local",
-        "environment_vars": [
-          "FILENAME=output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{split build_name \"-\" 4}}-{{user `box_version`}}.tar.gz"
-        ],
-        "inline": [
-          "[ -f $FILENAME ] && touch $FILENAME",
-          "exit 0"
-        ],
-        "only": [
-          "generic-fedora-rawhide-docker-x64"
-        ]
-      },
-      {
-        "type": "artifice",
-        "keep_input_artifact": true,
-        "files": [
-          "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{split build_name \"-\" 4}}-{{user `box_version`}}.tar.gz"
-        ],
-        "only": [
-          "generic-fedora-rawhide-docker-x64"
-        ]
-      },
-      {
-        "type": "docker-import",
-        "keep_input_artifact": true,
-        "tag": "latest",
-        "repository": "quay.io/generic/{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}",
-        "changes": [
-          "CMD [\"/bin/bash\"]",
-          "ENV PATH \"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
-        ],
-        "only": [
-          "generic-fedora-rawhide-docker-x64"
-        ]
-      },
-      {
-        "type": "docker-push",
-        "login": "false",
-        "login_username": "{{user `quay_username`}}",
-        "login_password": "{{user `quay_password`}}",
-        "only": [
-          "generic-fedora-rawhide-docker-x64"
-        ]
-      }
-    ],
-    [
-      {
-        "type": "shell-local",
-        "environment_vars": [
-          "FILENAME=output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{split build_name \"-\" 4}}-{{user `box_version`}}.tar.gz"
-        ],
-        "inline": [
-          "[ -f $FILENAME ] && touch $FILENAME",
-          "exit 0"
-        ],
-        "only": [
-          "generic-fedora-rawhide-docker-x64"
-        ]
-      },
-      {
-        "type": "artifice",
-        "keep_input_artifact": true,
-        "files": [
-          "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{split build_name \"-\" 4}}-{{user `box_version`}}.tar.gz"
-        ],
-        "only": [
-          "generic-fedora-rawhide-docker-x64"
-        ]
-      },
-      {
-        "type": "docker-import",
-        "keep_input_artifact": true,
-        "tag": "{{user `box_version`}}",
-        "repository": "quay.io/roboxes/{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}",
-        "changes": [
-          "CMD [\"/bin/bash\"]",
-          "ENV PATH \"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
-        ],
-        "only": [
-          "generic-fedora-rawhide-docker-x64"
-        ]
-      },
-      {
-        "type": "docker-push",
-        "login": "false",
-        "login_username": "{{user `quay_username`}}",
-        "login_password": "{{user `quay_password`}}",
-        "only": [
-          "generic-fedora-rawhide-docker-x64"
-        ]
-      }
-    ],
-    [
-      {
-        "type": "shell-local",
-        "environment_vars": [
-          "FILENAME=output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{split build_name \"-\" 4}}-{{user `box_version`}}.tar.gz"
-        ],
-        "inline": [
-          "[ -f $FILENAME ] && touch $FILENAME",
-          "exit 0"
-        ],
-        "only": [
-          "generic-fedora-rawhide-docker-x64"
-        ]
-      },
-      {
-        "type": "artifice",
-        "keep_input_artifact": true,
-        "files": [
-          "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{split build_name \"-\" 4}}-{{user `box_version`}}.tar.gz"
-        ],
-        "only": [
-          "generic-fedora-rawhide-docker-x64"
-        ]
-      },
-      {
-        "type": "docker-import",
-        "keep_input_artifact": true,
-        "tag": "latest",
-        "repository": "quay.io/roboxes/{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}",
-        "changes": [
-          "CMD [\"/bin/bash\"]",
-          "ENV PATH \"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
-        ],
-        "only": [
-          "generic-fedora-rawhide-docker-x64"
-        ]
-      },
-      {
-        "type": "docker-push",
-        "login": "false",
-        "login_username": "{{user `quay_username`}}",
-        "login_password": "{{user `quay_password`}}",
-        "only": [
-          "generic-fedora-rawhide-docker-x64"
-        ]
-      }
-    ],
-    [
-      {
-        "type": "shell-local",
-        "environment_vars": [
-          "FILENAME=output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{split build_name \"-\" 4}}-{{user `box_version`}}.tar.gz"
-        ],
-        "inline": [
-          "[ -f $FILENAME ] && touch $FILENAME",
-          "exit 0"
-        ],
-        "only": [
-          "generic-fedora-rawhide-docker-x64"
-        ]
-      },
-      {
-        "type": "artifice",
-        "keep_input_artifact": true,
-        "files": [
-          "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{split build_name \"-\" 4}}-{{user `box_version`}}.tar.gz"
-        ],
-        "only": [
-          "generic-fedora-rawhide-docker-x64"
-        ]
-      },
-      {
-        "type": "docker-import",
-        "keep_input_artifact": true,
-        "tag": "{{user `box_version`}}",
-        "repository": "docker.io/roboxes/{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}",
-        "changes": [
-          "CMD [\"/bin/bash\"]",
-          "ENV PATH \"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
-        ],
-        "only": [
-          "generic-fedora-rawhide-docker-x64"
-        ]
-      },
-      {
-        "type": "docker-push",
-        "login": "false",
-        "login_username": "{{user `docker_username`}}",
-        "login_password": "{{user `docker_password`}}",
-        "only": [
-          "generic-fedora-rawhide-docker-x64"
-        ]
-      },
-      {
-        "type": "vagrant",
-        "compression_level": 9,
-        "keep_input_artifact": true,
-        "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{split build_name \"-\" 4}}-{{user `box_version`}}.box",
-        "include": [
-          "tpl/roboxes/info.json"
-        ],
-        "only": [
-          "generic-fedora-rawhide-docker-x64"
-        ]
-      },
-      {
-        "type": "checksum",
-        "checksum_types": [
-          "sha256"
-        ],
-        "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{split build_name \"-\" 4}}-{{user `box_version`}}.box.sha256",
-        "keep_input_artifact": true,
-        "only": [
-          "generic-fedora-rawhide-docker-x64"
-        ]
-      }
-    ],
-    [
-      {
-        "type": "shell-local",
-        "environment_vars": [
-          "FILENAME=output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{split build_name \"-\" 4}}-{{user `box_version`}}.tar.gz"
-        ],
-        "inline": [
-          "[ -f $FILENAME ] && touch $FILENAME",
-          "exit 0"
-        ],
-        "only": [
-          "generic-fedora-rawhide-docker-x64"
-        ]
-      },
-      {
-        "type": "artifice",
-        "keep_input_artifact": true,
-        "files": [
-          "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{split build_name \"-\" 4}}-{{user `box_version`}}.tar.gz"
-        ],
-        "only": [
-          "generic-fedora-rawhide-docker-x64"
-        ]
-      },
-      {
-        "type": "docker-import",
-        "keep_input_artifact": true,
-        "tag": "latest",
-        "repository": "docker.io/roboxes/{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}",
-        "changes": [
-          "CMD [\"/bin/bash\"]",
-          "ENV PATH \"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
-        ],
-        "only": [
-          "generic-fedora-rawhide-docker-x64"
-        ]
-      },
-      {
-        "type": "docker-push",
-        "login": "false",
-        "login_username": "{{user `docker_username`}}",
-        "login_password": "{{user `docker_password`}}",
-        "only": [
-          "generic-fedora-rawhide-docker-x64"
-        ]
-      },
-      {
-        "type": "vagrant",
-        "compression_level": 9,
-        "keep_input_artifact": true,
-        "output": "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{split build_name \"-\" 4}}-{{user `box_version`}}.box",
-        "include": [
-          "tpl/generic/info.json"
-        ],
-        "only": [
-          "generic-fedora-rawhide-docker-x64"
-        ]
-      },
-      {
-        "type": "checksum",
-        "checksum_types": [
-          "sha256"
-        ],
-        "output": "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{split build_name \"-\" 4}}-{{user `box_version`}}.box.sha256",
-        "keep_input_artifact": true,
-        "only": [
-          "generic-fedora-rawhide-docker-x64"
-        ]
-      }
     ]
-  ]
 }

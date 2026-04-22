@@ -1,0 +1,699 @@
+{
+    "variables": {
+        "box_version": "{{env `VERSION`}}"
+    },
+    "provisioners": [
+        {
+            "scripts": [
+                "scripts/ubuntu2204/apt.sh",
+                "scripts/ubuntu2204/floppy.sh",
+                "scripts/ubuntu2204/fixkvp.sh",
+                "scripts/ubuntu2204/network.sh"
+            ],
+            "type": "shell",
+            "timeout": "120m",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-ubuntu2204-utm-a64"
+            ]
+        },
+        {
+            "scripts": [
+                "scripts/ubuntu2204/vagrant.sh",
+                "scripts/ubuntu2204/profile.sh",
+                "scripts/ubuntu2204/motd.sh",
+                "scripts/ubuntu2204/fixtty.sh",
+                "scripts/common/utm.sh",
+                "scripts/ubuntu2204/cleanup.sh"
+            ],
+            "type": "shell",
+            "timeout": "120m",
+            "pause_before": "120s",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-ubuntu2204-utm-a64"
+            ]
+        },
+        {
+            "scripts": [
+                "scripts/openbsd7/pkg.sh"
+            ],
+            "type": "shell",
+            "timeout": "120m",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "execute_command": "{{.Vars}} /bin/sh {{ .Path }}",
+            "only": [
+                "generic-openbsd7-utm-a64"
+            ]
+        },
+        {
+            "scripts": [
+                "scripts/openbsd7/hostname.sh",
+                "scripts/openbsd7/motd.sh",
+                "scripts/openbsd7/vagrant.sh",
+                "scripts/openbsd7/profile.sh",
+                "scripts/common/utm.sh"
+            ],
+            "type": "shell",
+            "timeout": "120m",
+            "pause_before": "120s",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
+            "only": [
+                "generic-openbsd7-utm-a64"
+            ]
+        },
+        {
+            "type": "shell",
+            "timeout": "120m",
+            "scripts": [
+                "scripts/rhel9/network.sh",
+                "scripts/rhel9/dnf.sh",
+                "scripts/rhel9/base.sh",
+                "scripts/rhel9/reboot.sh"
+            ],
+            "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-rhel9-utm-a64"
+            ]
+        },
+        {
+            "type": "shell",
+            "timeout": "120m",
+            "scripts": [
+                "scripts/rhel9/kernel.sh",
+                "scripts/rhel9/floppy.sh",
+                "scripts/common/utm.sh",
+                "scripts/rhel9/vagrant.sh",
+                "scripts/rhel9/tuning.sh",
+                "scripts/rhel9/sshd.sh",
+                "scripts/rhel9/randomness.sh",
+                "scripts/rhel9/updatedb.sh",
+                "scripts/rhel9/cleanup.sh",
+                "scripts/rhel9/undnf.sh"
+            ],
+            "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+            "pause_before": "120s",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-rhel9-utm-a64"
+            ]
+        },
+        {
+            "type": "shell",
+            "timeout": "120m",
+            "scripts": [
+                "scripts/alma9/network.sh",
+                "scripts/alma9/dnf.sh",
+                "scripts/alma9/base.sh",
+                "scripts/alma9/reboot.sh"
+            ],
+            "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-alma9-utm-a64"
+            ]
+        },
+        {
+            "type": "shell",
+            "timeout": "120m",
+            "scripts": [
+                "scripts/alma9/kernel.sh",
+                "scripts/alma9/floppy.sh",
+                "scripts/common/utm.sh",
+                "scripts/alma9/vagrant.sh",
+                "scripts/alma9/tuning.sh",
+                "scripts/alma9/sshd.sh",
+                "scripts/alma9/randomness.sh",
+                "scripts/alma9/updatedb.sh",
+                "scripts/alma9/cleanup.sh",
+                "scripts/alma9/undnf.sh"
+            ],
+            "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+            "pause_before": "120s",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-alma9-utm-a64"
+            ]
+        },
+        {
+            "type": "shell",
+            "timeout": "120m",
+            "scripts": [
+                "scripts/rawhide/fixdns.sh",
+                "scripts/rawhide/hostname.sh",
+                "scripts/rawhide/dnf.sh"
+            ],
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-fedora-rawhide-utm-a64"
+            ]
+        },
+        {
+            "type": "shell",
+            "timeout": "120m",
+            "scripts": [
+                "scripts/rawhide/fixtmp.sh",
+                "scripts/rawhide/base.sh"
+            ],
+            "pause_before": "120s",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-fedora-rawhide-utm-a64"
+            ]
+        },
+        {
+            "type": "shell",
+            "timeout": "120m",
+            "scripts": [
+                "scripts/rawhide/kernel.sh",
+                "scripts/rawhide/updatedb.sh",
+                "scripts/rawhide/vga.sh",
+                "scripts/common/utm.sh",
+                "scripts/rawhide/vagrant.sh",
+                "scripts/rawhide/tuning.sh",
+                "scripts/rawhide/cleanup.sh"
+            ],
+            "pause_before": "120s",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-fedora-rawhide-utm-a64"
+            ]
+        },
+        {
+            "scripts": [
+                "scripts/debian12/apt.sh",
+                "scripts/debian12/network.sh"
+            ],
+            "type": "shell",
+            "timeout": "120m",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-debian12-utm-a64"
+            ]
+        },
+        {
+            "scripts": [
+                "scripts/debian12/floppy.sh",
+                "scripts/debian12/profile.sh",
+                "scripts/debian12/vagrant.sh",
+                "scripts/debian12/motd.sh",
+                "scripts/debian12/fixtty.sh",
+                "scripts/common/utm.sh",
+                "scripts/debian12/cleanup.sh"
+            ],
+            "type": "shell",
+            "timeout": "120m",
+            "pause_before": "120s",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-debian12-utm-a64"
+            ]
+        },
+        {
+            "type": "shell",
+            "timeout": "120m",
+            "scripts": [
+                "scripts/alpine318/network.sh",
+                "scripts/alpine318/apk.sh"
+            ],
+            "execute_command": "/bin/sh '{{.Path}}'",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-alpine318-utm-a64"
+            ]
+        },
+        {
+            "type": "shell",
+            "timeout": "120m",
+            "scripts": [
+                "scripts/alpine318/hostname.sh",
+                "scripts/alpine318/lsb.sh",
+                "scripts/alpine318/floppy.sh",
+                "scripts/alpine318/vagrant.sh",
+                "scripts/alpine318/sshd.sh",
+                "scripts/common/utm.sh",
+                "scripts/alpine318/cache.sh"
+            ],
+            "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+            "pause_before": "120s",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-alpine318-utm-a64"
+            ]
+        },
+        {
+            "scripts": [
+                "scripts/freebsd14/pkg.sh",
+                "scripts/freebsd14/hostname.sh",
+                "scripts/freebsd14/kernel.sh",
+                "scripts/freebsd14/firstboot.sh",
+                "scripts/freebsd14/motd.sh",
+                "scripts/freebsd14/vagrant.sh",
+                "scripts/common/utm.sh",
+                "scripts/freebsd14/cleanup.sh"
+            ],
+            "type": "shell",
+            "timeout": "120m",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
+            "only": [
+                "generic-freebsd14-utm-a64"
+            ]
+        },
+        {
+            "type": "shell",
+            "timeout": "120m",
+            "scripts": [
+                "scripts/alpine319/network.sh",
+                "scripts/alpine319/apk.sh"
+            ],
+            "execute_command": "/bin/sh '{{.Path}}'",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-alpine319-utm-a64"
+            ]
+        },
+        {
+            "type": "shell",
+            "timeout": "120m",
+            "scripts": [
+                "scripts/alpine319/hostname.sh",
+                "scripts/alpine319/lsb.sh",
+                "scripts/alpine319/floppy.sh",
+                "scripts/alpine319/vagrant.sh",
+                "scripts/alpine319/sshd.sh",
+                "scripts/common/utm.sh",
+                "scripts/alpine319/cache.sh"
+            ],
+            "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+            "pause_before": "120s",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "generic-alpine319-utm-a64"
+            ]
+        },
+        {
+            "scripts": [
+                "scripts/common/motd.sh",
+                "scripts/common/keys.sh",
+                "scripts/common/machine.sh",
+                "scripts/common/leases.sh",
+                "scripts/common/localtime.sh"
+            ],
+            "type": "shell",
+            "timeout": "120m",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true"
+        },
+        {
+            "scripts": [
+                "scripts/common/zerodisk.sh"
+            ],
+            "type": "shell",
+            "timeout": "720m",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true"
+        },
+        {
+            "scripts": [
+                "scripts/common/lockout.sh"
+            ],
+            "type": "shell",
+            "timeout": "120m",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true"
+        }
+    ],
+    "builders": [
+        {
+            "type": "utm-iso",
+            "name": "generic-openbsd7-utm-a64",
+            "vm_name": "generic-openbsd7-utm-a64",
+            "output_directory": "output/generic-openbsd7-utm-a64",
+            "vm_arch": "aarch64",
+            "vm_backend": "qemu",
+            "uefi_boot": true,
+            "hypervisor": true,
+            "hard_drive_interface": "virtio",
+            "iso_interface": "usb",
+            "boot_wait": "60s",
+            "boot_keygroup_interval": "1s",
+            "boot_command": [
+                "S<enter><wait5>",
+                "ifconfig vio0 group dhcp<enter><wait5>",
+                "ifconfig vio0 inet autoconf<enter><wait10>",
+                "ftp -o /install.conf http://{{.HTTPIP}}:{{.HTTPPort}}/generic.openbsd7.install.cfg<enter><wait5>",
+                "ftp -o /install-chroot.sh http://{{.HTTPIP}}:{{.HTTPPort}}/generic.openbsd7.install.chroot.sh<enter><wait5>",
+                "/install -a -f /install.conf -m install && chroot /mnt < /install-chroot.sh && reboot<enter>"
+            ],
+            "http_directory": "http",
+            "iso_url": "https://cdn.openbsd.org/pub/OpenBSD/7.4/arm64/miniroot74.img",
+            "iso_checksum": "sha256:7b08b2ce081cff6408d183f7152ddcfd2779912104866e4fdf6ae2d864b51142",
+            "ssh_username": "root",
+            "ssh_password": "vagrant",
+            "ssh_port": 22,
+            "ssh_handshake_attempts": 1000,
+            "ssh_timeout": "9800s",
+            "shutdown_command": "shutdown -h -p now",
+            "memory": 4096,
+            "keep_registered": false,
+            "disable_vnc": false
+        },
+        {
+            "type": "utm-iso",
+            "name": "generic-ubuntu2204-utm-a64",
+            "vm_name": "generic-ubuntu2204-utm-a64",
+            "output_directory": "output/generic-ubuntu2204-utm-a64",
+            "vm_arch": "aarch64",
+            "vm_backend": "qemu",
+            "uefi_boot": true,
+            "hypervisor": true,
+            "hard_drive_interface": "virtio",
+            "iso_interface": "usb",
+            "boot_wait": "10s",
+            "boot_keygroup_interval": "1s",
+            "boot_command": [
+                "c<wait5>",
+                "set gfxpayload=keep<enter><wait>",
+                "linux /casper/vmlinuz autoinstall ",
+                "cloud-config-url=\"http://{{.HTTPIP}}:{{.HTTPPort}}/generic.ubuntu2204.vagrant.cfg\" --- ",
+                "net.ifnames=0 biosdevname=0<enter><wait>",
+                "initrd /casper/initrd<enter><wait>",
+                "boot<enter>"
+            ],
+            "http_directory": "http",
+            "iso_url": "https://cdimage.ubuntu.com/releases/22.04.3/release/ubuntu-22.04.3-live-server-arm64.iso",
+            "iso_checksum": "sha256:5702372d25111e24d59596de62ae24daef873018cbf63c9dd9ff12292a57aca9",
+            "ssh_username": "root",
+            "ssh_password": "vagrant",
+            "ssh_port": 22,
+            "ssh_handshake_attempts": 1000,
+            "ssh_timeout": "9800s",
+            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+            "memory": 4096,
+            "keep_registered": false,
+            "disable_vnc": false
+        },
+        {
+            "type": "utm-iso",
+            "name": "generic-rhel9-utm-a64",
+            "vm_name": "generic-rhel9-utm-a64",
+            "output_directory": "output/generic-rhel9-utm-a64",
+            "vm_arch": "aarch64",
+            "vm_backend": "qemu",
+            "uefi_boot": true,
+            "hypervisor": true,
+            "hard_drive_interface": "virtio",
+            "iso_interface": "usb",
+            "boot_wait": "20s",
+            "boot_keygroup_interval": "1s",
+            "boot_command": [
+                "<up><up><wait>",
+                "e<wait>",
+                "<down><down><end><wait>",
+                " inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel9.vagrant.ks inst.nosave=all",
+                "<wait><leftCtrlOn>x<leftCtrlOff>"
+            ],
+            "http_directory": "http",
+            "iso_url": "https://archive.org/download/rhel-9.3/rhel-9.3-aarch64-dvd.iso",
+            "iso_checksum": "sha256:3ed389624e0ed8bf5dfacbc049324b83f999f335f88844621a8b6c7027d574b0",
+            "ssh_username": "root",
+            "ssh_password": "vagrant",
+            "ssh_port": 22,
+            "ssh_handshake_attempts": 1000,
+            "ssh_timeout": "9800s",
+            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+            "memory": 4096,
+            "keep_registered": false,
+            "disable_vnc": false
+        },
+        {
+            "type": "utm-iso",
+            "name": "generic-alma9-utm-a64",
+            "vm_name": "generic-alma9-utm-a64",
+            "output_directory": "output/generic-alma9-utm-a64",
+            "vm_arch": "aarch64",
+            "vm_backend": "qemu",
+            "uefi_boot": true,
+            "hypervisor": true,
+            "hard_drive_interface": "virtio",
+            "iso_interface": "usb",
+            "boot_wait": "20s",
+            "boot_keygroup_interval": "1s",
+            "boot_command": [
+                "<up><up><wait>",
+                "e<wait>",
+                "<down><down><end><wait>",
+                " inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alma9.vagrant.a64.ks inst.nosave=all",
+                "<wait><leftCtrlOn>x<leftCtrlOff>"
+            ],
+            "http_directory": "http",
+            "iso_url": "https://dfw.mirror.rackspace.com/almalinux/9/isos/aarch64/AlmaLinux-9-latest-aarch64-boot.iso",
+            "iso_checksum": "sha256:fff9af332c09542b29ac04ae61d04f3951fcb4371beefa6be80d1d9d007e9599",
+            "ssh_username": "root",
+            "ssh_password": "vagrant",
+            "ssh_port": 22,
+            "ssh_handshake_attempts": 1000,
+            "ssh_timeout": "9800s",
+            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+            "memory": 4096,
+            "keep_registered": false,
+            "disable_vnc": false
+        },
+        {
+            "type": "utm-iso",
+            "name": "generic-fedora-rawhide-utm-a64",
+            "vm_name": "generic-fedora-rawhide-utm-a64",
+            "output_directory": "output/generic-fedora-rawhide-utm-a64",
+            "vm_arch": "aarch64",
+            "vm_backend": "qemu",
+            "uefi_boot": true,
+            "hypervisor": true,
+            "hard_drive_interface": "virtio",
+            "iso_interface": "usb",
+            "boot_wait": "30s",
+            "boot_keygroup_interval": "1s",
+            "boot_key_interval": "20ms",
+            "boot_command": [
+                "<up><up><wait>",
+                "e<wait>",
+                "<down><down><end><wait>",
+                " inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rawhide.vagrant.a64.ks inst.nosave=all inst.selinux=0 selinux=0",
+                "<wait><leftCtrlOn>x<leftCtrlOff>"
+            ],
+            "http_directory": "http",
+            "iso_url": "https://mirrors.kernel.org/fedora/development/rawhide/Server/aarch64/iso/Fedora-Server-netinst-aarch64-Rawhide-20250226.n.0.iso",
+            "iso_checksum": "sha256:4d5b4f4997c2eba2e9e26785c921c79b904f83d6fb7da9fe21b0ac2ad0169a26",
+            "ssh_username": "root",
+            "ssh_password": "vagrant",
+            "ssh_port": 22,
+            "ssh_handshake_attempts": 1000,
+            "ssh_timeout": "9800s",
+            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+            "memory": 8192,
+            "keep_registered": false,
+            "disable_vnc": false
+        },
+        {
+            "type": "utm-iso",
+            "name": "generic-debian12-utm-a64",
+            "vm_name": "generic-debian12-utm-a64",
+            "output_directory": "output/generic-debian12-utm-a64",
+            "vm_arch": "aarch64",
+            "vm_backend": "qemu",
+            "uefi_boot": true,
+            "hypervisor": true,
+            "hard_drive_interface": "virtio",
+            "iso_interface": "usb",
+            "boot_wait": "10s",
+            "boot_keygroup_interval": "1s",
+            "boot_command": [
+                "c<wait5>",
+                "linux /install.a64/vmlinuz auto=true priority=critical ",
+                "preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.debian12.vagrant.arm.cfg ",
+                "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 hostname=debian12 domain=localdomain<enter><wait>",
+                "initrd /install.a64/initrd.gz<enter><wait>",
+                "boot<enter><wait>"
+            ],
+            "http_directory": "http",
+            "iso_url": "https://cdimage.debian.org/cdimage/release/12.4.0/arm64/iso-cd/debian-12.4.0-arm64-netinst.iso",
+            "iso_checksum": "sha256:d32d2c63350a932dc0d9d45665985b41413f9e01efc0eacbea981d435f553d3d",
+            "ssh_username": "root",
+            "ssh_password": "vagrant",
+            "ssh_port": 22,
+            "ssh_handshake_attempts": 1000,
+            "ssh_timeout": "9800s",
+            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+            "memory": 8192,
+            "keep_registered": false,
+            "disable_vnc": false
+        },
+        {
+            "type": "utm-iso",
+            "name": "generic-alpine318-utm-a64",
+            "vm_name": "generic-alpine318-utm-a64",
+            "output_directory": "output/generic-alpine318-utm-a64",
+            "vm_arch": "aarch64",
+            "vm_backend": "qemu",
+            "uefi_boot": true,
+            "hypervisor": true,
+            "hard_drive_interface": "virtio",
+            "iso_interface": "usb",
+            "boot_wait": "360s",
+            "boot_keygroup_interval": "1s",
+            "boot_command": [
+                "<enter><wait10>",
+                "root<enter><wait>",
+                "ifconfig eth0 up && udhcpc -i eth0<enter><wait>",
+                "wget http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alpine318.vagrant.cfg<enter><wait>",
+                "sed -i -e \"/rc-service/d\" /sbin/setup-sshd<enter><wait>",
+                "source generic.alpine318.vagrant.cfg<enter><wait>",
+                "printf \"vagrant\\nvagrant\\n\" | sh /sbin/setup-alpine -f /root/generic.alpine318.vagrant.cfg && ",
+                "mount /dev/vda2 /mnt && ",
+                "sed -E -i '/#? ?PasswordAuthentication/d' /mnt/etc/ssh/sshd_config && ",
+                "sed -E -i '/#? ?PermitRootLogin/d' /mnt/etc/ssh/sshd_config && ",
+                "echo 'PasswordAuthentication yes' >> /mnt/etc/ssh/sshd_config && ",
+                "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
+                "chroot /mnt apk add openntpd && chroot /mnt rc-update add openntpd default && reboot<enter>"
+            ],
+            "http_directory": "http",
+            "iso_url": "https://mirrors.edge.kernel.org/alpine/v3.18/releases/aarch64/alpine-virt-3.18.12-aarch64.iso",
+            "iso_checksum": "sha256:349e11e506c81c79d6087d2a8b9c97e4c1a59618b19bc88982d71b8af78f82a6",
+            "ssh_username": "root",
+            "ssh_password": "vagrant",
+            "ssh_port": 22,
+            "ssh_handshake_attempts": 1000,
+            "ssh_timeout": "9800s",
+            "shutdown_command": "/sbin/poweroff",
+            "memory": 4096,
+            "keep_registered": false,
+            "disable_vnc": false
+        },
+        {
+            "type": "utm-iso",
+            "name": "generic-freebsd14-utm-a64",
+            "vm_name": "generic-freebsd14-utm-a64",
+            "output_directory": "output/generic-freebsd14-utm-a64",
+            "vm_arch": "aarch64",
+            "vm_backend": "qemu",
+            "uefi_boot": true,
+            "hypervisor": true,
+            "hard_drive_interface": "virtio",
+            "iso_interface": "usb",
+            "boot_wait": "1s",
+            "boot_keygroup_interval": "1s",
+            "boot_command": [
+                "<esc><wait><esc><wait><esc><wait><esc><wait>",
+                "<esc><wait><esc><wait><esc><wait><esc><wait>",
+                "<esc><wait><esc><wait><esc><wait><esc><wait>",
+                "<esc><wait><esc><wait><esc><wait><esc><wait>",
+                "<esc><wait><esc><wait><esc><wait><esc><wait>",
+                "<esc><wait><esc><wait><esc><wait><esc><wait>",
+                "<esc><wait><esc><wait><esc><wait><esc><wait>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "boot -s<enter>",
+                "<wait10><wait10><wait10>",
+                "/bin/sh<enter><wait10>",
+                "mdmfs -s 100m md1 /tmp<enter><wait>",
+                "mdmfs -s 100m md2 /mnt<enter><wait>",
+                "dhclient -l /tmp/dhclient.lease.vtnet0 vtnet0<enter><wait5>",
+                "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.freebsd14.vagrant.cfg<enter><wait5>",
+                "sh -c ' { bsdinstall script /tmp/installerconfig 2>&1 && reboot ; } | tee /tmp/installerconfig.log ' <enter><wait10>"
+            ],
+            "http_directory": "http",
+            "iso_url": "https://ftp.freebsd.org/pub/FreeBSD/releases/ISO-IMAGES/14.0/FreeBSD-14.0-RELEASE-arm64-aarch64-disc1.iso",
+            "iso_checksum": "sha256:f16022a6567050e4831f15610a0981a998a57c6a5c7b69b012f43253ecf436ad",
+            "ssh_username": "root",
+            "ssh_password": "vagrant",
+            "ssh_port": 22,
+            "ssh_handshake_attempts": 1000,
+            "ssh_timeout": "9800s",
+            "shutdown_command": "shutdown -p now",
+            "memory": 4096,
+            "keep_registered": false,
+            "disable_vnc": false
+        },
+        {
+            "type": "utm-iso",
+            "name": "generic-alpine319-utm-a64",
+            "vm_name": "generic-alpine319-utm-a64",
+            "output_directory": "output/generic-alpine319-utm-a64",
+            "vm_arch": "aarch64",
+            "vm_backend": "qemu",
+            "uefi_boot": true,
+            "hypervisor": true,
+            "hard_drive_interface": "virtio",
+            "iso_interface": "usb",
+            "boot_wait": "360s",
+            "boot_keygroup_interval": "1s",
+            "boot_command": [
+                "<enter><wait10>",
+                "<enter><wait10>",
+                "root<enter><wait>",
+                "ifconfig eth0 up && udhcpc -i eth0<enter><wait>",
+                "wget http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alpine319.vagrant.cfg<enter><wait>",
+                "sed -i -e \"/rc-service/d\" /sbin/setup-sshd<enter><wait>",
+                "source generic.alpine319.vagrant.cfg<enter><wait>",
+                "printf \"vagrant\\nvagrant\\n\" | sh /sbin/setup-alpine -f /root/generic.alpine319.vagrant.cfg && ",
+                "mount /dev/vda2 /mnt && ",
+                "sed -E -i '/#? ?PasswordAuthentication/d' /mnt/etc/ssh/sshd_config && ",
+                "sed -E -i '/#? ?PermitRootLogin/d' /mnt/etc/ssh/sshd_config && ",
+                "echo 'PasswordAuthentication yes' >> /mnt/etc/ssh/sshd_config && ",
+                "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
+                "chroot /mnt apk add openntpd && chroot /mnt rc-update add openntpd default && reboot<enter>"
+            ],
+            "http_directory": "http",
+            "iso_url": "https://mirrors.edge.kernel.org/alpine/v3.19/releases/aarch64/alpine-virt-3.19.7-aarch64.iso",
+            "iso_checksum": "sha256:68b473fce426b1431a58b7b465161fc0b97212a93e0749e8ab8669a971e287a0",
+            "ssh_username": "root",
+            "ssh_password": "vagrant",
+            "ssh_port": 22,
+            "ssh_handshake_attempts": 1000,
+            "ssh_timeout": "9800s",
+            "shutdown_command": "/sbin/poweroff",
+            "memory": 4096,
+            "keep_registered": false,
+            "disable_vnc": false
+        }
+    ],
+    "post-processors": [
+        [
+            {
+                "type": "utm-vagrant",
+                "compression_level": 9,
+                "keep_input_artifact": false,
+                "output": "output/{{build_name}}-{{user `box_version`}}.box",
+                "architecture": "arm64"
+            },
+            {
+                "type": "checksum",
+                "checksum_types": [
+                    "sha256"
+                ],
+                "keep_input_artifact": false,
+                "output": "output/{{build_name}}-{{user `box_version`}}.box.sha256"
+            }
+        ]
+    ]
+}

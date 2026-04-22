@@ -4,66 +4,6 @@
     },
     "provisioners": [
         {
-            "scripts": [
-                "scripts/gentoo/network.sh",
-                "scripts/gentoo/emerge.sh"
-            ],
-            "type": "shell",
-            "timeout": "720m",
-            "start_retry_timeout": "15m",
-            "expect_disconnect": "true",
-            "only": [
-                "generic-gentoo-libvirt-x64"
-            ]
-        },
-        {
-            "scripts": [
-                "scripts/gentoo/virtualbox.sh",
-                "scripts/gentoo/parallels.sh",
-                "scripts/gentoo/vmware.sh",
-                "scripts/gentoo/qemu.sh",
-                "scripts/gentoo/vagrant.sh"
-            ],
-            "type": "shell",
-            "timeout": "720m",
-            "pause_before": "120s",
-            "start_retry_timeout": "15m",
-            "expect_disconnect": "true",
-            "only": [
-                "generic-gentoo-libvirt-x64"
-            ]
-        },
-        {
-            "scripts": [
-                "scripts/arch/pacman.sh"
-            ],
-            "type": "shell",
-            "timeout": "120m",
-            "start_retry_timeout": "15m",
-            "expect_disconnect": "true",
-            "only": [
-                "generic-arch-libvirt-x64"
-            ]
-        },
-        {
-            "scripts": [
-                "scripts/arch/virtualbox.sh",
-                "scripts/arch/parallels.sh",
-                "scripts/arch/vmware.sh",
-                "scripts/arch/qemu.sh",
-                "scripts/arch/vagrant.sh",
-                "scripts/arch/cleanup.sh"
-            ],
-            "type": "shell",
-            "timeout": "120m",
-            "pause_before": "120s",
-            "start_retry_timeout": "15m",
-            "expect_disconnect": "true",
-            "only": [
-                "generic-arch-libvirt-x64"
-            ]
-        },
-        {
             "type": "shell",
             "timeout": "120m",
             "scripts": [
@@ -76,7 +16,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-rhel8-libvirt-x64"
+                "generic-rhel8-utm-x64"
             ]
         },
         {
@@ -85,10 +25,7 @@
             "scripts": [
                 "scripts/rhel8/kernel.sh",
                 "scripts/rhel8/floppy.sh",
-                "scripts/rhel8/virtualbox.sh",
-                "scripts/rhel8/parallels.sh",
-                "scripts/rhel8/vmware.sh",
-                "scripts/rhel8/qemu.sh",
+                "scripts/common/utm.sh",
                 "scripts/rhel8/vagrant.sh",
                 "scripts/rhel8/tuning.sh",
                 "scripts/rhel8/sshd.sh",
@@ -102,7 +39,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-rhel8-libvirt-x64"
+                "generic-rhel8-utm-x64"
             ]
         },
         {
@@ -116,7 +53,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-oracle8-libvirt-x64"
+                "generic-oracle8-utm-x64"
             ]
         },
         {
@@ -125,10 +62,7 @@
             "scripts": [
                 "scripts/oracle8/kernel.sh",
                 "scripts/oracle8/floppy.sh",
-                "scripts/oracle8/virtualbox.sh",
-                "scripts/oracle8/parallels.sh",
-                "scripts/oracle8/vmware.sh",
-                "scripts/oracle8/qemu.sh",
+                "scripts/common/utm.sh",
                 "scripts/oracle8/lvm.sh",
                 "scripts/oracle8/vagrant.sh",
                 "scripts/oracle8/tuning.sh",
@@ -139,17 +73,14 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-oracle8-libvirt-x64"
+                "generic-oracle8-utm-x64"
             ]
         },
         {
             "type": "shell",
             "timeout": "120m",
             "scripts": [
-                "scripts/opensuse16/virtualbox.sh",
-                "scripts/opensuse16/parallels.sh",
-                "scripts/opensuse16/vmware.sh",
-                "scripts/opensuse16/qemu.sh",
+                "scripts/common/utm.sh",
                 "scripts/opensuse16/vagrant.sh",
                 "scripts/opensuse16/network.sh",
                 "scripts/opensuse16/floppy.sh",
@@ -160,7 +91,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-opensuse16-libvirt-x64"
+                "generic-opensuse16-utm-x64"
             ]
         },
         {
@@ -173,17 +104,14 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-tumbleweed-libvirt-x64"
+                "generic-tumbleweed-utm-x64"
             ]
         },
         {
             "type": "shell",
             "timeout": "120m",
             "scripts": [
-                "scripts/tumbleweed/virtualbox.sh",
-                "scripts/tumbleweed/parallels.sh",
-                "scripts/tumbleweed/vmware.sh",
-                "scripts/tumbleweed/qemu.sh",
+                "scripts/common/utm.sh",
                 "scripts/tumbleweed/vagrant.sh",
                 "scripts/tumbleweed/network.sh",
                 "scripts/tumbleweed/floppy.sh",
@@ -194,7 +122,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-tumbleweed-libvirt-x64"
+                "generic-tumbleweed-utm-x64"
             ]
         },
         {
@@ -207,7 +135,7 @@
             "expect_disconnect": "true",
             "execute_command": "{{.Vars}} /bin/sh {{ .Path }}",
             "only": [
-                "generic-netbsd9-libvirt-x64"
+                "generic-netbsd9-utm-x64"
             ]
         },
         {
@@ -216,10 +144,7 @@
                 "scripts/netbsd9/motd.sh",
                 "scripts/netbsd9/vagrant.sh",
                 "scripts/netbsd9/profile.sh",
-                "scripts/netbsd9/virtualbox.sh",
-                "scripts/netbsd9/parallels.sh",
-                "scripts/netbsd9/vmware.sh",
-                "scripts/netbsd9/qemu.sh"
+                "scripts/common/utm.sh"
             ],
             "type": "shell",
             "timeout": "120m",
@@ -228,7 +153,7 @@
             "expect_disconnect": "true",
             "execute_command": "{{ .Vars }} bash {{ .Path }}",
             "only": [
-                "generic-netbsd9-libvirt-x64"
+                "generic-netbsd9-utm-x64"
             ]
         },
         {
@@ -239,10 +164,7 @@
                 "scripts/hardenedbsd13/firstboot.sh",
                 "scripts/hardenedbsd13/motd.sh",
                 "scripts/hardenedbsd13/vagrant.sh",
-                "scripts/hardenedbsd13/virtualbox.sh",
-                "scripts/hardenedbsd13/parallels.sh",
-                "scripts/hardenedbsd13/vmware.sh",
-                "scripts/hardenedbsd13/qemu.sh",
+                "scripts/common/utm.sh",
                 "scripts/hardenedbsd13/cleanup.sh"
             ],
             "type": "shell",
@@ -251,7 +173,7 @@
             "expect_disconnect": "true",
             "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
             "only": [
-                "generic-hardenedbsd13-libvirt-x64"
+                "generic-hardenedbsd13-utm-x64"
             ]
         },
         {
@@ -262,10 +184,7 @@
                 "scripts/dragonflybsd6/firstboot.sh",
                 "scripts/dragonflybsd6/motd.sh",
                 "scripts/dragonflybsd6/vagrant.sh",
-                "scripts/dragonflybsd6/virtualbox.sh",
-                "scripts/dragonflybsd6/parallels.sh",
-                "scripts/dragonflybsd6/vmware.sh",
-                "scripts/dragonflybsd6/qemu.sh",
+                "scripts/common/utm.sh",
                 "scripts/dragonflybsd6/cleanup.sh"
             ],
             "type": "shell",
@@ -274,7 +193,7 @@
             "expect_disconnect": "true",
             "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
             "only": [
-                "generic-dragonflybsd6-libvirt-x64"
+                "generic-dragonflybsd6-utm-x64"
             ]
         },
         {
@@ -287,7 +206,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-debian11-libvirt-x64"
+                "generic-debian11-utm-x64"
             ]
         },
         {
@@ -297,10 +216,7 @@
                 "scripts/debian11/vagrant.sh",
                 "scripts/debian11/motd.sh",
                 "scripts/debian11/fixtty.sh",
-                "scripts/debian11/virtualbox.sh",
-                "scripts/debian11/parallels.sh",
-                "scripts/debian11/vmware.sh",
-                "scripts/debian11/qemu.sh",
+                "scripts/common/utm.sh",
                 "scripts/debian11/cleanup.sh"
             ],
             "type": "shell",
@@ -309,7 +225,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-debian11-libvirt-x64"
+                "generic-debian11-utm-x64"
             ]
         },
         {
@@ -322,7 +238,7 @@
             "expect_disconnect": "true",
             "execute_command": "{{.Vars}} /bin/sh {{ .Path }}",
             "only": [
-                "generic-openbsd7-libvirt-x64"
+                "generic-openbsd7-utm-x64"
             ]
         },
         {
@@ -331,10 +247,7 @@
                 "scripts/openbsd7/motd.sh",
                 "scripts/openbsd7/vagrant.sh",
                 "scripts/openbsd7/profile.sh",
-                "scripts/openbsd7/virtualbox.sh",
-                "scripts/openbsd7/parallels.sh",
-                "scripts/openbsd7/vmware.sh",
-                "scripts/openbsd7/qemu.sh"
+                "scripts/common/utm.sh"
             ],
             "type": "shell",
             "timeout": "120m",
@@ -343,7 +256,7 @@
             "expect_disconnect": "true",
             "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
             "only": [
-                "generic-openbsd7-libvirt-x64"
+                "generic-openbsd7-utm-x64"
             ]
         },
         {
@@ -356,7 +269,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-devuan4-libvirt-x64"
+                "generic-devuan4-utm-x64"
             ]
         },
         {
@@ -364,10 +277,7 @@
                 "scripts/devuan4/floppy.sh",
                 "scripts/devuan4/vagrant.sh",
                 "scripts/devuan4/motd.sh",
-                "scripts/devuan4/virtualbox.sh",
-                "scripts/devuan4/parallels.sh",
-                "scripts/devuan4/vmware.sh",
-                "scripts/devuan4/qemu.sh",
+                "scripts/common/utm.sh",
                 "scripts/devuan4/cleanup.sh"
             ],
             "type": "shell",
@@ -376,7 +286,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-devuan4-libvirt-x64"
+                "generic-devuan4-utm-x64"
             ]
         },
         {
@@ -391,7 +301,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-ubuntu2204-libvirt-x64"
+                "generic-ubuntu2204-utm-x64"
             ]
         },
         {
@@ -400,10 +310,7 @@
                 "scripts/ubuntu2204/profile.sh",
                 "scripts/ubuntu2204/motd.sh",
                 "scripts/ubuntu2204/fixtty.sh",
-                "scripts/ubuntu2204/virtualbox.sh",
-                "scripts/ubuntu2204/parallels.sh",
-                "scripts/ubuntu2204/vmware.sh",
-                "scripts/ubuntu2204/qemu.sh",
+                "scripts/common/utm.sh",
                 "scripts/ubuntu2204/cleanup.sh"
             ],
             "type": "shell",
@@ -412,7 +319,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-ubuntu2204-libvirt-x64"
+                "generic-ubuntu2204-utm-x64"
             ]
         },
         {
@@ -428,7 +335,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-rhel9-libvirt-x64"
+                "generic-rhel9-utm-x64"
             ]
         },
         {
@@ -437,10 +344,7 @@
             "scripts": [
                 "scripts/rhel9/kernel.sh",
                 "scripts/rhel9/floppy.sh",
-                "scripts/rhel9/virtualbox.sh",
-                "scripts/rhel9/parallels.sh",
-                "scripts/rhel9/vmware.sh",
-                "scripts/rhel9/qemu.sh",
+                "scripts/common/utm.sh",
                 "scripts/rhel9/vagrant.sh",
                 "scripts/rhel9/tuning.sh",
                 "scripts/rhel9/sshd.sh",
@@ -454,7 +358,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-rhel9-libvirt-x64"
+                "generic-rhel9-utm-x64"
             ]
         },
         {
@@ -470,7 +374,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-centos9s-libvirt-x64"
+                "generic-centos9s-utm-x64"
             ]
         },
         {
@@ -479,10 +383,7 @@
             "scripts": [
                 "scripts/centos9s/kernel.sh",
                 "scripts/centos9s/floppy.sh",
-                "scripts/centos9s/virtualbox.sh",
-                "scripts/centos9s/parallels.sh",
-                "scripts/centos9s/vmware.sh",
-                "scripts/centos9s/qemu.sh",
+                "scripts/common/utm.sh",
                 "scripts/centos9s/vagrant.sh",
                 "scripts/centos9s/tuning.sh",
                 "scripts/centos9s/sshd.sh",
@@ -495,7 +396,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-centos9s-libvirt-x64"
+                "generic-centos9s-utm-x64"
             ]
         },
         {
@@ -511,7 +412,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-alma9-libvirt-x64"
+                "generic-alma9-utm-x64"
             ]
         },
         {
@@ -520,10 +421,7 @@
             "scripts": [
                 "scripts/alma9/kernel.sh",
                 "scripts/alma9/floppy.sh",
-                "scripts/alma9/virtualbox.sh",
-                "scripts/alma9/parallels.sh",
-                "scripts/alma9/vmware.sh",
-                "scripts/alma9/qemu.sh",
+                "scripts/common/utm.sh",
                 "scripts/alma9/vagrant.sh",
                 "scripts/alma9/tuning.sh",
                 "scripts/alma9/sshd.sh",
@@ -537,7 +435,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-alma9-libvirt-x64"
+                "generic-alma9-utm-x64"
             ]
         },
         {
@@ -553,7 +451,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-alma10-libvirt-x64"
+                "generic-alma10-utm-x64"
             ]
         },
         {
@@ -562,10 +460,7 @@
             "scripts": [
                 "scripts/alma10/kernel.sh",
                 "scripts/alma10/floppy.sh",
-                "scripts/alma10/virtualbox.sh",
-                "scripts/alma10/parallels.sh",
-                "scripts/alma10/vmware.sh",
-                "scripts/alma10/qemu.sh",
+                "scripts/common/utm.sh",
                 "scripts/alma10/vagrant.sh",
                 "scripts/alma10/tuning.sh",
                 "scripts/alma10/sshd.sh",
@@ -579,7 +474,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-alma10-libvirt-x64"
+                "generic-alma10-utm-x64"
             ]
         },
         {
@@ -595,7 +490,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-oracle9-libvirt-x64"
+                "generic-oracle9-utm-x64"
             ]
         },
         {
@@ -604,10 +499,7 @@
             "scripts": [
                 "scripts/oracle9/kernel.sh",
                 "scripts/oracle9/floppy.sh",
-                "scripts/oracle9/virtualbox.sh",
-                "scripts/oracle9/parallels.sh",
-                "scripts/oracle9/vmware.sh",
-                "scripts/oracle9/qemu.sh",
+                "scripts/common/utm.sh",
                 "scripts/oracle9/vagrant.sh",
                 "scripts/oracle9/tuning.sh",
                 "scripts/oracle9/cleanup.sh"
@@ -617,7 +509,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-oracle9-libvirt-x64"
+                "generic-oracle9-utm-x64"
             ]
         },
         {
@@ -633,7 +525,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-rocky9-libvirt-x64"
+                "generic-rocky9-utm-x64"
             ]
         },
         {
@@ -642,10 +534,7 @@
             "scripts": [
                 "scripts/rocky9/kernel.sh",
                 "scripts/rocky9/floppy.sh",
-                "scripts/rocky9/virtualbox.sh",
-                "scripts/rocky9/parallels.sh",
-                "scripts/rocky9/vmware.sh",
-                "scripts/rocky9/qemu.sh",
+                "scripts/common/utm.sh",
                 "scripts/rocky9/vagrant.sh",
                 "scripts/rocky9/tuning.sh",
                 "scripts/rocky9/sshd.sh",
@@ -659,7 +548,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-rocky9-libvirt-x64"
+                "generic-rocky9-utm-x64"
             ]
         },
         {
@@ -675,7 +564,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-rocky10-libvirt-x64"
+                "generic-rocky10-utm-x64"
             ]
         },
         {
@@ -684,10 +573,7 @@
             "scripts": [
                 "scripts/rocky10/kernel.sh",
                 "scripts/rocky10/floppy.sh",
-                "scripts/rocky10/virtualbox.sh",
-                "scripts/rocky10/parallels.sh",
-                "scripts/rocky10/vmware.sh",
-                "scripts/rocky10/qemu.sh",
+                "scripts/common/utm.sh",
                 "scripts/rocky10/vagrant.sh",
                 "scripts/rocky10/tuning.sh",
                 "scripts/rocky10/sshd.sh",
@@ -701,7 +587,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-rocky10-libvirt-x64"
+                "generic-rocky10-utm-x64"
             ]
         },
         {
@@ -714,7 +600,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-debian12-libvirt-x64"
+                "generic-debian12-utm-x64"
             ]
         },
         {
@@ -724,10 +610,7 @@
                 "scripts/debian12/vagrant.sh",
                 "scripts/debian12/motd.sh",
                 "scripts/debian12/fixtty.sh",
-                "scripts/debian12/virtualbox.sh",
-                "scripts/debian12/parallels.sh",
-                "scripts/debian12/vmware.sh",
-                "scripts/debian12/qemu.sh",
+                "scripts/common/utm.sh",
                 "scripts/debian12/cleanup.sh"
             ],
             "type": "shell",
@@ -736,7 +619,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-debian12-libvirt-x64"
+                "generic-debian12-utm-x64"
             ]
         },
         {
@@ -750,7 +633,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-alpine318-libvirt-x64"
+                "generic-alpine318-utm-x64"
             ]
         },
         {
@@ -762,10 +645,7 @@
                 "scripts/alpine318/floppy.sh",
                 "scripts/alpine318/vagrant.sh",
                 "scripts/alpine318/sshd.sh",
-                "scripts/alpine318/virtualbox.sh",
-                "scripts/alpine318/parallels.sh",
-                "scripts/alpine318/vmware.sh",
-                "scripts/alpine318/qemu.sh",
+                "scripts/common/utm.sh",
                 "scripts/alpine318/cache.sh"
             ],
             "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
@@ -773,7 +653,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-alpine318-libvirt-x64"
+                "generic-alpine318-utm-x64"
             ]
         },
         {
@@ -786,7 +666,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-devuan5-libvirt-x64"
+                "generic-devuan5-utm-x64"
             ]
         },
         {
@@ -794,10 +674,7 @@
                 "scripts/devuan5/floppy.sh",
                 "scripts/devuan5/vagrant.sh",
                 "scripts/devuan5/motd.sh",
-                "scripts/devuan5/virtualbox.sh",
-                "scripts/devuan5/parallels.sh",
-                "scripts/devuan5/vmware.sh",
-                "scripts/devuan5/qemu.sh",
+                "scripts/common/utm.sh",
                 "scripts/devuan5/cleanup.sh"
             ],
             "type": "shell",
@@ -806,7 +683,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-devuan5-libvirt-x64"
+                "generic-devuan5-utm-x64"
             ]
         },
         {
@@ -817,10 +694,7 @@
                 "scripts/hardenedbsd/firstboot.sh",
                 "scripts/hardenedbsd/motd.sh",
                 "scripts/hardenedbsd/vagrant.sh",
-                "scripts/hardenedbsd/virtualbox.sh",
-                "scripts/hardenedbsd/parallels.sh",
-                "scripts/hardenedbsd/vmware.sh",
-                "scripts/hardenedbsd/qemu.sh",
+                "scripts/common/utm.sh",
                 "scripts/hardenedbsd/cleanup.sh"
             ],
             "type": "shell",
@@ -829,7 +703,7 @@
             "expect_disconnect": "true",
             "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
             "only": [
-                "generic-hardenedbsd-libvirt-x64"
+                "generic-hardenedbsd-utm-x64"
             ]
         },
         {
@@ -840,10 +714,7 @@
                 "scripts/dragonflybsd/firstboot.sh",
                 "scripts/dragonflybsd/motd.sh",
                 "scripts/dragonflybsd/vagrant.sh",
-                "scripts/dragonflybsd/virtualbox.sh",
-                "scripts/dragonflybsd/parallels.sh",
-                "scripts/dragonflybsd/vmware.sh",
-                "scripts/dragonflybsd/qemu.sh",
+                "scripts/common/utm.sh",
                 "scripts/dragonflybsd/cleanup.sh"
             ],
             "type": "shell",
@@ -852,7 +723,7 @@
             "expect_disconnect": "true",
             "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
             "only": [
-                "generic-dragonflybsd-libvirt-x64"
+                "generic-dragonflybsd-utm-x64"
             ]
         },
         {
@@ -863,10 +734,7 @@
                 "scripts/freebsd14/firstboot.sh",
                 "scripts/freebsd14/motd.sh",
                 "scripts/freebsd14/vagrant.sh",
-                "scripts/freebsd14/virtualbox.sh",
-                "scripts/freebsd14/parallels.sh",
-                "scripts/freebsd14/vmware.sh",
-                "scripts/freebsd14/qemu.sh",
+                "scripts/common/utm.sh",
                 "scripts/freebsd14/cleanup.sh"
             ],
             "type": "shell",
@@ -875,7 +743,7 @@
             "expect_disconnect": "true",
             "execute_command": "{{.Vars}} /usr/local/bin/bash {{ .Path }}",
             "only": [
-                "generic-freebsd14-libvirt-x64"
+                "generic-freebsd14-utm-x64"
             ]
         },
         {
@@ -889,7 +757,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-fedora42-libvirt-x64"
+                "generic-fedora42-utm-x64"
             ]
         },
         {
@@ -903,7 +771,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-fedora42-libvirt-x64"
+                "generic-fedora42-utm-x64"
             ]
         },
         {
@@ -913,10 +781,7 @@
                 "scripts/fedora42/kernel.sh",
                 "scripts/fedora42/updatedb.sh",
                 "scripts/fedora42/vga.sh",
-                "scripts/fedora42/virtualbox.sh",
-                "scripts/fedora42/parallels.sh",
-                "scripts/fedora42/vmware.sh",
-                "scripts/fedora42/qemu.sh",
+                "scripts/common/utm.sh",
                 "scripts/fedora42/vagrant.sh",
                 "scripts/fedora42/tuning.sh",
                 "scripts/fedora42/cleanup.sh"
@@ -925,7 +790,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-fedora42-libvirt-x64"
+                "generic-fedora42-utm-x64"
             ]
         },
         {
@@ -939,7 +804,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-fedora43-libvirt-x64"
+                "generic-fedora43-utm-x64"
             ]
         },
         {
@@ -953,7 +818,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-fedora43-libvirt-x64"
+                "generic-fedora43-utm-x64"
             ]
         },
         {
@@ -963,10 +828,7 @@
                 "scripts/fedora43/kernel.sh",
                 "scripts/fedora43/updatedb.sh",
                 "scripts/fedora43/vga.sh",
-                "scripts/fedora43/virtualbox.sh",
-                "scripts/fedora43/parallels.sh",
-                "scripts/fedora43/vmware.sh",
-                "scripts/fedora43/qemu.sh",
+                "scripts/common/utm.sh",
                 "scripts/fedora43/vagrant.sh",
                 "scripts/fedora43/tuning.sh",
                 "scripts/fedora43/cleanup.sh"
@@ -975,7 +837,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-fedora43-libvirt-x64"
+                "generic-fedora43-utm-x64"
             ]
         },
         {
@@ -989,7 +851,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-alpine319-libvirt-x64"
+                "generic-alpine319-utm-x64"
             ]
         },
         {
@@ -1001,10 +863,7 @@
                 "scripts/alpine319/floppy.sh",
                 "scripts/alpine319/vagrant.sh",
                 "scripts/alpine319/sshd.sh",
-                "scripts/alpine319/virtualbox.sh",
-                "scripts/alpine319/parallels.sh",
-                "scripts/alpine319/vmware.sh",
-                "scripts/alpine319/qemu.sh",
+                "scripts/common/utm.sh",
                 "scripts/alpine319/cache.sh"
             ],
             "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
@@ -1012,7 +871,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-alpine319-libvirt-x64"
+                "generic-alpine319-utm-x64"
             ]
         },
         {
@@ -1026,7 +885,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-fedora-rawhide-libvirt-x64"
+                "generic-fedora-rawhide-utm-x64"
             ]
         },
         {
@@ -1040,7 +899,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-fedora-rawhide-libvirt-x64"
+                "generic-fedora-rawhide-utm-x64"
             ]
         },
         {
@@ -1050,10 +909,7 @@
                 "scripts/rawhide/kernel.sh",
                 "scripts/rawhide/updatedb.sh",
                 "scripts/rawhide/vga.sh",
-                "scripts/rawhide/virtualbox.sh",
-                "scripts/rawhide/parallels.sh",
-                "scripts/rawhide/vmware.sh",
-                "scripts/rawhide/qemu.sh",
+                "scripts/common/utm.sh",
                 "scripts/rawhide/vagrant.sh",
                 "scripts/rawhide/tuning.sh",
                 "scripts/rawhide/cleanup.sh"
@@ -1062,7 +918,7 @@
             "start_retry_timeout": "15m",
             "expect_disconnect": "true",
             "only": [
-                "generic-fedora-rawhide-libvirt-x64"
+                "generic-fedora-rawhide-utm-x64"
             ]
         },
         {
@@ -1083,129 +939,22 @@
     ],
     "builders": [
         {
-            "type": "qemu",
-            "name": "generic-arch-libvirt-x64",
-            "vm_name": "generic-arch-libvirt-x64",
-            "output_directory": "output/generic-arch-libvirt-x64",
-            "qemu_binary": "qemu-system-x86_64",
-            "boot_wait": "1s",
-            "boot_keygroup_interval": "1s",
-            "boot_command": [
-                "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
-                "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
-                "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
-                "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
-                "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
-                "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
-                "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
-                "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
-                "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
-                "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
-                "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
-                "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
-                "<spacebar>net.ifnames=0 biosdevname=0 systemd.mask=sshd.service<enter>",
-                "<wait10><wait10><wait10><wait10><wait10><wait10>",
-                "<wait10><wait10><wait10><wait10><wait10><wait10>",
-                "<wait10><wait10><wait10><wait10><wait10><wait10>",
-                "sed -i 's/[#]\\?DNSSEC=.*/DNSSEC=false/g' /etc/systemd/resolved.conf<enter><wait>",
-                "systemctl restart systemd-resolved<enter><wait>",
-                "systemctl restart dhcpcd<enter><wait>",
-                "curl -O 'http://{{.HTTPIP}}:{{.HTTPPort}}/generic.arch.vagrant{,.chroot}.sh'<enter><wait>",
-                "bash generic.arch.vagrant.sh < generic.arch.vagrant.chroot.sh && systemctl reboot<enter>"
-            ],
-            "qemuargs": [
-                [
-                    "-device",
-                    "virtio-serial"
-                ],
-                [
-                    "-device",
-                    "virtserialport,id=channel0,name=org.qemu.guest_agent.0"
-                ]
-            ],
-            "format": "qcow2",
-            "disk_size": "131072",
-            "disk_discard": "unmap",
-            "disk_detect_zeroes": "on",
-            "disk_cache": "unsafe",
-            "disk_image": false,
-            "disk_compression": true,
-            "disk_interface": "virtio",
-            "net_device": "virtio-net",
-            "cpus": 2,
-            "memory": 2048,
-            "http_directory": "http",
-            "headless": true,
-            "iso_url": "https://ftp.ek-cer.hu/pub/mirrors/ftp.archlinux.org/iso/latest/archlinux-2026.04.01-x86_64.iso",
-            "iso_checksum": "sha256:f14bf46afbe782d28835aed99bfa2fe447903872cb9f4b21153196d6ed1d48ae",
-            "ssh_username": "root",
-            "ssh_password": "vagrant",
-            "ssh_port": 22,
-            "ssh_handshake_attempts": 1000,
-            "ssh_timeout": "3600s",
-            "shutdown_command": "systemctl poweroff"
-        },
-        {
-            "type": "qemu",
-            "name": "generic-gentoo-libvirt-x64",
-            "vm_name": "generic-gentoo-libvirt-x64",
-            "output_directory": "output/generic-gentoo-libvirt-x64",
-            "qemu_binary": "qemu-system-x86_64",
-            "boot_wait": "180s",
-            "boot_keygroup_interval": "1s",
-            "boot_command": [
-                "passwd root<enter><wait><wait><wait>",
-                "vagrant<enter><wait>",
-                "vagrant<enter><wait>",
-                "curl -O 'http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.gentoo.vagrant{,.chroot}.x64.sh'<enter><wait>",
-                "bash generic.gentoo.vagrant.x64.sh<enter>"
-            ],
-            "format": "qcow2",
-            "disk_size": "131072",
-            "disk_discard": "unmap",
-            "disk_detect_zeroes": "on",
-            "disk_cache": "unsafe",
-            "disk_image": false,
-            "disk_compression": true,
-            "disk_interface": "virtio-scsi",
-            "net_device": "virtio-net",
-            "cpus": 8,
-            "memory": 8192,
-            "http_directory": "http",
-            "headless": true,
-            "iso_url": "https://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/install-amd64-minimal-20250216T164837Z.iso",
-            "iso_checksum": "sha256:c7da771b38b7d564caadf6a3bc4334a19b2b9a3c95c46d3b7ab15fcac18e6e7f",
-            "ssh_username": "root",
-            "ssh_password": "vagrant",
-            "ssh_port": 22,
-            "ssh_handshake_attempts": 1000,
-            "ssh_timeout": "9800s",
-            "shutdown_command": "shutdown -hP now"
-        },
-        {
-            "type": "qemu",
-            "name": "generic-rhel8-libvirt-x64",
-            "vm_name": "generic-rhel8-libvirt-x64",
-            "output_directory": "output/generic-rhel8-libvirt-x64",
-            "qemu_binary": "qemu-system-x86_64",
+            "type": "utm-iso",
+            "name": "generic-rhel8-utm-x64",
+            "vm_name": "generic-rhel8-utm-x64",
+            "output_directory": "output/generic-rhel8-utm-x64",
+            "vm_arch": "x86_64",
+            "vm_backend": "qemu",
+            "uefi_boot": false,
+            "hypervisor": false,
+            "hard_drive_interface": "virtio",
+            "iso_interface": "usb",
             "boot_wait": "20s",
             "boot_keygroup_interval": "1s",
             "boot_command": [
                 "<tab> text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel8.vagrant.ks<enter><wait>"
             ],
-            "format": "qcow2",
-            "disk_size": "131072",
-            "disk_discard": "unmap",
-            "disk_detect_zeroes": "on",
-            "disk_cache": "unsafe",
-            "disk_image": false,
-            "disk_compression": true,
-            "disk_interface": "virtio-scsi",
-            "net_device": "virtio-net",
-            "cpus": 2,
-            "memory": 2048,
             "http_directory": "http",
-            "headless": true,
             "iso_url": "https://archive.org/download/rhel-8.9/rhel-8.9-x86_64-dvd.iso",
             "iso_checksum": "sha256:c4fd0632ce15a7d56e1d174176456943bd48306f9d35bcecbcb0a1dc49088e23",
             "ssh_username": "root",
@@ -1213,32 +962,28 @@
             "ssh_port": 22,
             "ssh_handshake_attempts": 1000,
             "ssh_timeout": "3600s",
-            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+            "memory": 2048,
+            "keep_registered": false,
+            "disable_vnc": false
         },
         {
-            "type": "qemu",
-            "name": "generic-oracle8-libvirt-x64",
-            "vm_name": "generic-oracle8-libvirt-x64",
-            "output_directory": "output/generic-oracle8-libvirt-x64",
-            "qemu_binary": "qemu-system-x86_64",
+            "type": "utm-iso",
+            "name": "generic-oracle8-utm-x64",
+            "vm_name": "generic-oracle8-utm-x64",
+            "output_directory": "output/generic-oracle8-utm-x64",
+            "vm_arch": "x86_64",
+            "vm_backend": "qemu",
+            "uefi_boot": false,
+            "hypervisor": false,
+            "hard_drive_interface": "virtio",
+            "iso_interface": "usb",
             "boot_wait": "20s",
             "boot_keygroup_interval": "1s",
             "boot_command": [
                 "<tab> text biosdevname=0 net.ifnames=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.oracle8.vagrant.ks<enter><wait>"
             ],
-            "format": "qcow2",
-            "disk_size": "131072",
-            "disk_discard": "unmap",
-            "disk_detect_zeroes": "on",
-            "disk_cache": "unsafe",
-            "disk_image": false,
-            "disk_compression": true,
-            "disk_interface": "virtio-scsi",
-            "net_device": "virtio-net",
-            "cpus": 2,
-            "memory": 2048,
             "http_directory": "http",
-            "headless": true,
             "iso_url": "https://yum.oracle.com/ISOS/OracleLinux/OL8/u9/x86_64/x86_64-boot-uek.iso",
             "iso_checksum": "sha256:67929eda55820fa8f379234de2b4488d054edd94efe2d5110b0e7cc7b6137700",
             "ssh_username": "root",
@@ -1246,14 +991,22 @@
             "ssh_port": 22,
             "ssh_handshake_attempts": 1000,
             "ssh_timeout": "3600s",
-            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+            "memory": 2048,
+            "keep_registered": false,
+            "disable_vnc": false
         },
         {
-            "type": "qemu",
-            "name": "generic-opensuse16-libvirt-x64",
-            "vm_name": "generic-opensuse16-libvirt-x64",
-            "output_directory": "output/generic-opensuse16-libvirt-x64",
-            "qemu_binary": "qemu-system-x86_64",
+            "type": "utm-iso",
+            "name": "generic-opensuse16-utm-x64",
+            "vm_name": "generic-opensuse16-utm-x64",
+            "output_directory": "output/generic-opensuse16-utm-x64",
+            "vm_arch": "x86_64",
+            "vm_backend": "qemu",
+            "uefi_boot": false,
+            "hypervisor": false,
+            "hard_drive_interface": "virtio",
+            "iso_interface": "usb",
             "boot_wait": "3s",
             "boot_keygroup_interval": "3s",
             "boot_command": [
@@ -1261,26 +1014,7 @@
                 " inst.auto=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.opensuse16.vagrant.json<wait>",
                 "<F10><wait>"
             ],
-            "accelerator": "kvm",
-            "qemuargs": [
-                [
-                    "-cpu",
-                    "host"
-                ]
-            ],
-            "format": "qcow2",
-            "disk_size": "131072",
-            "disk_discard": "unmap",
-            "disk_detect_zeroes": "on",
-            "disk_cache": "unsafe",
-            "disk_image": false,
-            "disk_compression": true,
-            "disk_interface": "virtio",
-            "net_device": "virtio-net",
-            "cpus": 2,
-            "memory": 2048,
             "http_directory": "http",
-            "headless": true,
             "iso_url": "https://download.opensuse.org/distribution/leap/16.0/offline/Leap-16.0-online-installer-x86_64-Build171.1.install.iso",
             "iso_checksum": "sha256:87d40549515d34cb6baaae2ea57b6547091d50626da1c0fad50fecdfe62a7c07",
             "ssh_username": "root",
@@ -1288,14 +1022,22 @@
             "ssh_port": 22,
             "ssh_handshake_attempts": 1000,
             "ssh_timeout": "3600s",
-            "shutdown_command": "echo 'vagrant' | sudo -S /sbin/halt -h -p"
+            "shutdown_command": "echo 'vagrant' | sudo -S /sbin/halt -h -p",
+            "memory": 2048,
+            "keep_registered": false,
+            "disable_vnc": false
         },
         {
-            "type": "qemu",
-            "name": "generic-tumbleweed-libvirt-x64",
-            "vm_name": "generic-tumbleweed-libvirt-x64",
-            "output_directory": "output/generic-tumbleweed-libvirt-x64",
-            "qemu_binary": "qemu-system-x86_64",
+            "type": "utm-iso",
+            "name": "generic-tumbleweed-utm-x64",
+            "vm_name": "generic-tumbleweed-utm-x64",
+            "output_directory": "output/generic-tumbleweed-utm-x64",
+            "vm_arch": "x86_64",
+            "vm_backend": "qemu",
+            "uefi_boot": false,
+            "hypervisor": false,
+            "hard_drive_interface": "virtio",
+            "iso_interface": "usb",
             "boot_wait": "20s",
             "boot_keygroup_interval": "1s",
             "boot_command": [
@@ -1304,19 +1046,7 @@
                 "autoyast=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.tumbleweed.vagrant.cfg<wait>",
                 "<enter><wait>"
             ],
-            "format": "qcow2",
-            "disk_size": "131072",
-            "disk_discard": "unmap",
-            "disk_detect_zeroes": "on",
-            "disk_cache": "unsafe",
-            "disk_image": false,
-            "disk_compression": true,
-            "disk_interface": "virtio-scsi",
-            "net_device": "virtio-net",
-            "cpus": 2,
-            "memory": 2048,
             "http_directory": "http",
-            "headless": true,
             "iso_url": "https://download.opensuse.org/tumbleweed/iso/openSUSE-Tumbleweed-NET-x86_64-Current.iso",
             "iso_checksum": "sha256:f7f35f34a669f1635f64e569cae14eedc71e4f9ec32789cb9529db7c4bd6af26",
             "ssh_username": "root",
@@ -1324,14 +1054,22 @@
             "ssh_port": 22,
             "ssh_handshake_attempts": 1000,
             "ssh_timeout": "3600s",
-            "shutdown_command": "echo 'vagrant' | sudo -S /sbin/halt -h -p"
+            "shutdown_command": "echo 'vagrant' | sudo -S /sbin/halt -h -p",
+            "memory": 2048,
+            "keep_registered": false,
+            "disable_vnc": false
         },
         {
-            "type": "qemu",
-            "name": "generic-netbsd9-libvirt-x64",
-            "vm_name": "generic-netbsd9-libvirt-x64",
-            "output_directory": "output/generic-netbsd9-libvirt-x64",
-            "qemu_binary": "qemu-system-x86_64",
+            "type": "utm-iso",
+            "name": "generic-netbsd9-utm-x64",
+            "vm_name": "generic-netbsd9-utm-x64",
+            "output_directory": "output/generic-netbsd9-utm-x64",
+            "vm_arch": "x86_64",
+            "vm_backend": "qemu",
+            "uefi_boot": false,
+            "hypervisor": false,
+            "hard_drive_interface": "virtio",
+            "iso_interface": "usb",
             "boot_wait": "40s",
             "boot_keygroup_interval": "1s",
             "boot_command": [
@@ -1378,19 +1116,7 @@
                 "<wait><enter><wait10>",
                 "x<wait><enter><wait10>"
             ],
-            "format": "qcow2",
-            "disk_size": "131072",
-            "disk_discard": "unmap",
-            "disk_detect_zeroes": "on",
-            "disk_cache": "unsafe",
-            "disk_image": false,
-            "disk_compression": true,
-            "disk_interface": "virtio-scsi",
-            "net_device": "virtio-net",
-            "cpus": 2,
-            "memory": 2048,
             "http_directory": "http",
-            "headless": true,
             "iso_url": "https://ftp.netbsd.org/pub/NetBSD/iso/9.3/NetBSD-9.3-amd64.iso",
             "iso_checksum": "sha256:7e7f03bfd0584480cd11ed8833963310e34361d105498a028a2ebf3c10354171",
             "ssh_username": "root",
@@ -1398,14 +1124,22 @@
             "ssh_port": 22,
             "ssh_handshake_attempts": 1000,
             "ssh_timeout": "3600s",
-            "shutdown_command": "/sbin/poweroff"
+            "shutdown_command": "/sbin/poweroff",
+            "memory": 2048,
+            "keep_registered": false,
+            "disable_vnc": false
         },
         {
-            "type": "qemu",
-            "name": "generic-hardenedbsd13-libvirt-x64",
-            "vm_name": "generic-hardenedbsd13-libvirt-x64",
-            "output_directory": "output/generic-hardenedbsd13-libvirt-x64",
-            "qemu_binary": "qemu-system-x86_64",
+            "type": "utm-iso",
+            "name": "generic-hardenedbsd13-utm-x64",
+            "vm_name": "generic-hardenedbsd13-utm-x64",
+            "output_directory": "output/generic-hardenedbsd13-utm-x64",
+            "vm_arch": "x86_64",
+            "vm_backend": "qemu",
+            "uefi_boot": false,
+            "hypervisor": false,
+            "hard_drive_interface": "virtio",
+            "iso_interface": "usb",
             "boot_wait": "1s",
             "boot_keygroup_interval": "1s",
             "boot_command": [
@@ -1425,19 +1159,7 @@
                 "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.hardenedbsd13.vagrant.cfg<enter><wait10>",
                 "sh -c ' { bsdinstall script /tmp/installerconfig 2>&1 && reboot ; } | tee /tmp/installerconfig.log ' <enter><wait10>"
             ],
-            "format": "qcow2",
-            "disk_size": "131072",
-            "disk_discard": "unmap",
-            "disk_detect_zeroes": "on",
-            "disk_cache": "unsafe",
-            "disk_image": false,
-            "disk_compression": true,
-            "disk_interface": "virtio-scsi",
-            "net_device": "virtio-net",
-            "cpus": 2,
-            "memory": 2048,
             "http_directory": "http",
-            "headless": true,
             "iso_url": "https://mirror.laylo.nl/pub/hardenedbsd/13-stable/amd64/amd64/installer/build-42/disc1.iso",
             "iso_checksum": "sha256:507de20fec08c8b2fd58967564658a8e1dd1f7f9f06cec089103a57f965372a2",
             "ssh_username": "root",
@@ -1445,14 +1167,22 @@
             "ssh_port": 22,
             "ssh_handshake_attempts": 1000,
             "ssh_timeout": "3600s",
-            "shutdown_command": "shutdown -p now"
+            "shutdown_command": "shutdown -p now",
+            "memory": 2048,
+            "keep_registered": false,
+            "disable_vnc": false
         },
         {
-            "type": "qemu",
-            "name": "generic-dragonflybsd6-libvirt-x64",
-            "vm_name": "generic-dragonflybsd6-libvirt-x64",
-            "output_directory": "output/generic-dragonflybsd6-libvirt-x64",
-            "qemu_binary": "qemu-system-x86_64",
+            "type": "utm-iso",
+            "name": "generic-dragonflybsd6-utm-x64",
+            "vm_name": "generic-dragonflybsd6-utm-x64",
+            "output_directory": "output/generic-dragonflybsd6-utm-x64",
+            "vm_arch": "x86_64",
+            "vm_backend": "qemu",
+            "uefi_boot": false,
+            "hypervisor": false,
+            "hard_drive_interface": "virtio",
+            "iso_interface": "usb",
             "boot_wait": "1s",
             "boot_keygroup_interval": "1s",
             "boot_command": [
@@ -1485,19 +1215,7 @@
                 "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.dragonflybsd6.vagrant.cfg<enter><wait10>",
                 "sh -c ' { sh -ex /tmp/installerconfig 2>&1 && reboot ; } | tee /tmp/installerconfig.log ' <enter><wait10>"
             ],
-            "format": "qcow2",
-            "disk_size": "131072",
-            "disk_discard": "unmap",
-            "disk_detect_zeroes": "on",
-            "disk_cache": "unsafe",
-            "disk_image": false,
-            "disk_compression": true,
-            "disk_interface": "virtio-scsi",
-            "net_device": "virtio-net",
-            "cpus": 2,
-            "memory": 2048,
             "http_directory": "http",
-            "headless": true,
             "iso_url": "https://mirror-master.dragonflybsd.org/iso-images/dfly-x86_64-6.4.0_REL.iso",
             "iso_checksum": "sha256:20e4724a3cb838fec0148a4adbffd9bd57b3e6d759a6599d1149188a19c61265",
             "ssh_username": "root",
@@ -1505,14 +1223,22 @@
             "ssh_port": 22,
             "ssh_handshake_attempts": 1000,
             "ssh_timeout": "3600s",
-            "shutdown_command": "shutdown -p now"
+            "shutdown_command": "shutdown -p now",
+            "memory": 2048,
+            "keep_registered": false,
+            "disable_vnc": false
         },
         {
-            "type": "qemu",
-            "name": "generic-debian11-libvirt-x64",
-            "vm_name": "generic-debian11-libvirt-x64",
-            "output_directory": "output/generic-debian11-libvirt-x64",
-            "qemu_binary": "qemu-system-x86_64",
+            "type": "utm-iso",
+            "name": "generic-debian11-utm-x64",
+            "vm_name": "generic-debian11-utm-x64",
+            "output_directory": "output/generic-debian11-utm-x64",
+            "vm_arch": "x86_64",
+            "vm_backend": "qemu",
+            "uefi_boot": false,
+            "hypervisor": false,
+            "hard_drive_interface": "virtio",
+            "iso_interface": "usb",
             "boot_wait": "10s",
             "boot_keygroup_interval": "1s",
             "boot_command": [
@@ -1530,19 +1256,7 @@
                 "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.debian11.vagrant.cfg ",
                 "<enter>"
             ],
-            "format": "qcow2",
-            "disk_size": "131072",
-            "disk_discard": "unmap",
-            "disk_detect_zeroes": "on",
-            "disk_cache": "unsafe",
-            "disk_image": false,
-            "disk_compression": true,
-            "disk_interface": "virtio-scsi",
-            "net_device": "virtio-net",
-            "cpus": 2,
-            "memory": 2048,
             "http_directory": "http",
-            "headless": true,
             "iso_url": "https://cdimage.debian.org/cdimage/archive/11.8.0/amd64/iso-cd/debian-11.8.0-amd64-netinst.iso",
             "iso_checksum": "sha256:d7a74813a734083df30c8d35784926deaa36bc41e5c0766388e9f591ab056b72",
             "ssh_username": "root",
@@ -1550,14 +1264,22 @@
             "ssh_port": 22,
             "ssh_handshake_attempts": 1000,
             "ssh_timeout": "3600s",
-            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+            "memory": 2048,
+            "keep_registered": false,
+            "disable_vnc": false
         },
         {
-            "type": "qemu",
-            "name": "generic-openbsd7-libvirt-x64",
-            "vm_name": "generic-openbsd7-libvirt-x64",
-            "output_directory": "output/generic-openbsd7-libvirt-x64",
-            "qemu_binary": "qemu-system-x86_64",
+            "type": "utm-iso",
+            "name": "generic-openbsd7-utm-x64",
+            "vm_name": "generic-openbsd7-utm-x64",
+            "output_directory": "output/generic-openbsd7-utm-x64",
+            "vm_arch": "x86_64",
+            "vm_backend": "qemu",
+            "uefi_boot": false,
+            "hypervisor": false,
+            "hard_drive_interface": "virtio",
+            "iso_interface": "usb",
             "boot_wait": "60s",
             "boot_keygroup_interval": "1s",
             "boot_command": [
@@ -1568,19 +1290,7 @@
                 "ftp -o /install-chroot.sh http://{{.HTTPIP}}:{{.HTTPPort}}/generic.openbsd7.install.chroot.sh<enter><wait5>",
                 "/install -a -f /install.conf -m install && chroot /mnt < /install-chroot.sh && reboot<enter>"
             ],
-            "format": "qcow2",
-            "disk_size": "131072",
-            "disk_discard": "unmap",
-            "disk_detect_zeroes": "on",
-            "disk_cache": "unsafe",
-            "disk_image": false,
-            "disk_compression": true,
-            "disk_interface": "virtio-scsi",
-            "net_device": "virtio-net",
-            "cpus": 2,
-            "memory": 2048,
             "http_directory": "http",
-            "headless": true,
             "iso_url": "https://ftp.nluug.nl/OpenBSD/7.4/amd64/cd74.iso",
             "iso_checksum": "sha256:9376f0cab131eca7f3e4d0787a400f602c2a3a8e671bed04d2178efd25182369",
             "ssh_username": "root",
@@ -1588,14 +1298,22 @@
             "ssh_port": 22,
             "ssh_handshake_attempts": 1000,
             "ssh_timeout": "3600s",
-            "shutdown_command": "shutdown -h -p now"
+            "shutdown_command": "shutdown -h -p now",
+            "memory": 2048,
+            "keep_registered": false,
+            "disable_vnc": false
         },
         {
-            "type": "qemu",
-            "name": "generic-devuan4-libvirt-x64",
-            "vm_name": "generic-devuan4-libvirt-x64",
-            "output_directory": "output/generic-devuan4-libvirt-x64",
-            "qemu_binary": "qemu-system-x86_64",
+            "type": "utm-iso",
+            "name": "generic-devuan4-utm-x64",
+            "vm_name": "generic-devuan4-utm-x64",
+            "output_directory": "output/generic-devuan4-utm-x64",
+            "vm_arch": "x86_64",
+            "vm_backend": "qemu",
+            "uefi_boot": false,
+            "hypervisor": false,
+            "hard_drive_interface": "virtio",
+            "iso_interface": "usb",
             "boot_wait": "10s",
             "boot_keygroup_interval": "1s",
             "boot_command": [
@@ -1613,19 +1331,7 @@
                 "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.devuan4.vagrant.cfg ",
                 "<enter>"
             ],
-            "format": "qcow2",
-            "disk_size": "131072",
-            "disk_discard": "unmap",
-            "disk_detect_zeroes": "on",
-            "disk_cache": "unsafe",
-            "disk_image": false,
-            "disk_compression": true,
-            "disk_interface": "virtio-scsi",
-            "net_device": "virtio-net",
-            "cpus": 2,
-            "memory": 2048,
             "http_directory": "http",
-            "headless": true,
             "iso_url": "https://mirror.leaseweb.com/devuan/devuan_chimaera/installer-iso/devuan_chimaera_4.0.0_amd64_netinstall.iso",
             "iso_checksum": "sha256:0923470af430e3d582a635956bbe4c13abc18fbaa4704e6deef3b362833e0ef5",
             "ssh_username": "root",
@@ -1633,14 +1339,22 @@
             "ssh_port": 22,
             "ssh_handshake_attempts": 1000,
             "ssh_timeout": "3600s",
-            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P -h now"
+            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P -h now",
+            "memory": 2048,
+            "keep_registered": false,
+            "disable_vnc": false
         },
         {
-            "type": "qemu",
-            "name": "generic-ubuntu2204-libvirt-x64",
-            "vm_name": "generic-ubuntu2204-libvirt-x64",
-            "output_directory": "output/generic-ubuntu2204-libvirt-x64",
-            "qemu_binary": "qemu-system-x86_64",
+            "type": "utm-iso",
+            "name": "generic-ubuntu2204-utm-x64",
+            "vm_name": "generic-ubuntu2204-utm-x64",
+            "output_directory": "output/generic-ubuntu2204-utm-x64",
+            "vm_arch": "x86_64",
+            "vm_backend": "qemu",
+            "uefi_boot": false,
+            "hypervisor": false,
+            "hard_drive_interface": "virtio",
+            "iso_interface": "usb",
             "boot_wait": "10s",
             "boot_keygroup_interval": "1s",
             "boot_command": [
@@ -1661,19 +1375,7 @@
                 "initrd /casper/initrd<enter><wait10>",
                 "boot<enter>"
             ],
-            "format": "qcow2",
-            "disk_size": "131072",
-            "disk_discard": "unmap",
-            "disk_detect_zeroes": "on",
-            "disk_cache": "unsafe",
-            "disk_image": false,
-            "disk_compression": true,
-            "disk_interface": "virtio-scsi",
-            "net_device": "virtio-net",
-            "cpus": 2,
-            "memory": 2048,
             "http_directory": "http",
-            "headless": true,
             "iso_url": "https://releases.ubuntu.com/22.04/ubuntu-22.04.3-live-server-amd64.iso",
             "iso_checksum": "sha256:a4acfda10b18da50e2ec50ccaf860d7f20b389df8765611142305c0e911d16fd",
             "ssh_username": "root",
@@ -1681,38 +1383,28 @@
             "ssh_port": 22,
             "ssh_handshake_attempts": 1000,
             "ssh_timeout": "3600s",
-            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+            "memory": 2048,
+            "keep_registered": false,
+            "disable_vnc": false
         },
         {
-            "type": "qemu",
-            "name": "generic-rhel9-libvirt-x64",
-            "vm_name": "generic-rhel9-libvirt-x64",
-            "output_directory": "output/generic-rhel9-libvirt-x64",
-            "qemu_binary": "qemu-system-x86_64",
+            "type": "utm-iso",
+            "name": "generic-rhel9-utm-x64",
+            "vm_name": "generic-rhel9-utm-x64",
+            "output_directory": "output/generic-rhel9-utm-x64",
+            "vm_arch": "x86_64",
+            "vm_backend": "qemu",
+            "uefi_boot": false,
+            "hypervisor": false,
+            "hard_drive_interface": "virtio",
+            "iso_interface": "usb",
             "boot_wait": "20s",
             "boot_keygroup_interval": "1s",
             "boot_command": [
                 "<tab> net.ifnames=0 inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rhel9.vagrant.ks vga=792 <enter><wait>"
             ],
-            "qemuargs": [
-                [
-                    "-cpu",
-                    "max"
-                ]
-            ],
-            "format": "qcow2",
-            "disk_size": "131072",
-            "disk_discard": "unmap",
-            "disk_detect_zeroes": "on",
-            "disk_cache": "unsafe",
-            "disk_image": false,
-            "disk_compression": true,
-            "disk_interface": "virtio-scsi",
-            "net_device": "virtio-net",
-            "cpus": 2,
-            "memory": 2048,
             "http_directory": "http",
-            "headless": true,
             "iso_url": "https://archive.org/download/rhel-9.3/rhel-9.3-x86_64-dvd.iso",
             "iso_checksum": "sha256:5c802147aa58429b21e223ee60e347e850d6b0d8680930c4ffb27340ffb687a8",
             "ssh_username": "root",
@@ -1720,38 +1412,28 @@
             "ssh_port": 22,
             "ssh_handshake_attempts": 1000,
             "ssh_timeout": "3600s",
-            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+            "memory": 2048,
+            "keep_registered": false,
+            "disable_vnc": false
         },
         {
-            "type": "qemu",
-            "name": "generic-centos9s-libvirt-x64",
-            "vm_name": "generic-centos9s-libvirt-x64",
-            "output_directory": "output/generic-centos9s-libvirt-x64",
-            "qemu_binary": "qemu-system-x86_64",
+            "type": "utm-iso",
+            "name": "generic-centos9s-utm-x64",
+            "vm_name": "generic-centos9s-utm-x64",
+            "output_directory": "output/generic-centos9s-utm-x64",
+            "vm_arch": "x86_64",
+            "vm_backend": "qemu",
+            "uefi_boot": false,
+            "hypervisor": false,
+            "hard_drive_interface": "virtio",
+            "iso_interface": "usb",
             "boot_wait": "20s",
             "boot_keygroup_interval": "1s",
             "boot_command": [
                 "<tab> net.ifnames=0 inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.centos9s.vagrant.ks vga=792 <enter><wait>"
             ],
-            "qemuargs": [
-                [
-                    "-cpu",
-                    "max"
-                ]
-            ],
-            "format": "qcow2",
-            "disk_size": "131072",
-            "disk_discard": "unmap",
-            "disk_detect_zeroes": "on",
-            "disk_cache": "unsafe",
-            "disk_image": false,
-            "disk_compression": true,
-            "disk_interface": "virtio-scsi",
-            "net_device": "virtio-net",
-            "cpus": 2,
-            "memory": 2048,
             "http_directory": "http",
-            "headless": true,
             "iso_url": "https://dfw.mirror.rackspace.com/centos-stream/9-stream/BaseOS/x86_64/iso/CentOS-Stream-9-latest-x86_64-boot.iso",
             "iso_checksum": "sha256:6a1b0d6ec8e3b1d7ae8f87bbb6040fa15af82ddedad615f756aca421d9bb9b35",
             "ssh_username": "root",
@@ -1759,38 +1441,28 @@
             "ssh_port": 22,
             "ssh_handshake_attempts": 1000,
             "ssh_timeout": "3600s",
-            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+            "memory": 2048,
+            "keep_registered": false,
+            "disable_vnc": false
         },
         {
-            "type": "qemu",
-            "name": "generic-alma9-libvirt-x64",
-            "vm_name": "generic-alma9-libvirt-x64",
-            "output_directory": "output/generic-alma9-libvirt-x64",
-            "qemu_binary": "qemu-system-x86_64",
+            "type": "utm-iso",
+            "name": "generic-alma9-utm-x64",
+            "vm_name": "generic-alma9-utm-x64",
+            "output_directory": "output/generic-alma9-utm-x64",
+            "vm_arch": "x86_64",
+            "vm_backend": "qemu",
+            "uefi_boot": false,
+            "hypervisor": false,
+            "hard_drive_interface": "virtio",
+            "iso_interface": "usb",
             "boot_wait": "20s",
             "boot_keygroup_interval": "1s",
             "boot_command": [
                 "<tab> net.ifnames=0 inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alma9.vagrant.x64.ks vga=792 <enter><wait>"
             ],
-            "qemuargs": [
-                [
-                    "-cpu",
-                    "max"
-                ]
-            ],
-            "format": "qcow2",
-            "disk_size": "131072",
-            "disk_discard": "unmap",
-            "disk_detect_zeroes": "on",
-            "disk_cache": "unsafe",
-            "disk_image": false,
-            "disk_compression": true,
-            "disk_interface": "virtio-scsi",
-            "net_device": "virtio-net",
-            "cpus": 2,
-            "memory": 2048,
             "http_directory": "http",
-            "headless": true,
             "iso_url": "https://dfw.mirror.rackspace.com/almalinux/9.7/isos/x86_64/AlmaLinux-9.7-x86_64-minimal.iso",
             "iso_checksum": "sha256:d51ed22cf272a0f30fcf55579d2748ff6ee1fddd6e36ba728cb386b933ceb7fc",
             "ssh_username": "root",
@@ -1798,38 +1470,28 @@
             "ssh_port": 22,
             "ssh_handshake_attempts": 1000,
             "ssh_timeout": "3600s",
-            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+            "memory": 2048,
+            "keep_registered": false,
+            "disable_vnc": false
         },
         {
-            "type": "qemu",
-            "name": "generic-alma10-libvirt-x64",
-            "vm_name": "generic-alma10-libvirt-x64",
-            "output_directory": "output/generic-alma10-libvirt-x64",
-            "qemu_binary": "qemu-system-x86_64",
+            "type": "utm-iso",
+            "name": "generic-alma10-utm-x64",
+            "vm_name": "generic-alma10-utm-x64",
+            "output_directory": "output/generic-alma10-utm-x64",
+            "vm_arch": "x86_64",
+            "vm_backend": "qemu",
+            "uefi_boot": false,
+            "hypervisor": false,
+            "hard_drive_interface": "virtio",
+            "iso_interface": "usb",
             "boot_wait": "20s",
             "boot_keygroup_interval": "1s",
             "boot_command": [
                 "<up>e<wait><down><down><end> net.ifnames=0 inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alma10.vagrant.x64.ks vga=792<f10><wait>"
             ],
-            "qemuargs": [
-                [
-                    "-cpu",
-                    "max"
-                ]
-            ],
-            "format": "qcow2",
-            "disk_size": "131072",
-            "disk_discard": "unmap",
-            "disk_detect_zeroes": "on",
-            "disk_cache": "unsafe",
-            "disk_image": false,
-            "disk_compression": true,
-            "disk_interface": "virtio-scsi",
-            "net_device": "virtio-net",
-            "cpus": 2,
-            "memory": 2048,
             "http_directory": "http",
-            "headless": true,
             "iso_url": "https://ftp.bme.hu/almalinux/10.1/isos/x86_64/AlmaLinux-10.1-x86_64-minimal.iso",
             "iso_checksum": "sha256:049efd183a5a841dd432b3427eb6faa7deb3bf6c6bf2c63cbffa024b9c651725",
             "ssh_username": "root",
@@ -1837,37 +1499,28 @@
             "ssh_port": 22,
             "ssh_handshake_attempts": 1000,
             "ssh_timeout": "3600s",
-            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+            "memory": 2048,
+            "keep_registered": false,
+            "disable_vnc": false
         },
         {
-            "type": "qemu",
-            "name": "generic-oracle9-libvirt-x64",
-            "vm_name": "generic-oracle9-libvirt-x64",
-            "output_directory": "output/generic-oracle9-libvirt-x64",
+            "type": "utm-iso",
+            "name": "generic-oracle9-utm-x64",
+            "vm_name": "generic-oracle9-utm-x64",
+            "output_directory": "output/generic-oracle9-utm-x64",
+            "vm_arch": "x86_64",
+            "vm_backend": "qemu",
+            "uefi_boot": false,
+            "hypervisor": false,
+            "hard_drive_interface": "virtio",
+            "iso_interface": "usb",
             "boot_wait": "20s",
             "boot_keygroup_interval": "1s",
             "boot_command": [
                 "<tab> net.ifnames=0 inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.oracle9.vagrant.ks vga=792 <enter><wait>"
             ],
-            "qemuargs": [
-                [
-                    "-cpu",
-                    "max"
-                ]
-            ],
-            "format": "qcow2",
-            "disk_size": "131072",
-            "disk_discard": "unmap",
-            "disk_detect_zeroes": "on",
-            "disk_cache": "unsafe",
-            "disk_image": false,
-            "disk_compression": true,
-            "disk_interface": "virtio-scsi",
-            "net_device": "virtio-net",
-            "cpus": 2,
-            "memory": 2048,
             "http_directory": "http",
-            "headless": true,
             "iso_url": "https://yum.oracle.com/ISOS/OracleLinux/OL9/u3/x86_64/OracleLinux-R9-U3-x86_64-boot.iso",
             "iso_checksum": "sha256:22c68f84230b375aeb8fa035fab6f5f4ef6505c036ee068cd8fab5f0675b2c78",
             "ssh_username": "root",
@@ -1875,38 +1528,28 @@
             "ssh_port": 22,
             "ssh_handshake_attempts": 1000,
             "ssh_timeout": "3600s",
-            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+            "memory": 2048,
+            "keep_registered": false,
+            "disable_vnc": false
         },
         {
-            "type": "qemu",
-            "name": "generic-rocky9-libvirt-x64",
-            "vm_name": "generic-rocky9-libvirt-x64",
-            "output_directory": "output/generic-rocky9-libvirt-x64",
-            "qemu_binary": "qemu-system-x86_64",
+            "type": "utm-iso",
+            "name": "generic-rocky9-utm-x64",
+            "vm_name": "generic-rocky9-utm-x64",
+            "output_directory": "output/generic-rocky9-utm-x64",
+            "vm_arch": "x86_64",
+            "vm_backend": "qemu",
+            "uefi_boot": false,
+            "hypervisor": false,
+            "hard_drive_interface": "virtio",
+            "iso_interface": "usb",
             "boot_wait": "20s",
             "boot_keygroup_interval": "1s",
             "boot_command": [
                 "<tab> net.ifnames=0 inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rocky9.vagrant.ks vga=792 <enter><wait>"
             ],
-            "qemuargs": [
-                [
-                    "-cpu",
-                    "max"
-                ]
-            ],
-            "format": "qcow2",
-            "disk_size": "131072",
-            "disk_discard": "unmap",
-            "disk_detect_zeroes": "on",
-            "disk_cache": "unsafe",
-            "disk_image": false,
-            "disk_compression": true,
-            "disk_interface": "virtio-scsi",
-            "net_device": "virtio-net",
-            "cpus": 2,
-            "memory": 2048,
             "http_directory": "http",
-            "headless": true,
             "iso_url": "https://ftp5.gwdg.de/pub/linux/rocky/9.7/isos/x86_64/Rocky-9.7-x86_64-minimal.iso",
             "iso_checksum": "sha256:23a1ac1175d8ccada7195863914ef1237f584ff25f73bd53da410d5fffd882b0",
             "ssh_username": "root",
@@ -1914,38 +1557,28 @@
             "ssh_port": 22,
             "ssh_handshake_attempts": 1000,
             "ssh_timeout": "3600s",
-            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+            "memory": 2048,
+            "keep_registered": false,
+            "disable_vnc": false
         },
         {
-            "type": "qemu",
-            "name": "generic-rocky10-libvirt-x64",
-            "vm_name": "generic-rocky10-libvirt-x64",
-            "output_directory": "output/generic-rocky10-libvirt-x64",
-            "qemu_binary": "qemu-system-x86_64",
+            "type": "utm-iso",
+            "name": "generic-rocky10-utm-x64",
+            "vm_name": "generic-rocky10-utm-x64",
+            "output_directory": "output/generic-rocky10-utm-x64",
+            "vm_arch": "x86_64",
+            "vm_backend": "qemu",
+            "uefi_boot": false,
+            "hypervisor": false,
+            "hard_drive_interface": "virtio",
+            "iso_interface": "usb",
             "boot_wait": "20s",
             "boot_keygroup_interval": "1s",
             "boot_command": [
                 "<up>e<wait><down><down><end> net.ifnames=0 inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rocky10.vagrant.ks vga=792<f10><wait>"
             ],
-            "qemuargs": [
-                [
-                    "-cpu",
-                    "max"
-                ]
-            ],
-            "format": "qcow2",
-            "disk_size": "131072",
-            "disk_discard": "unmap",
-            "disk_detect_zeroes": "on",
-            "disk_cache": "unsafe",
-            "disk_image": false,
-            "disk_compression": true,
-            "disk_interface": "virtio-scsi",
-            "net_device": "virtio-net",
-            "cpus": 2,
-            "memory": 2048,
             "http_directory": "http",
-            "headless": true,
             "iso_url": "https://ftp5.gwdg.de/pub/linux/rocky/10.1/isos/x86_64/Rocky-10.1-x86_64-minimal.iso",
             "iso_checksum": "sha256:5aafc2c86e606428cd7c5802b0d28c220f34c181a57eefff2cc6f65214714499",
             "ssh_username": "root",
@@ -1953,14 +1586,22 @@
             "ssh_port": 22,
             "ssh_handshake_attempts": 1000,
             "ssh_timeout": "3600s",
-            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+            "memory": 2048,
+            "keep_registered": false,
+            "disable_vnc": false
         },
         {
-            "type": "qemu",
-            "name": "generic-debian12-libvirt-x64",
-            "vm_name": "generic-debian12-libvirt-x64",
-            "output_directory": "output/generic-debian12-libvirt-x64",
-            "qemu_binary": "qemu-system-x86_64",
+            "type": "utm-iso",
+            "name": "generic-debian12-utm-x64",
+            "vm_name": "generic-debian12-utm-x64",
+            "output_directory": "output/generic-debian12-utm-x64",
+            "vm_arch": "x86_64",
+            "vm_backend": "qemu",
+            "uefi_boot": false,
+            "hypervisor": false,
+            "hard_drive_interface": "virtio",
+            "iso_interface": "usb",
             "boot_wait": "10s",
             "boot_keygroup_interval": "1s",
             "boot_command": [
@@ -1978,19 +1619,7 @@
                 "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.debian12.vagrant.cfg ",
                 "<enter>"
             ],
-            "format": "qcow2",
-            "disk_size": "131072",
-            "disk_discard": "unmap",
-            "disk_detect_zeroes": "on",
-            "disk_cache": "unsafe",
-            "disk_image": false,
-            "disk_compression": true,
-            "disk_interface": "virtio-scsi",
-            "net_device": "virtio-net",
-            "cpus": 2,
-            "memory": 2048,
             "http_directory": "http",
-            "headless": true,
             "iso_url": "https://cdimage.debian.org/cdimage/release/12.4.0/amd64/iso-cd/debian-12.4.0-amd64-netinst.iso",
             "iso_checksum": "sha256:64d727dd5785ae5fcfd3ae8ffbede5f40cca96f1580aaa2820e8b99dae989d94",
             "ssh_username": "root",
@@ -1998,14 +1627,22 @@
             "ssh_port": 22,
             "ssh_handshake_attempts": 1000,
             "ssh_timeout": "3600s",
-            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+            "memory": 2048,
+            "keep_registered": false,
+            "disable_vnc": false
         },
         {
-            "type": "qemu",
-            "name": "generic-alpine318-libvirt-x64",
-            "vm_name": "generic-alpine318-libvirt-x64",
-            "output_directory": "output/generic-alpine318-libvirt-x64",
-            "qemu_binary": "qemu-system-x86_64",
+            "type": "utm-iso",
+            "name": "generic-alpine318-utm-x64",
+            "vm_name": "generic-alpine318-utm-x64",
+            "output_directory": "output/generic-alpine318-utm-x64",
+            "vm_arch": "x86_64",
+            "vm_backend": "qemu",
+            "uefi_boot": false,
+            "hypervisor": false,
+            "hard_drive_interface": "virtio",
+            "iso_interface": "usb",
             "boot_wait": "60s",
             "boot_keygroup_interval": "1s",
             "boot_command": [
@@ -2023,19 +1660,7 @@
                 "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
                 "chroot /mnt apk add openntpd && chroot /mnt rc-update add openntpd default && reboot<enter>"
             ],
-            "format": "qcow2",
-            "disk_size": "131072",
-            "disk_discard": "unmap",
-            "disk_detect_zeroes": "on",
-            "disk_cache": "unsafe",
-            "disk_image": false,
-            "disk_compression": true,
-            "disk_interface": "virtio-scsi",
-            "net_device": "virtio-net",
-            "cpus": 2,
-            "memory": 2048,
             "http_directory": "http",
-            "headless": true,
             "iso_url": "https://mirrors.edge.kernel.org/alpine/v3.18/releases/x86_64/alpine-virt-3.18.12-x86_64.iso",
             "iso_checksum": "sha256:aed9e323fb0ee8d7b75553948dcef7a02e51da23e8bea4341131c52352d5cfd7",
             "ssh_username": "root",
@@ -2043,14 +1668,22 @@
             "ssh_port": 22,
             "ssh_handshake_attempts": 1000,
             "ssh_timeout": "3600s",
-            "shutdown_command": "/sbin/poweroff"
+            "shutdown_command": "/sbin/poweroff",
+            "memory": 2048,
+            "keep_registered": false,
+            "disable_vnc": false
         },
         {
-            "type": "qemu",
-            "name": "generic-devuan5-libvirt-x64",
-            "vm_name": "generic-devuan5-libvirt-x64",
-            "output_directory": "output/generic-devuan5-libvirt-x64",
-            "qemu_binary": "qemu-system-x86_64",
+            "type": "utm-iso",
+            "name": "generic-devuan5-utm-x64",
+            "vm_name": "generic-devuan5-utm-x64",
+            "output_directory": "output/generic-devuan5-utm-x64",
+            "vm_arch": "x86_64",
+            "vm_backend": "qemu",
+            "uefi_boot": false,
+            "hypervisor": false,
+            "hard_drive_interface": "virtio",
+            "iso_interface": "usb",
             "boot_wait": "10s",
             "boot_keygroup_interval": "1s",
             "boot_command": [
@@ -2068,19 +1701,7 @@
                 " ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.devuan5.vagrant.cfg ",
                 "<enter>"
             ],
-            "format": "qcow2",
-            "disk_size": "131072",
-            "disk_discard": "unmap",
-            "disk_detect_zeroes": "on",
-            "disk_cache": "unsafe",
-            "disk_image": false,
-            "disk_compression": true,
-            "disk_interface": "virtio-scsi",
-            "net_device": "virtio-net",
-            "cpus": 2,
-            "memory": 2048,
             "http_directory": "http",
-            "headless": true,
             "iso_url": "https://mirror.leaseweb.com/devuan/devuan_daedalus/installer-iso/devuan_daedalus_5.0.1_amd64_netinstall.iso",
             "iso_checksum": "sha256:722af7905595d9a1417f48f783d43dd40fe7da7a2e1d7998a8ea47df2d26941b",
             "ssh_username": "root",
@@ -2088,14 +1709,22 @@
             "ssh_port": 22,
             "ssh_handshake_attempts": 1000,
             "ssh_timeout": "3600s",
-            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P -h now"
+            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P -h now",
+            "memory": 2048,
+            "keep_registered": false,
+            "disable_vnc": false
         },
         {
-            "type": "qemu",
-            "name": "generic-hardenedbsd-libvirt-x64",
-            "vm_name": "generic-hardenedbsd-libvirt-x64",
-            "output_directory": "output/generic-hardenedbsd-libvirt-x64",
-            "qemu_binary": "qemu-system-x86_64",
+            "type": "utm-iso",
+            "name": "generic-hardenedbsd-utm-x64",
+            "vm_name": "generic-hardenedbsd-utm-x64",
+            "output_directory": "output/generic-hardenedbsd-utm-x64",
+            "vm_arch": "x86_64",
+            "vm_backend": "qemu",
+            "uefi_boot": false,
+            "hypervisor": false,
+            "hard_drive_interface": "virtio",
+            "iso_interface": "usb",
             "boot_wait": "1s",
             "boot_keygroup_interval": "1s",
             "boot_command": [
@@ -2115,19 +1744,7 @@
                 "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.hardenedbsd.vagrant.cfg<enter><wait10>",
                 "sh -c ' { bsdinstall script /tmp/installerconfig 2>&1 && reboot ; } | tee /tmp/installerconfig.log ' <enter><wait10>"
             ],
-            "format": "qcow2",
-            "disk_size": "131072",
-            "disk_discard": "unmap",
-            "disk_detect_zeroes": "on",
-            "disk_cache": "unsafe",
-            "disk_image": false,
-            "disk_compression": true,
-            "disk_interface": "virtio-scsi",
-            "net_device": "virtio-net",
-            "cpus": 2,
-            "memory": 2048,
             "http_directory": "http",
-            "headless": true,
             "iso_url": "https://mirror.laylo.nl/pub/hardenedbsd/14-stable/amd64/amd64/installer/build-26/disc1.iso",
             "iso_checksum": "sha256:f1c151ebada9bb77c8b7a52d3db65b19e029ea6c6c1123faf8f11b36c0d50906",
             "ssh_username": "root",
@@ -2135,14 +1752,22 @@
             "ssh_port": 22,
             "ssh_handshake_attempts": 1000,
             "ssh_timeout": "3600s",
-            "shutdown_command": "shutdown -p now"
+            "shutdown_command": "shutdown -p now",
+            "memory": 2048,
+            "keep_registered": false,
+            "disable_vnc": false
         },
         {
-            "type": "qemu",
-            "name": "generic-dragonflybsd-libvirt-x64",
-            "vm_name": "generic-dragonflybsd-libvirt-x64",
-            "output_directory": "output/generic-dragonflybsd-libvirt-x64",
-            "qemu_binary": "qemu-system-x86_64",
+            "type": "utm-iso",
+            "name": "generic-dragonflybsd-utm-x64",
+            "vm_name": "generic-dragonflybsd-utm-x64",
+            "output_directory": "output/generic-dragonflybsd-utm-x64",
+            "vm_arch": "x86_64",
+            "vm_backend": "qemu",
+            "uefi_boot": false,
+            "hypervisor": false,
+            "hard_drive_interface": "virtio",
+            "iso_interface": "usb",
             "boot_wait": "1s",
             "boot_keygroup_interval": "1s",
             "boot_command": [
@@ -2175,19 +1800,7 @@
                 "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.dragonflybsd.vagrant.cfg<enter><wait10>",
                 "sh -c ' { sh -ex /tmp/installerconfig 2>&1 && reboot ; } | tee /tmp/installerconfig.log ' <enter><wait10>"
             ],
-            "format": "qcow2",
-            "disk_size": "131072",
-            "disk_discard": "unmap",
-            "disk_detect_zeroes": "on",
-            "disk_cache": "unsafe",
-            "disk_image": false,
-            "disk_compression": true,
-            "disk_interface": "virtio-scsi",
-            "net_device": "virtio-net",
-            "cpus": 2,
-            "memory": 2048,
             "http_directory": "http",
-            "headless": true,
             "iso_url": "https://mirror-master.dragonflybsd.org/iso-images/dfly-x86_64-6.4.0_REL.iso",
             "iso_checksum": "sha256:20e4724a3cb838fec0148a4adbffd9bd57b3e6d759a6599d1149188a19c61265",
             "ssh_username": "root",
@@ -2195,14 +1808,22 @@
             "ssh_port": 22,
             "ssh_handshake_attempts": 1000,
             "ssh_timeout": "3600s",
-            "shutdown_command": "shutdown -p now"
+            "shutdown_command": "shutdown -p now",
+            "memory": 2048,
+            "keep_registered": false,
+            "disable_vnc": false
         },
         {
-            "type": "qemu",
-            "name": "generic-freebsd14-libvirt-x64",
-            "vm_name": "generic-freebsd14-libvirt-x64",
-            "output_directory": "output/generic-freebsd14-libvirt-x64",
-            "qemu_binary": "qemu-system-x86_64",
+            "type": "utm-iso",
+            "name": "generic-freebsd14-utm-x64",
+            "vm_name": "generic-freebsd14-utm-x64",
+            "output_directory": "output/generic-freebsd14-utm-x64",
+            "vm_arch": "x86_64",
+            "vm_backend": "qemu",
+            "uefi_boot": false,
+            "hypervisor": false,
+            "hard_drive_interface": "virtio",
+            "iso_interface": "usb",
             "boot_wait": "1s",
             "boot_keygroup_interval": "1s",
             "boot_command": [
@@ -2224,19 +1845,7 @@
                 "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.freebsd14.vagrant.cfg<enter><wait5>",
                 "sh -c ' { bsdinstall script /tmp/installerconfig 2>&1 && reboot ; } | tee /tmp/installerconfig.log ' <enter><wait10>"
             ],
-            "format": "qcow2",
-            "disk_size": "131072",
-            "disk_discard": "unmap",
-            "disk_detect_zeroes": "on",
-            "disk_cache": "unsafe",
-            "disk_image": false,
-            "disk_compression": true,
-            "disk_interface": "virtio-scsi",
-            "net_device": "virtio-net",
-            "cpus": 2,
-            "memory": 2048,
             "http_directory": "http",
-            "headless": true,
             "iso_url": "https://ftp.freebsd.org/pub/FreeBSD/releases/ISO-IMAGES/14.0/FreeBSD-14.0-RELEASE-amd64-disc1.iso",
             "iso_checksum": "sha256:7200214030125877561e70718781b435b703180c12575966ad1c7584a3e60dc6",
             "ssh_username": "root",
@@ -2244,14 +1853,22 @@
             "ssh_port": 22,
             "ssh_handshake_attempts": 1000,
             "ssh_timeout": "3600s",
-            "shutdown_command": "shutdown -p now"
+            "shutdown_command": "shutdown -p now",
+            "memory": 2048,
+            "keep_registered": false,
+            "disable_vnc": false
         },
         {
-            "type": "qemu",
-            "name": "generic-fedora42-libvirt-x64",
-            "vm_name": "generic-fedora42-libvirt-x64",
-            "output_directory": "output/generic-fedora42-libvirt-x64",
-            "qemu_binary": "qemu-system-x86_64",
+            "type": "utm-iso",
+            "name": "generic-fedora42-utm-x64",
+            "vm_name": "generic-fedora42-utm-x64",
+            "output_directory": "output/generic-fedora42-utm-x64",
+            "vm_arch": "x86_64",
+            "vm_backend": "qemu",
+            "uefi_boot": false,
+            "hypervisor": false,
+            "hard_drive_interface": "virtio",
+            "iso_interface": "usb",
             "boot_wait": "20s",
             "boot_keygroup_interval": "1s",
             "boot_command": [
@@ -2274,19 +1891,7 @@
                 "initrd /images/pxeboot/initrd.img<enter><wait10>",
                 "boot<enter><wait>"
             ],
-            "format": "qcow2",
-            "disk_size": "131072",
-            "disk_discard": "unmap",
-            "disk_detect_zeroes": "on",
-            "disk_cache": "unsafe",
-            "disk_image": false,
-            "disk_compression": true,
-            "disk_interface": "virtio-scsi",
-            "net_device": "virtio-net",
-            "cpus": 2,
-            "memory": 2048,
             "http_directory": "http",
-            "headless": true,
             "iso_url": "https://dl.fedoraproject.org/pub/fedora/linux/releases/42/Server/x86_64/iso/Fedora-Server-netinst-x86_64-42-1.1.iso",
             "iso_checksum": "sha256:231f3e0d1dc8f565c01a9f641b3d16c49cae44530074bc2047fe2373a721c82f",
             "ssh_username": "root",
@@ -2294,14 +1899,22 @@
             "ssh_port": 22,
             "ssh_handshake_attempts": 1000,
             "ssh_timeout": "3600s",
-            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+            "memory": 2048,
+            "keep_registered": false,
+            "disable_vnc": false
         },
         {
-            "type": "qemu",
-            "name": "generic-fedora43-libvirt-x64",
-            "vm_name": "generic-fedora43-libvirt-x64",
-            "output_directory": "output/generic-fedora43-libvirt-x64",
-            "qemu_binary": "qemu-system-x86_64",
+            "type": "utm-iso",
+            "name": "generic-fedora43-utm-x64",
+            "vm_name": "generic-fedora43-utm-x64",
+            "output_directory": "output/generic-fedora43-utm-x64",
+            "vm_arch": "x86_64",
+            "vm_backend": "qemu",
+            "uefi_boot": false,
+            "hypervisor": false,
+            "hard_drive_interface": "virtio",
+            "iso_interface": "usb",
             "boot_wait": "20s",
             "boot_keygroup_interval": "1s",
             "boot_command": [
@@ -2324,19 +1937,7 @@
                 "initrd /images/pxeboot/initrd.img<enter><wait10>",
                 "boot<enter><wait>"
             ],
-            "format": "qcow2",
-            "disk_size": "131072",
-            "disk_discard": "unmap",
-            "disk_detect_zeroes": "on",
-            "disk_cache": "unsafe",
-            "disk_image": false,
-            "disk_compression": true,
-            "disk_interface": "virtio-scsi",
-            "net_device": "virtio-net",
-            "cpus": 2,
-            "memory": 2048,
             "http_directory": "http",
-            "headless": true,
             "iso_url": "https://dl.fedoraproject.org/pub/fedora/linux/releases/43/Server/x86_64/iso/Fedora-Server-netinst-x86_64-43-1.6.iso",
             "iso_checksum": "sha256:16fd70ddae2c7de13e485637c3da1fb385dd8220389f988279ea3b3d561243cc",
             "ssh_username": "root",
@@ -2344,14 +1945,22 @@
             "ssh_port": 22,
             "ssh_handshake_attempts": 1000,
             "ssh_timeout": "3600s",
-            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+            "memory": 2048,
+            "keep_registered": false,
+            "disable_vnc": false
         },
         {
-            "type": "qemu",
-            "name": "generic-alpine319-libvirt-x64",
-            "vm_name": "generic-alpine319-libvirt-x64",
-            "output_directory": "output/generic-alpine319-libvirt-x64",
-            "qemu_binary": "qemu-system-x86_64",
+            "type": "utm-iso",
+            "name": "generic-alpine319-utm-x64",
+            "vm_name": "generic-alpine319-utm-x64",
+            "output_directory": "output/generic-alpine319-utm-x64",
+            "vm_arch": "x86_64",
+            "vm_backend": "qemu",
+            "uefi_boot": false,
+            "hypervisor": false,
+            "hard_drive_interface": "virtio",
+            "iso_interface": "usb",
             "boot_wait": "60s",
             "boot_keygroup_interval": "1s",
             "boot_command": [
@@ -2369,19 +1978,7 @@
                 "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
                 "chroot /mnt apk add openntpd && chroot /mnt rc-update add openntpd default && reboot<enter>"
             ],
-            "format": "qcow2",
-            "disk_size": "131072",
-            "disk_discard": "unmap",
-            "disk_detect_zeroes": "on",
-            "disk_cache": "unsafe",
-            "disk_image": false,
-            "disk_compression": true,
-            "disk_interface": "virtio-scsi",
-            "net_device": "virtio-net",
-            "cpus": 2,
-            "memory": 2048,
             "http_directory": "http",
-            "headless": true,
             "iso_url": "https://mirrors.edge.kernel.org/alpine/v3.19/releases/x86_64/alpine-virt-3.19.7-x86_64.iso",
             "iso_checksum": "sha256:ccaaac43fca667ed0347c7894cc5f993f528c61288bcdefd89cda127f9f7f914",
             "ssh_username": "root",
@@ -2389,14 +1986,22 @@
             "ssh_port": 22,
             "ssh_handshake_attempts": 1000,
             "ssh_timeout": "3600s",
-            "shutdown_command": "/sbin/poweroff"
+            "shutdown_command": "/sbin/poweroff",
+            "memory": 2048,
+            "keep_registered": false,
+            "disable_vnc": false
         },
         {
-            "type": "qemu",
-            "name": "generic-fedora-rawhide-libvirt-x64",
-            "vm_name": "generic-fedora-rawhide-libvirt-x64",
-            "output_directory": "output/generic-fedora-rawhide-libvirt-x64",
-            "qemu_binary": "qemu-system-x86_64",
+            "type": "utm-iso",
+            "name": "generic-fedora-rawhide-utm-x64",
+            "vm_name": "generic-fedora-rawhide-utm-x64",
+            "output_directory": "output/generic-fedora-rawhide-utm-x64",
+            "vm_arch": "x86_64",
+            "vm_backend": "qemu",
+            "uefi_boot": false,
+            "hypervisor": false,
+            "hard_drive_interface": "virtio",
+            "iso_interface": "usb",
             "boot_wait": "20s",
             "boot_keygroup_interval": "1s",
             "boot_command": [
@@ -2419,19 +2024,7 @@
                 "initrd /images/pxeboot/initrd.img<enter><wait10>",
                 "boot<enter><wait>"
             ],
-            "format": "qcow2",
-            "disk_size": "131072",
-            "disk_discard": "unmap",
-            "disk_detect_zeroes": "on",
-            "disk_cache": "unsafe",
-            "disk_image": false,
-            "disk_compression": true,
-            "disk_interface": "virtio-scsi",
-            "net_device": "virtio-net",
-            "cpus": 2,
-            "memory": 2048,
             "http_directory": "http",
-            "headless": true,
             "iso_url": "https://mirrors.kernel.org/fedora/development/rawhide/Server/x86_64/iso/Fedora-Server-netinst-x86_64-Rawhide-20250226.n.0.iso",
             "iso_checksum": "sha256:e87965f9326657e4345716c2ab1a5010eb21c2c2f15cc7e19f893380b91bc719",
             "ssh_username": "root",
@@ -2439,23 +2032,20 @@
             "ssh_port": 22,
             "ssh_handshake_attempts": 1000,
             "ssh_timeout": "3600s",
-            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+            "memory": 2048,
+            "keep_registered": false,
+            "disable_vnc": false
         }
     ],
     "post-processors": [
         [
             {
-                "type": "vagrant",
+                "type": "utm-vagrant",
                 "compression_level": 9,
                 "keep_input_artifact": false,
-                "vagrantfile_template": "tpl/generic-{{split build_name \"-\" 1}}.rb",
-                "output": "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.box",
-                "include": [
-                    "tpl/generic/info.json"
-                ],
-                "except": [
-                    "generic-fedora-rawhide-libvirt-x64"
-                ]
+                "output": "output/{{build_name}}-{{user `box_version`}}.box",
+                "architecture": "amd64"
             },
             {
                 "type": "checksum",
@@ -2463,88 +2053,7 @@
                     "sha256"
                 ],
                 "keep_input_artifact": false,
-                "output": "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.box.sha256",
-                "except": [
-                    "generic-fedora-rawhide-libvirt-x64"
-                ]
-            }
-        ],
-        [
-            {
-                "type": "vagrant",
-                "compression_level": 9,
-                "keep_input_artifact": false,
-                "vagrantfile_template": "tpl/roboxes-{{split build_name \"-\" 1}}.rb",
-                "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.box",
-                "include": [
-                    "tpl/roboxes/info.json"
-                ],
-                "except": [
-                    "generic-fedora-rawhide-libvirt-x64"
-                ]
-            },
-            {
-                "type": "checksum",
-                "checksum_types": [
-                    "sha256"
-                ],
-                "keep_input_artifact": false,
-                "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.box.sha256",
-                "except": [
-                    "generic-fedora-rawhide-libvirt-x64"
-                ]
-            }
-        ],
-        [
-            {
-                "type": "vagrant",
-                "compression_level": 9,
-                "keep_input_artifact": false,
-                "vagrantfile_template": "tpl/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}.rb",
-                "output": "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{split build_name \"-\" 4}}-{{user `box_version`}}.box",
-                "include": [
-                    "tpl/generic/info.json"
-                ],
-                "only": [
-                    "generic-fedora-rawhide-libvirt-x64"
-                ]
-            },
-            {
-                "type": "checksum",
-                "checksum_types": [
-                    "sha256"
-                ],
-                "keep_input_artifact": false,
-                "output": "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{split build_name \"-\" 4}}-{{user `box_version`}}.box.sha256",
-                "only": [
-                    "generic-fedora-rawhide-libvirt-x64"
-                ]
-            }
-        ],
-        [
-            {
-                "type": "vagrant",
-                "compression_level": 9,
-                "keep_input_artifact": false,
-                "vagrantfile_template": "tpl/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}.rb",
-                "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{split build_name \"-\" 4}}-{{user `box_version`}}.box",
-                "include": [
-                    "tpl/roboxes/info.json"
-                ],
-                "only": [
-                    "generic-fedora-rawhide-libvirt-x64"
-                ]
-            },
-            {
-                "type": "checksum",
-                "checksum_types": [
-                    "sha256"
-                ],
-                "keep_input_artifact": false,
-                "output": "output/roboxes-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{split build_name \"-\" 4}}-{{user `box_version`}}.box.sha256",
-                "only": [
-                    "generic-fedora-rawhide-libvirt-x64"
-                ]
+                "output": "output/{{build_name}}-{{user `box_version`}}.box.sha256"
             }
         ]
     ]

@@ -1,0 +1,196 @@
+{
+    "variables": {
+        "box_version": "{{env `VERSION`}}"
+    },
+    "provisioners": [
+        {
+            "type": "shell",
+            "timeout": "120m",
+            "scripts": [
+                "scripts/alma9/network.sh",
+                "scripts/alma9/dnf.sh",
+                "scripts/alma9/base.sh",
+                "scripts/alma9/reboot.sh"
+            ],
+            "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "ansiblebook-alma9-utm-a64"
+            ]
+        },
+        {
+            "type": "shell",
+            "timeout": "120m",
+            "scripts": [
+                "scripts/alma9/kernel.sh",
+                "scripts/alma9/floppy.sh",
+                "scripts/common/utm.sh",
+                "scripts/alma9/vagrant.sh",
+                "scripts/alma9/tuning.sh",
+                "scripts/alma9/sshd.sh",
+                "scripts/alma9/randomness.sh",
+                "scripts/alma9/updatedb.sh",
+                "scripts/alma9/cleanup.sh",
+                "scripts/alma9/undnf.sh"
+            ],
+            "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+            "pause_before": "120s",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "ansiblebook-alma9-utm-a64"
+            ]
+        },
+        {
+            "scripts": [
+                "scripts/debian12/apt.sh",
+                "scripts/debian12/network.sh"
+            ],
+            "type": "shell",
+            "timeout": "120m",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "ansiblebook-debian12-utm-a64"
+            ]
+        },
+        {
+            "scripts": [
+                "scripts/debian12/floppy.sh",
+                "scripts/debian12/profile.sh",
+                "scripts/debian12/vagrant.sh",
+                "scripts/debian12/motd.sh",
+                "scripts/debian12/fixtty.sh",
+                "scripts/common/utm.sh",
+                "scripts/debian12/cleanup.sh"
+            ],
+            "type": "shell",
+            "timeout": "120m",
+            "pause_before": "120s",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "ansiblebook-debian12-utm-a64"
+            ]
+        },
+        {
+            "scripts": [
+                "scripts/common/motd.sh",
+                "scripts/common/keys.sh",
+                "scripts/common/machine.sh",
+                "scripts/common/leases.sh",
+                "scripts/common/localtime.sh"
+            ],
+            "type": "shell",
+            "timeout": "120m",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true"
+        },
+        {
+            "scripts": [
+                "scripts/common/zerodisk.sh"
+            ],
+            "type": "shell",
+            "timeout": "720m",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true"
+        },
+        {
+            "scripts": [
+                "scripts/common/lockout.sh"
+            ],
+            "type": "shell",
+            "timeout": "120m",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true"
+        }
+    ],
+    "builders": [
+        {
+            "type": "utm-iso",
+            "name": "ansiblebook-alma9-utm-a64",
+            "vm_name": "ansiblebook-alma9-utm-a64",
+            "output_directory": "output/ansiblebook-alma9-utm-a64",
+            "vm_arch": "aarch64",
+            "vm_backend": "qemu",
+            "uefi_boot": true,
+            "hypervisor": true,
+            "hard_drive_interface": "virtio",
+            "iso_interface": "usb",
+            "memory": 2048,
+            "keep_registered": false,
+            "disable_vnc": false,
+            "boot_wait": "20s",
+            "boot_command": [
+                "<up><up><wait>",
+                "e<wait>",
+                "<down><down><end><wait>",
+                " inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alma9.vagrant.a64.ks inst.nosave=all",
+                "<wait><leftCtrlOn>x<leftCtrlOff>"
+            ],
+            "http_directory": "http",
+            "iso_url": "https://dfw.mirror.rackspace.com/almalinux/9/isos/aarch64/AlmaLinux-9-latest-aarch64-boot.iso",
+            "iso_checksum": "sha256:fff9af332c09542b29ac04ae61d04f3951fcb4371beefa6be80d1d9d007e9599",
+            "ssh_username": "root",
+            "ssh_password": "vagrant",
+            "ssh_port": 22,
+            "ssh_handshake_attempts": 1000,
+            "ssh_timeout": "9800s",
+            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+        },
+        {
+            "type": "utm-iso",
+            "name": "ansiblebook-debian12-utm-a64",
+            "vm_name": "ansiblebook-debian12-utm-a64",
+            "output_directory": "output/ansiblebook-debian12-utm-a64",
+            "vm_arch": "aarch64",
+            "vm_backend": "qemu",
+            "uefi_boot": true,
+            "hypervisor": true,
+            "hard_drive_interface": "virtio",
+            "iso_interface": "usb",
+            "memory": 2048,
+            "keep_registered": false,
+            "disable_vnc": false,
+            "boot_wait": "10s",
+            "boot_command": [
+                "c<wait5>",
+                "linux /install.a64/vmlinuz auto=true priority=critical ",
+                "preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.debian12.vagrant.arm.cfg ",
+                "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 hostname=debian12 domain=localdomain<enter><wait>",
+                "initrd /install.a64/initrd.gz<enter><wait>",
+                "boot<enter><wait>"
+            ],
+            "http_directory": "http",
+            "iso_url": "https://cdimage.debian.org/cdimage/release/12.4.0/arm64/iso-cd/debian-12.4.0-arm64-netinst.iso",
+            "iso_checksum": "sha256:d32d2c63350a932dc0d9d45665985b41413f9e01efc0eacbea981d435f553d3d",
+            "ssh_username": "root",
+            "ssh_password": "vagrant",
+            "ssh_port": 22,
+            "ssh_handshake_attempts": 1000,
+            "ssh_timeout": "9800s",
+            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+        }
+    ],
+    "post-processors": [
+        [
+            {
+                "type": "utm-vagrant",
+                "compression_level": 9,
+                "keep_input_artifact": false,
+                "vagrantfile_template": "tpl/ansiblebook-{{split build_name \"-\" 1}}.rb",
+                "output": "output/ansiblebook-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.box",
+                "architecture": "arm64"
+            },
+            {
+                "type": "checksum",
+                "checksum_types": [
+                    "sha256"
+                ],
+                "keep_input_artifact": false,
+                "output": "output/ansiblebook-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.box.sha256"
+            }
+        ]
+    ]
+}

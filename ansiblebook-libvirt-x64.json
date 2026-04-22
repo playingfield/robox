@@ -1,0 +1,264 @@
+{
+    "variables": {
+        "box_version": "{{env `VERSION`}}"
+    },
+    "provisioners": [
+        {
+            "type": "shell",
+            "timeout": "120m",
+            "scripts": [
+                "scripts/alma9/network.sh",
+                "scripts/alma9/dnf.sh",
+                "scripts/alma9/base.sh",
+                "scripts/alma9/reboot.sh"
+            ],
+            "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "ansiblebook-alma9-libvirt-x64"
+            ]
+        },
+        {
+            "type": "shell",
+            "timeout": "120m",
+            "scripts": [
+                "scripts/alma9/kernel.sh",
+                "scripts/alma9/floppy.sh",
+                "scripts/alma9/qemu.sh",
+                "scripts/alma9/vagrant.sh",
+                "scripts/alma9/tuning.sh",
+                "scripts/alma9/sshd.sh",
+                "scripts/alma9/randomness.sh",
+                "scripts/alma9/updatedb.sh",
+                "scripts/alma9/cleanup.sh",
+                "scripts/alma9/undnf.sh"
+            ],
+            "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+            "pause_before": "120s",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "ansiblebook-alma9-libvirt-x64"
+            ]
+        },
+        {
+            "type": "shell",
+            "timeout": "120m",
+            "scripts": [
+                "scripts/alma10/network.sh",
+                "scripts/alma10/dnf.sh",
+                "scripts/alma10/base.sh",
+                "scripts/alma10/reboot.sh"
+            ],
+            "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "ansiblebook-alma10-libvirt-x64"
+            ]
+        },
+        {
+            "type": "shell",
+            "timeout": "120m",
+            "scripts": [
+                "scripts/alma10/kernel.sh",
+                "scripts/alma10/floppy.sh",
+                "scripts/alma10/qemu.sh",
+                "scripts/alma10/vagrant.sh",
+                "scripts/alma10/tuning.sh",
+                "scripts/alma10/sshd.sh",
+                "scripts/alma10/randomness.sh",
+                "scripts/alma10/updatedb.sh",
+                "scripts/alma10/cleanup.sh",
+                "scripts/alma10/undnf.sh"
+            ],
+            "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'",
+            "pause_before": "120s",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "ansiblebook-alma10-libvirt-x64"
+            ]
+        },
+        {
+            "scripts": [
+                "scripts/debian13/apt.sh",
+                "scripts/debian13/network.sh"
+            ],
+            "type": "shell",
+            "timeout": "120m",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "ansiblebook-debian13-libvirt-x64"
+            ]
+        },
+        {
+            "scripts": [
+                "scripts/debian13/floppy.sh",
+                "scripts/debian13/profile.sh",
+                "scripts/debian13/vagrant.sh",
+                "scripts/debian13/motd.sh",
+                "scripts/debian13/fixtty.sh",
+                "scripts/debian13/qemu.sh",
+                "scripts/debian13/cleanup.sh"
+            ],
+            "type": "shell",
+            "timeout": "120m",
+            "pause_before": "120s",
+            "start_retry_timeout": "15m",
+            "expect_disconnect": "true",
+            "only": [
+                "ansiblebook-debian13-libvirt-x64"
+            ]
+        }
+    ],
+    "builders": [
+        {
+            "type": "qemu",
+            "name": "ansiblebook-alma9-libvirt-x64",
+            "vm_name": "ansiblebook-alma9-libvirt-x64",
+            "output_directory": "output/ansiblebook-alma9-libvirt-x64",
+            "qemu_binary": "qemu-system-x86_64",
+            "boot_wait": "20s",
+            "boot_keygroup_interval": "1s",
+            "boot_command": [
+                "<tab> net.ifnames=0 inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alma9.vagrant.x64.ks vga=792 <enter><wait>"
+            ],
+            "qemuargs": [
+                [
+                    "-cpu",
+                    "max"
+                ]
+            ],
+            "format": "qcow2",
+            "disk_size": "131072",
+            "disk_discard": "unmap",
+            "disk_detect_zeroes": "on",
+            "disk_cache": "unsafe",
+            "disk_image": false,
+            "disk_compression": true,
+            "disk_interface": "virtio-scsi",
+            "net_device": "virtio-net",
+            "cpus": 2,
+            "memory": 2048,
+            "http_directory": "http",
+            "headless": true,
+            "iso_url": "https://dfw.mirror.rackspace.com/almalinux/9/isos/x86_64/AlmaLinux-9-latest-x86_64-minimal.iso",
+            "iso_checksum": "sha256:d51ed22cf272a0f30fcf55579d2748ff6ee1fddd6e36ba728cb386b933ceb7fc",
+            "ssh_username": "root",
+            "ssh_password": "vagrant",
+            "ssh_port": 22,
+            "ssh_handshake_attempts": 1000,
+            "ssh_timeout": "3600s",
+            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+        },
+        {
+            "type": "qemu",
+            "name": "ansiblebook-alma10-libvirt-x64",
+            "vm_name": "ansiblebook-alma10-libvirt-x64",
+            "output_directory": "output/ansiblebook-alma10-libvirt-x64",
+            "qemu_binary": "qemu-system-x86_64",
+            "boot_wait": "20s",
+            "boot_keygroup_interval": "1s",
+            "boot_command": [
+                "<up>e<wait><down><down><end> net.ifnames=0 inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alma10.vagrant.x64.ks vga=792<f10><wait>"
+            ],
+            "qemuargs": [
+                [
+                    "-cpu",
+                    "max"
+                ]
+            ],
+            "format": "qcow2",
+            "disk_size": "131072",
+            "disk_discard": "unmap",
+            "disk_detect_zeroes": "on",
+            "disk_cache": "unsafe",
+            "disk_image": false,
+            "disk_compression": true,
+            "disk_interface": "virtio-scsi",
+            "net_device": "virtio-net",
+            "cpus": 2,
+            "memory": 2048,
+            "http_directory": "http",
+            "headless": true,
+            "iso_url": "https://dfw.mirror.rackspace.com/almalinux/10/isos/x86_64/AlmaLinux-10-latest-x86_64-minimal.iso",
+            "iso_checksum": "sha256:049efd183a5a841dd432b3427eb6faa7deb3bf6c6bf2c63cbffa024b9c651725",
+            "ssh_username": "root",
+            "ssh_password": "vagrant",
+            "ssh_port": 22,
+            "ssh_handshake_attempts": 1000,
+            "ssh_timeout": "3600s",
+            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+        },
+        {
+            "type": "qemu",
+            "name": "ansiblebook-debian13-libvirt-x64",
+            "vm_name": "ansiblebook-debian13-libvirt-x64",
+            "output_directory": "output/ansiblebook-debian13-libvirt-x64",
+            "qemu_binary": "qemu-system-x86_64",
+            "boot_wait": "10s",
+            "boot_keygroup_interval": "1s",
+            "boot_command": [
+                "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+                "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+                "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+                "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+                "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+                "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+                "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+                "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+                "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+                "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+                "/install.amd/vmlinuz auto=true priority=critical vga=788 initrd=/install.amd/gtk/initrd.gz --- quiet ",
+                "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/ansiblebook.debian13.vagrant.cfg ",
+                "<enter>"
+            ],
+            "format": "qcow2",
+            "disk_size": "131072",
+            "disk_discard": "unmap",
+            "disk_detect_zeroes": "on",
+            "disk_cache": "unsafe",
+            "disk_image": false,
+            "disk_compression": true,
+            "disk_interface": "virtio-scsi",
+            "net_device": "virtio-net",
+            "cpus": 2,
+            "memory": 2048,
+            "http_directory": "http",
+            "headless": true,
+            "iso_url": "https://cdimage.debian.org/cdimage/release/13.0.0/amd64/iso-cd/debian-13.0.0-amd64-netinst.iso",
+            "iso_checksum": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+            "ssh_username": "root",
+            "ssh_password": "vagrant",
+            "ssh_port": 22,
+            "ssh_handshake_attempts": 1000,
+            "ssh_timeout": "3600s",
+            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+        }
+    ],
+    "post-processors": [
+        [
+            {
+                "type": "vagrant",
+                "compression_level": 9,
+                "keep_input_artifact": false,
+                "vagrantfile_template": "tpl/ansiblebook-{{split build_name \"-\" 1}}.rb",
+                "output": "output/ansiblebook-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.box",
+                "include": [
+                    "tpl/ansiblebook/info.json"
+                ]
+            },
+            {
+                "type": "checksum",
+                "checksum_types": [
+                    "sha256"
+                ],
+                "keep_input_artifact": false,
+                "output": "output/ansiblebook-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-{{user `box_version`}}.box.sha256"
+            }
+        ]
+    ]
+}

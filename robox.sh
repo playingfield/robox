@@ -60,10 +60,10 @@ export AGENT="Vagrant/2.4.0 (+https://www.vagrantup.com; ruby3.1.4)"
 [ ! -n "$PACKER_CACHE_DIR" ] && export PACKER_CACHE_DIR="$BASE/packer_cache/"
 
 # The provider platforms.
-ROBOX_PROVIDERS="docker hyperv libvirt parallels virtualbox vmware"
+ROBOX_PROVIDERS="docker hyperv libvirt parallels virtualbox vmware utm"
 
 # The namespaces.
-ROBOX_NAMESPACES="generic magma developer lineage"
+ROBOX_NAMESPACES="ansiblebook generic magma developer lineage"
 
 # The iso update functions.
 ROBOX_ISOS="all alpine arch centos centos8s centos9s gentoo hardenedbsd hardenedbsd13 hardenedbsd14"
@@ -80,7 +80,10 @@ ROBOX_FILES="packer-cache-x64.json packer-cache-x32.json "\
 "generic-libvirt-p64.json generic-libvirt-m64.json "\
 "magma-docker-x64.json magma-hyperv-x64.json magma-vmware-x64.json magma-libvirt-x64.json magma-virtualbox-x64.json "\
 "lineage-hyperv-x64.json lineage-vmware-x64.json lineage-libvirt-x64.json lineage-virtualbox-x64.json "\
-"developer-ova-x64.json developer-hyperv-x64.json developer-vmware-x64.json developer-libvirt-x64.json developer-virtualbox-x64.json"
+"developer-ova-x64.json developer-hyperv-x64.json developer-vmware-x64.json developer-libvirt-x64.json developer-virtualbox-x64.json "\
+"ansiblebook-vmware-x64.json ansiblebook-libvirt-x64.json "\
+"generic-utm-x64.json generic-utm-a64.json "\
+"ansiblebook-utm-x64.json ansiblebook-utm-a64.json"
 
 # Collect the list of ISO URLs.
 ISOURLS=(`grep -E "iso_url|guest_additions_url" $ROBOX_FILES | awk -F'"' '{print $4}'`)
@@ -3310,6 +3313,8 @@ function generic() {
     build generic-hyperv-x64
   elif [[ "$(uname)" == "Darwin" ]]; then
     build generic-parallels-x64
+    build generic-utm-x64
+    build generic-utm-a64
   elif [[ "$(name -m)" == "arm64" ]] || [[ "$(name -m)" == "aarch64" ]]; then
     build generic-libvirt-a64
     build generic-libvirt-a32
@@ -3346,6 +3351,31 @@ function developer() {
   fi
 }
 
+function ansiblebook() {
+  if [[ "$(uname)" == "Darwin" ]]; then
+    build ansiblebook-vmware-x64
+    build ansiblebook-utm-x64
+    build ansiblebook-utm-a64
+  elif [[ $OS == "Windows_NT" ]]; then
+    build ansiblebook-vmware-x64
+  else
+    build ansiblebook-vmware-x64
+    build ansiblebook-libvirt-x64
+  fi
+}
+
+function utm() {
+  if [[ "$(uname)" == "Darwin" ]]; then
+    verify_json generic-utm-x64
+    verify_json generic-utm-a64
+
+    build generic-utm-x64
+    build generic-utm-a64
+  else
+    tput setaf 1; tput bold; printf "\n\nThe UTM roboxes require a macOS host with UTM installed.\n\n"; tput sgr0
+  fi
+}
+
 function ova() {
   verify_json developer-ova-x64
 
@@ -3358,12 +3388,14 @@ function vmware() {
   verify_json magma-vmware-x64
   verify_json developer-vmware-x64
   verify_json lineage-vmware-x64
+  verify_json ansiblebook-vmware-x64
 
   build generic-vmware-x64
   build generic-vmware-x32
   build magma-vmware-x64
   build developer-vmware-x64
   build lineage-vmware-x64
+  build ansiblebook-vmware-x64
 }
 
 function hyperv() {
