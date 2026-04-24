@@ -1,0 +1,931 @@
+{
+    "variables": {
+        "box_version": "{{env `VERSION`}}"
+    },
+    "provisioners": [
+        {
+            "type": "shell",
+            "timeout": "120m",
+            "scripts": [
+                "scripts/alma10/network.sh",
+                "scripts/alma10/dnf.sh",
+                "scripts/alma10/base.sh",
+                "scripts/alma10/reboot.sh"
+            ],
+            "start_retry_timeout": "45m",
+            "expect_disconnect": "true",
+            "only": [
+                "ansiblebook-alma10-hyperv-x64"
+            ],
+            "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'"
+        },
+        {
+            "type": "shell",
+            "timeout": "120m",
+            "scripts": [
+                "scripts/alma10/kernel.sh",
+                "scripts/alma10/floppy.sh",
+                "scripts/alma10/virtualbox.sh",
+                "scripts/alma10/parallels.sh",
+                "scripts/alma10/vmware.sh",
+                "scripts/alma10/qemu.sh",
+                "scripts/alma10/vagrant.sh",
+                "scripts/alma10/tuning.sh",
+                "scripts/alma10/sshd.sh",
+                "scripts/alma10/randomness.sh",
+                "scripts/alma10/updatedb.sh",
+                "scripts/alma10/cleanup.sh",
+                "scripts/alma10/undnf.sh"
+            ],
+            "pause_before": "120s",
+            "start_retry_timeout": "45m",
+            "expect_disconnect": "true",
+            "only": [
+                "ansiblebook-alma10-hyperv-x64"
+            ],
+            "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'"
+        },
+        {
+            "type": "shell",
+            "timeout": "120m",
+            "scripts": [
+                "scripts/alma9/network.sh",
+                "scripts/alma9/dnf.sh",
+                "scripts/alma9/base.sh",
+                "scripts/alma9/reboot.sh"
+            ],
+            "start_retry_timeout": "45m",
+            "expect_disconnect": "true",
+            "only": [
+                "ansiblebook-alma9-hyperv-x64"
+            ],
+            "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'"
+        },
+        {
+            "type": "shell",
+            "timeout": "120m",
+            "scripts": [
+                "scripts/alma9/kernel.sh",
+                "scripts/alma9/floppy.sh",
+                "scripts/alma9/virtualbox.sh",
+                "scripts/alma9/parallels.sh",
+                "scripts/alma9/vmware.sh",
+                "scripts/alma9/qemu.sh",
+                "scripts/alma9/vagrant.sh",
+                "scripts/alma9/tuning.sh",
+                "scripts/alma9/sshd.sh",
+                "scripts/alma9/randomness.sh",
+                "scripts/alma9/updatedb.sh",
+                "scripts/alma9/cleanup.sh",
+                "scripts/alma9/undnf.sh"
+            ],
+            "pause_before": "120s",
+            "start_retry_timeout": "45m",
+            "expect_disconnect": "true",
+            "only": [
+                "ansiblebook-alma9-hyperv-x64"
+            ],
+            "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'"
+        },
+        {
+            "type": "shell",
+            "timeout": "120m",
+            "scripts": [
+                "scripts/alpine319/network.sh",
+                "scripts/alpine319/apk.sh"
+            ],
+            "start_retry_timeout": "45m",
+            "expect_disconnect": "true",
+            "only": [
+                "ansiblebook-alpine319-hyperv-x64"
+            ],
+            "execute_command": "/bin/sh '{{.Path}}'"
+        },
+        {
+            "type": "shell",
+            "timeout": "120m",
+            "scripts": [
+                "scripts/alpine319/hostname.sh",
+                "scripts/alpine319/lsb.sh",
+                "scripts/alpine319/floppy.sh",
+                "scripts/alpine319/vagrant.sh",
+                "scripts/alpine319/sshd.sh",
+                "scripts/alpine319/virtualbox.sh",
+                "scripts/alpine319/parallels.sh",
+                "scripts/alpine319/vmware.sh",
+                "scripts/alpine319/qemu.sh",
+                "scripts/alpine319/cache.sh"
+            ],
+            "pause_before": "120s",
+            "start_retry_timeout": "45m",
+            "expect_disconnect": "true",
+            "only": [
+                "ansiblebook-alpine319-hyperv-x64"
+            ],
+            "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'"
+        },
+        {
+            "type": "shell",
+            "timeout": "120m",
+            "scripts": [
+                "scripts/debian12/apt.sh",
+                "scripts/debian12/network.sh"
+            ],
+            "start_retry_timeout": "45m",
+            "expect_disconnect": "true",
+            "only": [
+                "ansiblebook-debian12-hyperv-x64"
+            ]
+        },
+        {
+            "type": "shell",
+            "timeout": "120m",
+            "scripts": [
+                "scripts/debian12/floppy.sh",
+                "scripts/debian12/profile.sh",
+                "scripts/debian12/vagrant.sh",
+                "scripts/debian12/motd.sh",
+                "scripts/debian12/fixtty.sh",
+                "scripts/debian12/virtualbox.sh",
+                "scripts/debian12/parallels.sh",
+                "scripts/debian12/vmware.sh",
+                "scripts/debian12/qemu.sh",
+                "scripts/debian12/cleanup.sh"
+            ],
+            "pause_before": "120s",
+            "start_retry_timeout": "45m",
+            "expect_disconnect": "true",
+            "only": [
+                "ansiblebook-debian12-hyperv-x64"
+            ]
+        },
+        {
+            "type": "shell",
+            "timeout": "120m",
+            "scripts": [
+                "scripts/debian12/apt.sh",
+                "scripts/debian12/network.sh"
+            ],
+            "start_retry_timeout": "45m",
+            "expect_disconnect": "true",
+            "only": [
+                "ansiblebook-debian13-hyperv-x64"
+            ]
+        },
+        {
+            "type": "shell",
+            "timeout": "120m",
+            "scripts": [
+                "scripts/debian12/floppy.sh",
+                "scripts/debian12/profile.sh",
+                "scripts/debian12/vagrant.sh",
+                "scripts/debian12/motd.sh",
+                "scripts/debian12/fixtty.sh",
+                "scripts/debian12/virtualbox.sh",
+                "scripts/debian12/parallels.sh",
+                "scripts/debian12/vmware.sh",
+                "scripts/debian12/qemu.sh",
+                "scripts/debian12/cleanup.sh"
+            ],
+            "pause_before": "120s",
+            "start_retry_timeout": "45m",
+            "expect_disconnect": "true",
+            "only": [
+                "ansiblebook-debian13-hyperv-x64"
+            ]
+        },
+        {
+            "type": "shell",
+            "timeout": "120m",
+            "scripts": [
+                "scripts/opensuse15/zypper.sh"
+            ],
+            "start_retry_timeout": "45m",
+            "expect_disconnect": "true",
+            "only": [
+                "ansiblebook-opensuse15-hyperv-x64"
+            ],
+            "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'"
+        },
+        {
+            "type": "shell",
+            "timeout": "120m",
+            "scripts": [
+                "scripts/opensuse15/virtualbox.sh",
+                "scripts/opensuse15/parallels.sh",
+                "scripts/opensuse15/vmware.sh",
+                "scripts/opensuse15/qemu.sh",
+                "scripts/opensuse15/vagrant.sh",
+                "scripts/opensuse15/network.sh",
+                "scripts/opensuse15/floppy.sh",
+                "scripts/opensuse15/postfix.sh"
+            ],
+            "pause_before": "120s",
+            "start_retry_timeout": "45m",
+            "expect_disconnect": "true",
+            "only": [
+                "ansiblebook-opensuse15-hyperv-x64"
+            ],
+            "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'"
+        },
+        {
+            "type": "shell",
+            "timeout": "120m",
+            "scripts": [
+                "scripts/rocky10/network.sh",
+                "scripts/rocky10/dnf.sh",
+                "scripts/rocky10/base.sh",
+                "scripts/rocky10/reboot.sh"
+            ],
+            "start_retry_timeout": "45m",
+            "expect_disconnect": "true",
+            "only": [
+                "ansiblebook-rocky10-hyperv-x64"
+            ],
+            "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'"
+        },
+        {
+            "type": "shell",
+            "timeout": "120m",
+            "scripts": [
+                "scripts/rocky10/kernel.sh",
+                "scripts/rocky10/floppy.sh",
+                "scripts/rocky10/virtualbox.sh",
+                "scripts/rocky10/parallels.sh",
+                "scripts/rocky10/vmware.sh",
+                "scripts/rocky10/qemu.sh",
+                "scripts/rocky10/vagrant.sh",
+                "scripts/rocky10/tuning.sh",
+                "scripts/rocky10/sshd.sh",
+                "scripts/rocky10/randomness.sh",
+                "scripts/rocky10/updatedb.sh",
+                "scripts/rocky10/cleanup.sh",
+                "scripts/rocky10/undnf.sh"
+            ],
+            "pause_before": "120s",
+            "start_retry_timeout": "45m",
+            "expect_disconnect": "true",
+            "only": [
+                "ansiblebook-rocky10-hyperv-x64"
+            ],
+            "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'"
+        },
+        {
+            "type": "shell",
+            "timeout": "120m",
+            "scripts": [
+                "scripts/rocky9/network.sh",
+                "scripts/rocky9/dnf.sh",
+                "scripts/rocky9/base.sh",
+                "scripts/rocky9/reboot.sh"
+            ],
+            "start_retry_timeout": "45m",
+            "expect_disconnect": "true",
+            "only": [
+                "ansiblebook-rocky9-hyperv-x64"
+            ],
+            "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'"
+        },
+        {
+            "type": "shell",
+            "timeout": "120m",
+            "scripts": [
+                "scripts/rocky9/kernel.sh",
+                "scripts/rocky9/floppy.sh",
+                "scripts/rocky9/virtualbox.sh",
+                "scripts/rocky9/parallels.sh",
+                "scripts/rocky9/vmware.sh",
+                "scripts/rocky9/qemu.sh",
+                "scripts/rocky9/vagrant.sh",
+                "scripts/rocky9/tuning.sh",
+                "scripts/rocky9/sshd.sh",
+                "scripts/rocky9/randomness.sh",
+                "scripts/rocky9/updatedb.sh",
+                "scripts/rocky9/cleanup.sh",
+                "scripts/rocky9/undnf.sh"
+            ],
+            "pause_before": "120s",
+            "start_retry_timeout": "45m",
+            "expect_disconnect": "true",
+            "only": [
+                "ansiblebook-rocky9-hyperv-x64"
+            ],
+            "execute_command": "{{.Vars}} /bin/bash '{{.Path}}'"
+        },
+        {
+            "type": "shell",
+            "timeout": "120m",
+            "scripts": [
+                "scripts/ubuntu2204/apt.sh",
+                "scripts/ubuntu2204/floppy.sh",
+                "scripts/ubuntu2204/fixkvp.sh",
+                "scripts/ubuntu2204/network.sh"
+            ],
+            "start_retry_timeout": "45m",
+            "expect_disconnect": "true",
+            "only": [
+                "ansiblebook-ubuntu2404-hyperv-x64"
+            ]
+        },
+        {
+            "type": "shell",
+            "timeout": "120m",
+            "scripts": [
+                "scripts/ubuntu2204/vagrant.sh",
+                "scripts/ubuntu2204/profile.sh",
+                "scripts/ubuntu2204/motd.sh",
+                "scripts/ubuntu2204/fixtty.sh",
+                "scripts/ubuntu2204/virtualbox.sh",
+                "scripts/ubuntu2204/parallels.sh",
+                "scripts/ubuntu2204/vmware.sh",
+                "scripts/ubuntu2204/qemu.sh",
+                "scripts/ubuntu2204/cleanup.sh"
+            ],
+            "pause_before": "120s",
+            "start_retry_timeout": "45m",
+            "expect_disconnect": "true",
+            "only": [
+                "ansiblebook-ubuntu2404-hyperv-x64"
+            ]
+        },
+        {
+            "type": "shell",
+            "timeout": "120m",
+            "scripts": [
+                "scripts/common/motd.sh",
+                "scripts/common/keys.sh",
+                "scripts/common/machine.sh",
+                "scripts/common/leases.sh",
+                "scripts/common/localtime.sh",
+                "scripts/common/zerodisk.sh",
+                "scripts/common/lockout.sh"
+            ],
+            "start_retry_timeout": "45m",
+            "expect_disconnect": "true"
+        }
+    ],
+    "builders": [
+        {
+            "type": "hyperv-iso",
+            "name": "ansiblebook-alma10-hyperv-x64",
+            "vm_name": "ansiblebook-alma10-hyperv-x64",
+            "temp_path": "output/",
+            "output_directory": "output/ansiblebook-alma10-hyperv-x64",
+            "boot_wait": "20s",
+            "boot_keygroup_interval": "1s",
+            "boot_command": [
+                "<tab> net.ifnames=0 inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alma10.vagrant.x64.ks vga=792 <enter><wait>"
+            ],
+            "disk_size": 131072,
+            "memory": 2048,
+            "cpus": 2,
+            "http_directory": "http",
+            "iso_url": "https://repo.almalinux.org/almalinux/10.1/isos/x86_64/AlmaLinux-10.1-x86_64-boot.iso",
+            "iso_checksum": "sha256:68a9e14fa252c817d11a3c80306e5a21b2db37c21173fd3f52a9eb6ced25a4a0",
+            "ssh_username": "root",
+            "ssh_password": "vagrant",
+            "ssh_port": 22,
+            "ssh_handshake_attempts": 1000,
+            "ssh_timeout": "7200s",
+            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+            "generation": 1,
+            "headless": true,
+            "communicator": "ssh",
+            "skip_compaction": false,
+            "enable_secure_boot": false,
+            "enable_mac_spoofing": false,
+            "enable_dynamic_memory": false,
+            "guest_additions_mode": "disable",
+            "enable_virtualization_extensions": false
+        },
+        {
+            "type": "hyperv-iso",
+            "name": "ansiblebook-alma9-hyperv-x64",
+            "vm_name": "ansiblebook-alma9-hyperv-x64",
+            "temp_path": "output/",
+            "output_directory": "output/ansiblebook-alma9-hyperv-x64",
+            "boot_wait": "20s",
+            "boot_keygroup_interval": "1s",
+            "boot_command": [
+                "<tab> net.ifnames=0 inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alma9.vagrant.x64.ks vga=792 <enter><wait>"
+            ],
+            "disk_size": 131072,
+            "memory": 2048,
+            "cpus": 2,
+            "http_directory": "http",
+            "iso_url": "https://repo.almalinux.org/almalinux/9/isos/x86_64/AlmaLinux-9-latest-x86_64-boot.iso",
+            "iso_checksum": "sha256:af5377a1d16bbe599ea91a8761ad645f2f54687075802bdc0c0703ee610182e9",
+            "ssh_username": "root",
+            "ssh_password": "vagrant",
+            "ssh_port": 22,
+            "ssh_handshake_attempts": 1000,
+            "ssh_timeout": "7200s",
+            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+            "generation": 1,
+            "headless": true,
+            "communicator": "ssh",
+            "skip_compaction": false,
+            "enable_secure_boot": false,
+            "enable_mac_spoofing": false,
+            "enable_dynamic_memory": false,
+            "guest_additions_mode": "disable",
+            "enable_virtualization_extensions": false
+        },
+        {
+            "type": "hyperv-iso",
+            "name": "ansiblebook-alpine319-hyperv-x64",
+            "vm_name": "ansiblebook-alpine319-hyperv-x64",
+            "temp_path": "output/",
+            "output_directory": "output/ansiblebook-alpine319-hyperv-x64",
+            "boot_wait": "60s",
+            "boot_keygroup_interval": "1s",
+            "boot_command": [
+                "<enter><wait10>",
+                "root<enter><wait>",
+                "ifconfig eth0 up && udhcpc -i eth0<enter><wait>",
+                "wget http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alpine319.vagrant.cfg<enter><wait>",
+                "sed -i -e \"/rc-service/d\" /sbin/setup-sshd<enter><wait>",
+                "source generic.alpine319.vagrant.cfg<enter><wait>",
+                "printf \"vagrant\\nvagrant\\n\" | sh /sbin/setup-alpine -f /root/generic.alpine319.vagrant.cfg && ",
+                "mount /dev/sda2 /mnt && ",
+                "sed -E -i '/#? ?PasswordAuthentication/d' /mnt/etc/ssh/sshd_config && ",
+                "sed -E -i '/#? ?PermitRootLogin/d' /mnt/etc/ssh/sshd_config && ",
+                "echo 'PasswordAuthentication yes' >> /mnt/etc/ssh/sshd_config && ",
+                "echo 'PermitRootLogin yes' >> /mnt/etc/ssh/sshd_config && ",
+                "chroot /mnt apk add openntpd && chroot /mnt rc-update add openntpd default && ",
+                "chroot /mnt apk add hvtools && chroot /mnt rc-update add hv_fcopy_daemon default && ",
+                "chroot /mnt rc-update add hv_kvp_daemon default && chroot /mnt rc-update add hv_vss_daemon default && reboot<enter>"
+            ],
+            "disk_size": 131072,
+            "memory": 2048,
+            "cpus": 2,
+            "http_directory": "http",
+            "iso_url": "https://mirrors.edge.kernel.org/alpine/v3.19/releases/x86_64/alpine-virt-3.19.7-x86_64.iso",
+            "iso_checksum": "sha256:ccaaac43fca667ed0347c7894cc5f993f528c61288bcdefd89cda127f9f7f914",
+            "ssh_username": "root",
+            "ssh_password": "vagrant",
+            "ssh_port": 22,
+            "ssh_handshake_attempts": 1000,
+            "ssh_timeout": "7200s",
+            "shutdown_command": "/sbin/poweroff",
+            "generation": 1,
+            "headless": true,
+            "communicator": "ssh",
+            "skip_compaction": false,
+            "enable_secure_boot": false,
+            "enable_mac_spoofing": false,
+            "enable_dynamic_memory": false,
+            "guest_additions_mode": "disable",
+            "enable_virtualization_extensions": false
+        },
+        {
+            "type": "hyperv-iso",
+            "name": "ansiblebook-debian12-hyperv-x64",
+            "vm_name": "ansiblebook-debian12-hyperv-x64",
+            "temp_path": "output/",
+            "output_directory": "output/ansiblebook-debian12-hyperv-x64",
+            "boot_wait": "10s",
+            "boot_keygroup_interval": "1s",
+            "boot_command": [
+                "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+                "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+                "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+                "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+                "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+                "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+                "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+                "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+                "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+                "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+                "/install.amd/vmlinuz auto=true priority=critical vga=788 initrd=/install.amd/gtk/initrd.gz --- quiet ",
+                "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.debian12.vagrant.cfg ",
+                "<enter>"
+            ],
+            "disk_size": 131072,
+            "memory": 2048,
+            "cpus": 2,
+            "http_directory": "http",
+            "iso_url": "https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-12.4.0-amd64-netinst.iso",
+            "iso_checksum": "sha256:64d727dd5785ae5fcfd3ae8ffbede5f40cca96f1580aaa2820e8b99dae989d94",
+            "ssh_username": "root",
+            "ssh_password": "vagrant",
+            "ssh_port": 22,
+            "ssh_handshake_attempts": 1000,
+            "ssh_timeout": "7200s",
+            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+            "generation": 1,
+            "headless": true,
+            "communicator": "ssh",
+            "skip_compaction": false,
+            "enable_secure_boot": false,
+            "enable_mac_spoofing": false,
+            "enable_dynamic_memory": false,
+            "guest_additions_mode": "disable",
+            "enable_virtualization_extensions": false
+        },
+        {
+            "type": "hyperv-iso",
+            "name": "ansiblebook-debian13-hyperv-x64",
+            "vm_name": "ansiblebook-debian13-hyperv-x64",
+            "temp_path": "output/",
+            "output_directory": "output/ansiblebook-debian13-hyperv-x64",
+            "boot_wait": "10s",
+            "boot_keygroup_interval": "1s",
+            "boot_command": [
+                "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+                "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+                "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+                "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+                "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+                "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+                "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+                "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+                "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+                "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+                "/install.amd/vmlinuz auto=true priority=critical vga=788 initrd=/install.amd/gtk/initrd.gz --- quiet ",
+                "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/generic.debian13.vagrant.cfg ",
+                "<enter>"
+            ],
+            "disk_size": 131072,
+            "memory": 2048,
+            "cpus": 2,
+            "http_directory": "http",
+            "iso_url": "https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-13.4.0-amd64-netinst.iso",
+            "iso_checksum": "sha256:0b813535dd76f2ea96eff908c65e8521512c92a0631fd41c95756ffd7d4896dc",
+            "ssh_username": "root",
+            "ssh_password": "vagrant",
+            "ssh_port": 22,
+            "ssh_handshake_attempts": 1000,
+            "ssh_timeout": "7200s",
+            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+            "generation": 1,
+            "headless": true,
+            "communicator": "ssh",
+            "skip_compaction": false,
+            "enable_secure_boot": false,
+            "enable_mac_spoofing": false,
+            "enable_dynamic_memory": false,
+            "guest_additions_mode": "disable",
+            "enable_virtualization_extensions": false
+        },
+        {
+            "type": "hyperv-iso",
+            "name": "ansiblebook-opensuse15-hyperv-x64",
+            "vm_name": "ansiblebook-opensuse15-hyperv-x64",
+            "temp_path": "output/",
+            "output_directory": "output/ansiblebook-opensuse15-hyperv-x64",
+            "boot_wait": "20s",
+            "boot_keygroup_interval": "1s",
+            "boot_command": [
+                "<esc><enter><wait>",
+                "linux netsetup=dhcp lang=en_US textmode=1 ssh=0 sshd=0 <wait>",
+                "autoyast=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.opensuse15.vagrant.cfg<wait>",
+                "<enter><wait>"
+            ],
+            "disk_size": 131072,
+            "memory": 2048,
+            "cpus": 2,
+            "http_directory": "http",
+            "iso_url": "https://download.opensuse.org/distribution/leap/15.6/iso/openSUSE-Leap-15.6-DVD-x86_64-Media.iso",
+            "iso_checksum": "sha256:a74d4072e639c75ca127df3d869c1e57bcc44a093a969550f348a3ead561fe4f",
+            "ssh_username": "root",
+            "ssh_password": "vagrant",
+            "ssh_port": 22,
+            "ssh_handshake_attempts": 1000,
+            "ssh_timeout": "7200s",
+            "shutdown_command": "echo 'vagrant' | sudo -S /sbin/halt -h -p",
+            "generation": 1,
+            "headless": true,
+            "communicator": "ssh",
+            "skip_compaction": false,
+            "enable_secure_boot": false,
+            "enable_mac_spoofing": false,
+            "enable_dynamic_memory": false,
+            "guest_additions_mode": "disable",
+            "enable_virtualization_extensions": false
+        },
+        {
+            "type": "hyperv-iso",
+            "name": "ansiblebook-rocky10-hyperv-x64",
+            "vm_name": "ansiblebook-rocky10-hyperv-x64",
+            "temp_path": "output/",
+            "output_directory": "output/ansiblebook-rocky10-hyperv-x64",
+            "boot_wait": "20s",
+            "boot_keygroup_interval": "1s",
+            "boot_command": [
+                "<tab> net.ifnames=0 inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rocky10.vagrant.ks vga=792 <enter><wait>"
+            ],
+            "disk_size": 131072,
+            "memory": 2048,
+            "cpus": 2,
+            "http_directory": "http",
+            "iso_url": "https://dl.rockylinux.org/pub/rocky/10/isos/x86_64/Rocky-10.1-x86_64-boot.iso",
+            "iso_checksum": "sha256:18543988d9a1a5632d142c3dc288136dcc48ab71628f92ebcd40ada7f4ecd110",
+            "ssh_username": "root",
+            "ssh_password": "vagrant",
+            "ssh_port": 22,
+            "ssh_handshake_attempts": 1000,
+            "ssh_timeout": "7200s",
+            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+            "generation": 1,
+            "headless": true,
+            "communicator": "ssh",
+            "skip_compaction": false,
+            "enable_secure_boot": false,
+            "enable_mac_spoofing": false,
+            "enable_dynamic_memory": false,
+            "guest_additions_mode": "disable",
+            "enable_virtualization_extensions": false
+        },
+        {
+            "type": "hyperv-iso",
+            "name": "ansiblebook-rocky9-hyperv-x64",
+            "vm_name": "ansiblebook-rocky9-hyperv-x64",
+            "temp_path": "output/",
+            "output_directory": "output/ansiblebook-rocky9-hyperv-x64",
+            "boot_wait": "20s",
+            "boot_keygroup_interval": "1s",
+            "boot_command": [
+                "<tab> net.ifnames=0 inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rocky9.vagrant.ks vga=792 <enter><wait>"
+            ],
+            "disk_size": 131072,
+            "memory": 2048,
+            "cpus": 2,
+            "http_directory": "http",
+            "iso_url": "https://dl.rockylinux.org/pub/rocky/9/isos/x86_64/Rocky-9-latest-x86_64-boot.iso",
+            "iso_checksum": "sha256:eb096f0518e310f722d5ebd4c69f0322df4fc152c6189f93c5c797dc25f3d2e1",
+            "ssh_username": "root",
+            "ssh_password": "vagrant",
+            "ssh_port": 22,
+            "ssh_handshake_attempts": 1000,
+            "ssh_timeout": "7200s",
+            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+            "generation": 1,
+            "headless": true,
+            "communicator": "ssh",
+            "skip_compaction": false,
+            "enable_secure_boot": false,
+            "enable_mac_spoofing": false,
+            "enable_dynamic_memory": false,
+            "guest_additions_mode": "disable",
+            "enable_virtualization_extensions": false
+        },
+        {
+            "type": "hyperv-iso",
+            "name": "ansiblebook-ubuntu2404-hyperv-x64",
+            "vm_name": "ansiblebook-ubuntu2404-hyperv-x64",
+            "temp_path": "output/",
+            "output_directory": "output/ansiblebook-ubuntu2404-hyperv-x64",
+            "boot_wait": "10s",
+            "boot_keygroup_interval": "1s",
+            "boot_command": [
+                "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+                "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+                "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+                "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+                "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+                "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+                "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+                "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+                "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+                "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait>",
+                "c<wait10>",
+                "set gfxpayload=keep<enter><wait10>",
+                "linux /casper/vmlinuz autoinstall quiet net.ifnames=0 biosdevname=0 ",
+                "cloud-config-url=\"http://{{.HTTPIP}}:{{.HTTPPort}}/generic.ubuntu2404.vagrant.cfg\" --- <enter><wait10>",
+                "initrd /casper/initrd<enter><wait10>",
+                "boot<enter>"
+            ],
+            "disk_size": 131072,
+            "memory": 2048,
+            "cpus": 2,
+            "http_directory": "http",
+            "iso_url": "https://releases.ubuntu.com/24.04/ubuntu-24.04.4-live-server-amd64.iso",
+            "iso_checksum": "sha256:e907d92eeec9df64163a7e454cbc8d7755e8ddc7ed42f99dbc80c40f1a138433",
+            "ssh_username": "root",
+            "ssh_password": "vagrant",
+            "ssh_port": 22,
+            "ssh_handshake_attempts": 1000,
+            "ssh_timeout": "7200s",
+            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+            "generation": 1,
+            "headless": true,
+            "communicator": "ssh",
+            "skip_compaction": false,
+            "enable_secure_boot": false,
+            "enable_mac_spoofing": false,
+            "enable_dynamic_memory": false,
+            "guest_additions_mode": "disable",
+            "enable_virtualization_extensions": false
+        }
+    ],
+    "post-processors": [
+        [
+            {
+                "type": "vagrant",
+                "compression_level": 9,
+                "keep_input_artifact": false,
+                "vagrantfile_template": "tpl/ansiblebook-default.rb",
+                "output": "output/{{build_name}}-{{user `box_version`}}.box",
+                "include": [
+                    "tpl/ansiblebook/info.json"
+                ],
+                "only": [
+                    "ansiblebook-alma10-hyperv-x64"
+                ]
+            },
+            {
+                "type": "checksum",
+                "checksum_types": [
+                    "sha256"
+                ],
+                "keep_input_artifact": false,
+                "output": "output/{{build_name}}-{{user `box_version`}}.box.sha256"
+            }
+        ],
+        [
+            {
+                "type": "vagrant",
+                "compression_level": 9,
+                "keep_input_artifact": false,
+                "vagrantfile_template": "tpl/ansiblebook-default.rb",
+                "output": "output/{{build_name}}-{{user `box_version`}}.box",
+                "include": [
+                    "tpl/ansiblebook/info.json"
+                ],
+                "only": [
+                    "ansiblebook-alma9-hyperv-x64"
+                ]
+            },
+            {
+                "type": "checksum",
+                "checksum_types": [
+                    "sha256"
+                ],
+                "keep_input_artifact": false,
+                "output": "output/{{build_name}}-{{user `box_version`}}.box.sha256"
+            }
+        ],
+        [
+            {
+                "type": "vagrant",
+                "compression_level": 9,
+                "keep_input_artifact": false,
+                "vagrantfile_template": "tpl/ansiblebook-default.rb",
+                "output": "output/{{build_name}}-{{user `box_version`}}.box",
+                "include": [
+                    "tpl/ansiblebook/info.json"
+                ],
+                "only": [
+                    "ansiblebook-alpine319-hyperv-x64"
+                ]
+            },
+            {
+                "type": "checksum",
+                "checksum_types": [
+                    "sha256"
+                ],
+                "keep_input_artifact": false,
+                "output": "output/{{build_name}}-{{user `box_version`}}.box.sha256"
+            }
+        ],
+        [
+            {
+                "type": "vagrant",
+                "compression_level": 9,
+                "keep_input_artifact": false,
+                "vagrantfile_template": "tpl/ansiblebook-default.rb",
+                "output": "output/{{build_name}}-{{user `box_version`}}.box",
+                "include": [
+                    "tpl/ansiblebook/info.json"
+                ],
+                "only": [
+                    "ansiblebook-debian12-hyperv-x64"
+                ]
+            },
+            {
+                "type": "checksum",
+                "checksum_types": [
+                    "sha256"
+                ],
+                "keep_input_artifact": false,
+                "output": "output/{{build_name}}-{{user `box_version`}}.box.sha256"
+            }
+        ],
+        [
+            {
+                "type": "vagrant",
+                "compression_level": 9,
+                "keep_input_artifact": false,
+                "vagrantfile_template": "tpl/ansiblebook-default.rb",
+                "output": "output/{{build_name}}-{{user `box_version`}}.box",
+                "include": [
+                    "tpl/ansiblebook/info.json"
+                ],
+                "only": [
+                    "ansiblebook-debian13-hyperv-x64"
+                ]
+            },
+            {
+                "type": "checksum",
+                "checksum_types": [
+                    "sha256"
+                ],
+                "keep_input_artifact": false,
+                "output": "output/{{build_name}}-{{user `box_version`}}.box.sha256"
+            }
+        ],
+        [
+            {
+                "type": "vagrant",
+                "compression_level": 9,
+                "keep_input_artifact": false,
+                "vagrantfile_template": "tpl/ansiblebook-default.rb",
+                "output": "output/{{build_name}}-{{user `box_version`}}.box",
+                "include": [
+                    "tpl/ansiblebook/info.json"
+                ],
+                "only": [
+                    "ansiblebook-opensuse15-hyperv-x64"
+                ]
+            },
+            {
+                "type": "checksum",
+                "checksum_types": [
+                    "sha256"
+                ],
+                "keep_input_artifact": false,
+                "output": "output/{{build_name}}-{{user `box_version`}}.box.sha256"
+            }
+        ],
+        [
+            {
+                "type": "vagrant",
+                "compression_level": 9,
+                "keep_input_artifact": false,
+                "vagrantfile_template": "tpl/ansiblebook-default.rb",
+                "output": "output/{{build_name}}-{{user `box_version`}}.box",
+                "include": [
+                    "tpl/ansiblebook/info.json"
+                ],
+                "only": [
+                    "ansiblebook-rocky10-hyperv-x64"
+                ]
+            },
+            {
+                "type": "checksum",
+                "checksum_types": [
+                    "sha256"
+                ],
+                "keep_input_artifact": false,
+                "output": "output/{{build_name}}-{{user `box_version`}}.box.sha256"
+            }
+        ],
+        [
+            {
+                "type": "vagrant",
+                "compression_level": 9,
+                "keep_input_artifact": false,
+                "vagrantfile_template": "tpl/ansiblebook-default.rb",
+                "output": "output/{{build_name}}-{{user `box_version`}}.box",
+                "include": [
+                    "tpl/ansiblebook/info.json"
+                ],
+                "only": [
+                    "ansiblebook-rocky9-hyperv-x64"
+                ]
+            },
+            {
+                "type": "checksum",
+                "checksum_types": [
+                    "sha256"
+                ],
+                "keep_input_artifact": false,
+                "output": "output/{{build_name}}-{{user `box_version`}}.box.sha256"
+            }
+        ],
+        [
+            {
+                "type": "vagrant",
+                "compression_level": 9,
+                "keep_input_artifact": false,
+                "vagrantfile_template": "tpl/ansiblebook-default.rb",
+                "output": "output/{{build_name}}-{{user `box_version`}}.box",
+                "include": [
+                    "tpl/ansiblebook/info.json"
+                ],
+                "only": [
+                    "ansiblebook-ubuntu2404-hyperv-x64"
+                ]
+            },
+            {
+                "type": "checksum",
+                "checksum_types": [
+                    "sha256"
+                ],
+                "keep_input_artifact": false,
+                "output": "output/{{build_name}}-{{user `box_version`}}.box.sha256"
+            }
+        ]
+    ]
+}

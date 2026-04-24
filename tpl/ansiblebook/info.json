@@ -1,0 +1,7 @@
+{
+ "Author": "Playing Field",
+ "Website": "https://github.com/playingfield/robox/",
+ "Artifacts": "https://vagrantcloud.com/ansiblebook/",
+ "Repository": "https://github.com/playingfield/robox/",
+ "Description": "Virtual machine images for Ansible book exercises, covering multiple operating systems and hypervisors."
+}
