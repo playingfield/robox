@@ -374,7 +374,7 @@
             "boot_wait": "20s",
             "boot_keygroup_interval": "1s",
             "boot_command": [
-                "<up><wait><e><wait><down><down><down><end> net.ifnames=0 inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alma10.vagrant.x64.ks vga=792<wait><leftCtrlOn>x<leftCtrlOff>"
+                "<up><wait><e><wait><down><down><end> net.ifnames=0 inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.alma10.vagrant.x64.ks vga=792<wait><leftCtrlOn>x<leftCtrlOff>"
             ],
             "disk_size": 131072,
             "disk_type_id": "0",
@@ -666,7 +666,7 @@
             "boot_wait": "20s",
             "boot_keygroup_interval": "1s",
             "boot_command": [
-                "<up><wait><e><wait><down><down><down><end> net.ifnames=0 inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rocky10.vagrant.ks vga=792<wait><leftCtrlOn>x<leftCtrlOff>"
+                "<up><wait><e><wait><down><down><end> net.ifnames=0 inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.rocky10.vagrant.ks vga=792<wait><leftCtrlOn>x<leftCtrlOff>"
             ],
             "disk_size": 131072,
             "disk_type_id": "0",
